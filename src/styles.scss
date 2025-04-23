@@ -1,18 +1,29 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
+@use './styles/global.scss';
 @use '@angular/material' as mat;
+@use './styles/_theme-colors.scss' as app-theme; // location of generated file
 @use "tailwindcss";
+
+:root {
+  @include mat.button-overrides((filled-container-shape: var(--radius-md),
+    ));
+  @include mat.card-overrides((outlined-container-shape: var(--radius-md),
+      elevated-container-shape: var(--radius-md),
+    ));
+  @include mat.form-field-overrides((filled-container-color: var(--mat-sys-surface-container-lowest),
+      // outlined-outline-width: 0px,
+      // outlined-focus-outline-width: 0px,
+    ))
+}
 
 html {
   color-scheme: light;
-  @include mat.theme((color: (primary: mat.$azure-palette,
-        tertiary: mat.$blue-palette,
+  @include mat.theme((color: (primary: app-theme.$primary-palette,
+        tertiary: app-theme.$tertiary-palette,
       ),
-
       typography: Roboto,
-
       density: 0,
-
     ));
 }
 

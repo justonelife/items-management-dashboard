@@ -25,6 +25,9 @@
       "@features/*": [
         "./src/app/features/*"
       ],
+      "@libs/*": [
+        "./projects/*/src/public-api.ts"
+      ],
     }
   },
   "angularCompilerOptions": {

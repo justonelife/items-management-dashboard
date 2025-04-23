@@ -1,0 +1,8 @@
+@use "./variables";
+@use "./mixins";
+
+$export-config: (
+  'radius': variables.$radius,
+);
+
+@include mixins.export-root-from-config($export-config);

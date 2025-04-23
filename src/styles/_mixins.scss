@@ -1,0 +1,9 @@
+@mixin export-root-from-config($config) {
+  :root {
+    @each $prefix, $map in $config {
+      @each $key, $value in $map {
+        --#{$prefix}-#{$key}: #{$value};
+      }
+    }
+  }
+}
