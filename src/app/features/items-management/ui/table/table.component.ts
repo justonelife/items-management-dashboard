@@ -1,6 +1,7 @@
-import { JsonPipe } from '@angular/common';
+import { CurrencyPipe, JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Item } from '@features/items-management/data-access';
+import { ChipComponent } from '@libs/chip';
 import { Column, TableModule } from '@libs/table';
 
 @Component({
@@ -8,6 +9,8 @@ import { Column, TableModule } from '@libs/table';
   imports: [
     TableModule,
     JsonPipe,
+    ChipComponent,
+    CurrencyPipe,
   ],
   selector: 'app-items-management-table',
   templateUrl: './table.component.html',

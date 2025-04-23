@@ -24,9 +24,5 @@ import { map } from 'rxjs';
 export class ItemsManagementDashboard {
   readonly api = inject(ItemsManagementService);
 
-  vm$ = this.api.getAll().pipe(
-    map(res => ({
-      items: res
-    }))
-  );
+  vm$ = this.api.getAll();
 }

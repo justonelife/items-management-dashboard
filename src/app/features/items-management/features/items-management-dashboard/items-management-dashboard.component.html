@@ -9,6 +9,6 @@
     select-button
   </span>
   @if (vm$ | async; as vm) {
-  <app-items-management-table [items]="vm.items" />
+  <app-items-management-table [items]="vm.data" />
   }
 </main>

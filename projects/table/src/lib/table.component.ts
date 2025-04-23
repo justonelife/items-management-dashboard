@@ -1,18 +1,20 @@
-import { JsonPipe, NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, contentChildren, effect, inject, input, TemplateRef } from '@angular/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from "@angular/material/table";
 import { AppAny } from '@libs/core';
-import { Column } from './types';
-import { ExtractColumnKeysPipe } from './pipes/extract-column-keys.pipe';
 import { ColumnTemplateDirective } from './directives/column-template.directive';
+import { ExtractColumnKeysPipe } from './pipes/extract-column-keys.pipe';
+import { Column } from './types';
+import { PAGE_SIZE_OPTIONS } from './table.const';
 
 @Component({
   selector: 'lib-table',
   imports: [
     MatTableModule,
-    JsonPipe,
     ExtractColumnKeysPipe,
     NgTemplateOutlet,
+    MatPaginatorModule,
   ],
   templateUrl: './table.component.html',
   standalone: true,
@@ -29,6 +31,8 @@ export class TableComponent<
 
   templates = contentChildren(ColumnTemplateDirective);
   templatesMapper: Record<string, TemplateRef<unknown>> = {};
+
+  readonly PAGE_SIZE_OPTIONS = PAGE_SIZE_OPTIONS;
 
   constructor() {
     effect(() => {

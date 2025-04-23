@@ -1,7 +1,16 @@
 <lib-table [data]="items()" [columns]="COLUMNS">
   <ng-template libColumnTemplate="type" let-row>
-    badge
-    {{ row.type }}
+    <lib-chip severity='neutral'>
+      {{ row.type }}
+    </lib-chip>
+  </ng-template>
+  <ng-template libColumnTemplate="category" let-row>
+    <lib-chip severity='info'>
+      {{ row.category }}
+    </lib-chip>
+  </ng-template>
+  <ng-template libColumnTemplate="price" let-row>
+    {{ row.price | currency }}
   </ng-template>
 </lib-table>
 <pre>

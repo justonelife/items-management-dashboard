@@ -1,14 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Item } from '../models';
+import { Item } from '../types';
+import { AppPageOfData } from '@libs/core';
 
 @Injectable()
 export class ItemsManagementService {
   readonly httpClient = inject(HttpClient);
   readonly URI = 'http://localhost:3000';
 
-  getAll(): Observable<Item[]> {
-    return this.httpClient.get<Item[]>(this.URI + '/items');
+  getAll(page: number = 1, size: number = 10): Observable<AppPageOfData<Item>> {
+    const queryParams = `?_page=${page}&_per_page=${size}`;
+    return this.httpClient.get<AppPageOfData<Item>>(this.URI + '/items' + queryParams);
   }
 }
