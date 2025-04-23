@@ -1,1 +1,9 @@
-table
+<lib-table [data]="items()" [columns]="COLUMNS">
+  <ng-template libColumnTemplate="type" let-row>
+    badge
+    {{ row.type }}
+  </ng-template>
+</lib-table>
+<pre>
+  {{ items() | json }}
+</pre>

@@ -1,7 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { ItemsManagementService } from '@features/items-management/data-access';
 import { ItemsManagementFilterComponent } from '@features/items-management/ui/filter/filter.component';
 import { ItemsManagementTableComponent } from '@features/items-management/ui/table/table.component';
+import { map } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -9,6 +12,7 @@ import { ItemsManagementTableComponent } from '@features/items-management/ui/tab
     MatButtonModule,
     ItemsManagementFilterComponent,
     ItemsManagementTableComponent,
+    AsyncPipe,
   ],
   selector: 'app-items-management-dashboard',
   templateUrl: './items-management-dashboard.component.html',
@@ -18,5 +22,11 @@ import { ItemsManagementTableComponent } from '@features/items-management/ui/tab
   }
 })
 export class ItemsManagementDashboard {
+  readonly api = inject(ItemsManagementService);
 
+  vm$ = this.api.getAll().pipe(
+    map(res => ({
+      items: res
+    }))
+  );
 }

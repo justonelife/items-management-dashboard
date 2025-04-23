@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from "@angular/material/input";
 import { CardComponent } from '@libs/card';
+import { InputDirective } from "@libs/input";
+import { SelectComponent } from '@libs/select';
 
 @Component({
   standalone: true,
   imports: [
     CardComponent,
-    MatFormFieldModule,
-    MatInputModule,
+    InputDirective,
+    SelectComponent,
   ],
   selector: 'app-items-management-filter',
   templateUrl: './filter.component.html',

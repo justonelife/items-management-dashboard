@@ -1,6 +1,9 @@
 <lib-card>
-  <mat-form-field>
-    <mat-label>Name</mat-label>
-    <input type="text" matInput placeholder="Search by name...">
-  </mat-form-field>
+  <div class="flex gap-4 flex-wrap">
+
+    <input type="text" libInput placeholder="Search by name..." />
+    <lib-select placeholder='Filter by type'></lib-select>
+    <lib-select placeholder='Filter by category'></lib-select>
+    <button class="ms-auto">Clear Filters</button>
+  </div>
 </lib-card>

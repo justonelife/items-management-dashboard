@@ -5,5 +5,10 @@
 </header>
 <main class="flex flex-col gap-4">
   <app-items-management-filter />
-  <app-items-management-table />
+  <span>
+    select-button
+  </span>
+  @if (vm$ | async; as vm) {
+  <app-items-management-table [items]="vm.items" />
+  }
 </main>

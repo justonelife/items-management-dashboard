@@ -11,10 +11,6 @@
   @include mat.card-overrides((outlined-container-shape: var(--radius-md),
       elevated-container-shape: var(--radius-md),
     ));
-  @include mat.form-field-overrides((filled-container-color: var(--mat-sys-surface-container-lowest),
-      // outlined-outline-width: 0px,
-      // outlined-focus-outline-width: 0px,
-    ))
 }
 
 html {
