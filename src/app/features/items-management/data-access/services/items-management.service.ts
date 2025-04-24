@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { AppAny, AppPageOfData } from '@libs/core';
 import { catchError, Observable, of } from 'rxjs';
 import { URI } from '../constants/dashboard.const';
-import { Filter, Item } from '../types';
+import { EditItem, Filter, Item } from '../types';
 
 @Injectable()
 export class ItemsManagementService {
@@ -52,5 +52,9 @@ export class ItemsManagementService {
       }
     }
     return result.length ? '?' + result : result;
+  }
+
+  updateItem(id: string, payload: EditItem) {
+    return this.httpClient.put(URI + '/items/' + id, payload);
   }
 }

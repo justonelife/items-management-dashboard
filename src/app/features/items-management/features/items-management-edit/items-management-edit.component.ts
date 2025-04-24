@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonService, EditItem, Item, ItemsManagementService, urlDashboardItems } from '@features/items-management/data-access';
 import { ItemsManagementForm } from '@features/items-management/ui/form/form.component';
 import { CardComponent } from '@libs/card';
@@ -29,12 +29,13 @@ import { AppTypedForm } from '@libs/core';
 })
 export class ItemsManagementEditComponent {
   readonly activatedRoute = inject(ActivatedRoute);
+  readonly router = inject(Router);
   readonly api = inject(ItemsManagementService);
   readonly commonService = inject(CommonService);
 
   id: string = this.activatedRoute.snapshot.params['id'];
 
-  readonly urlDashboardItems = urlDashboardItems;
+  readonly URL_DASHBOARD_ITEMS = urlDashboardItems();
 
   categoryOptions$ = this.commonService.getCategoryOptions();
   typeOptions$ = this.commonService.getTypeOptions();
@@ -58,5 +59,24 @@ export class ItemsManagementEditComponent {
         console.log(err);
       }
     });
+  }
+
+  submit() {
+    if (this.form.invalid || this.form.pristine) {
+      return;
+    }
+
+    this.api.updateItem(this.id, this.form.getRawValue()).subscribe({
+      next: _ => {
+        // alert success
+        this.router.navigate([this.URL_DASHBOARD_ITEMS]);
+
+      },
+      error: err => {
+        // TODO: alert
+        console.log(err);
+      }
+    });
+
   }
 }

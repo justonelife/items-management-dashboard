@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { urlEditItem } from '@features/items-management/data-access';
 import { RouterLink } from '@angular/router';
 import { Sort } from '@angular/material/sort';
+import { ReadMoreComponent } from '@libs/read-more';
 
 @Component({
   standalone: true,
@@ -25,6 +26,7 @@ import { Sort } from '@angular/material/sort';
     MatIconModule,
     SeverityDirective,
     RouterLink,
+    ReadMoreComponent,
   ],
   selector: 'app-items-management-table',
   templateUrl: './table.component.html',

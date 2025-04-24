@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditItem } from '@features/items-management/data-access';
 import { AppTypedForm } from '@libs/core';
@@ -22,4 +22,9 @@ export class ItemsManagementForm {
   categoryOptions = input.required<Option[]>();
   typeOptions = input.required<Option[]>();
 
+  emitSubmit = output<void>();
+
+  submit() {
+    this.emitSubmit.emit();
+  }
 }

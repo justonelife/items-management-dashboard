@@ -1,0 +1,14 @@
+@let _limit = limit();
+@let _content = content();
+
+{{ _content | slice:0:_limit }}
+{{ _limit < _content.length ? '...' : '' }} @if(_limit < _content.length) { <button type="button"
+  class="text-slate-500 cursor-pointer" (click)="readMore()">
+  more
+  </button>
+  } @else {
+
+  <button class="text-slate-500 cursor-pointer" (click)="readLess()" type="button">
+    less
+  </button>
+  }
