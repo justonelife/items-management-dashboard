@@ -6,11 +6,16 @@
 @use "tailwindcss";
 
 :root {
-  @include mat.button-overrides((filled-container-shape: var(--radius-md),
-    ));
+  @include mat.button-overrides((filled-container-shape: var(--radius-md), outlined-container-shape: var(--radius-md)));
   @include mat.card-overrides((outlined-container-shape: var(--radius-md),
       elevated-container-shape: var(--radius-md),
     ));
+  @include mat.table-overrides((row-item-outline-color: var(--mdc-outlined-card-outline-color, var(--mat-sys-outline-variant)),
+    ));
+  @include mat.form-field-overrides((outlined-outline-width: 0,
+      outlined-focus-outline-width: 0,
+      container-height: 40px,
+      container-vertical-padding: 8px));
 }
 
 html {

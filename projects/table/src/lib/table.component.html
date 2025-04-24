@@ -1,6 +1,6 @@
 @let _columns = columns();
 @let _displayedColumns = _columns | libExtractColumnKeys;
-<div class="mat-elevation-z8">
+<div class="mat-elevation-z8 border lib-table p-2 w-fit rounded-md">
   <table mat-table [dataSource]="data()" class="mat-elevation-z8">
 
     @for (col of _columns; track col.key) {

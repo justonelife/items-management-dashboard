@@ -1,4 +1,4 @@
-import { CurrencyPipe, JsonPipe } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Item } from '@features/items-management/data-access';
 import { ChipComponent } from '@libs/chip';
@@ -8,7 +8,6 @@ import { Column, TableModule } from '@libs/table';
   standalone: true,
   imports: [
     TableModule,
-    JsonPipe,
     ChipComponent,
     CurrencyPipe,
   ],
@@ -26,5 +25,6 @@ export class ItemsManagementTableComponent {
     { key: 'price', header: 'Price' },
     { key: 'imageUrl', header: 'Attachments' },
     { key: 'description', header: 'Description' },
+    { key: 'aciton', header: 'Actions' },
   ]
 }

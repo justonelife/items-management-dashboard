@@ -19,6 +19,7 @@ import { PAGE_SIZE_OPTIONS } from './table.const';
   templateUrl: './table.component.html',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrl: './table.component.scss',
 })
 export class TableComponent<
   TItem extends Record<string, AppAny> = Record<string, AppAny>,

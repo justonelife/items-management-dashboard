@@ -11,7 +11,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-      useValue: { appearance: 'outline' } as MatFormFieldDefaultOptions
+      useValue: {
+        appearance: 'outline',
+        floatLabel: 'always'
+      } as MatFormFieldDefaultOptions
     },
     provideHttpClient(),
   ]

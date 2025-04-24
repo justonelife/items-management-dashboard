@@ -1,29 +1,62 @@
-import { ChangeDetectionStrategy, Component, input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, inject, input, OnInit } from '@angular/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { Option } from './types';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AppAny, OnChangeType, OnTouchedType } from '@libs/core';
 
 @Component({
   standalone: true,
-  imports: [],
+  imports: [
+    MatSelectModule,
+    MatFormFieldModule,
+    FormsModule,
+  ],
   selector: 'lib-select',
   templateUrl: './select.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'class': `block
-      w-[300px]
-      py-2
-      px-4
-      text-gray-900
-      placeholder-gray-500
-      bg-white
-      border
-      border-gray-300
-      rounded-lg
-      focus:outline-none
-      focus:ring-1
-      focus:ring-black-500
-      focus:border-transparent
-    `
-  }
+    'class': 'inline-flex flex-col'
+  },
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      multi: true,
+      useExisting: forwardRef(() => SelectComponent)
+    }
+  ]
 })
-export class SelectComponent {
-  placeholder = input<string>();
+export class SelectComponent<TOption extends Option = Option> implements ControlValueAccessor {
+  readonly cdr = inject(ChangeDetectorRef);
+
+  label = input<string>();
+  placeholder = input<string>('');
+  options = input.required<TOption[]>();
+
+  state: AppAny;
+  onChange: OnChangeType = () => { };
+  onTouched: OnTouchedType = () => { };
+  disabled = false;
+
+  writeValue(value: AppAny): void {
+    this.state = value;
+    this.cdr.markForCheck();
+  }
+
+  registerOnChange(fn: OnChangeType): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: OnTouchedType): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState?(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+    this.cdr.markForCheck();
+  }
+
+  selectChange() {
+    this.onChange(this.state);
+  }
 }

@@ -1,9 +1,18 @@
 <lib-card>
-  <div class="flex gap-4 flex-wrap">
+  <form [formGroup]="form()" class="flex gap-4 flex-wrap" (ngSubmit)="filter()">
 
-    <input type="text" libInput placeholder="Search by name..." />
-    <lib-select placeholder='Filter by type'></lib-select>
-    <lib-select placeholder='Filter by category'></lib-select>
-    <button class="ms-auto">Clear Filters</button>
-  </div>
+    <div class="inline-flex flex-col">
+      <label class="text-xs font-semibold text-gray-500">Name</label>
+      <input libInput placeholder="Search by name..." formControlName="name">
+    </div>
+    <lib-select placeholder='Filter by type' label="Type" [options]="[{ value: 'Games', label: 'Games'}]"
+      formControlName="type"></lib-select>
+    <lib-select placeholder='Filter by category' label="Category" [options]="[{ value: 'Sleek', label: 'Sleek'}]"
+      formControlName="category"></lib-select>
+    <div class="ms-auto mt-auto flex gap-2">
+
+      <button mat-flat-button type="submit">Filter</button>
+      <button mat-stroked-button type="button" (click)="reset()">Clear</button>
+    </div>
+  </form>
 </lib-card>
