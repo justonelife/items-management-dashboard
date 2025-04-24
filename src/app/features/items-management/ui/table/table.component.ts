@@ -3,9 +3,12 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 import { PageEvent } from '@angular/material/paginator';
 import { Item } from '@features/items-management/data-access';
 import { ChipComponent } from '@libs/chip';
-import { AppPageOfData } from '@libs/core';
+import { AppPageOfData, SeverityDirective } from '@libs/core';
 import { Column, TableModule } from '@libs/table';
 import { NgOptimizedImage } from '@angular/common';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   standalone: true,
@@ -14,6 +17,10 @@ import { NgOptimizedImage } from '@angular/common';
     ChipComponent,
     CurrencyPipe,
     NgOptimizedImage,
+    MatMenuModule,
+    MatButtonModule,
+    MatIconModule,
+    SeverityDirective,
   ],
   selector: 'app-items-management-table',
   templateUrl: './table.component.html',
@@ -33,7 +40,7 @@ export class ItemsManagementTableComponent {
     { key: 'price', header: 'Price' },
     { key: 'imageUrl', header: 'Attachments' },
     { key: 'description', header: 'Description' },
-    { key: 'aciton', header: 'Actions' },
+    { key: 'action', header: 'Actions' },
   ];
 
   pageChange(event: PageEvent) {
