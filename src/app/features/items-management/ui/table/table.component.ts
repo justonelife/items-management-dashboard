@@ -5,6 +5,7 @@ import { Item } from '@features/items-management/data-access';
 import { ChipComponent } from '@libs/chip';
 import { AppPageOfData } from '@libs/core';
 import { Column, TableModule } from '@libs/table';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   standalone: true,
@@ -12,6 +13,7 @@ import { Column, TableModule } from '@libs/table';
     TableModule,
     ChipComponent,
     CurrencyPipe,
+    NgOptimizedImage,
   ],
   selector: 'app-items-management-table',
   templateUrl: './table.component.html',

@@ -7,7 +7,7 @@ function createRandomItem() {
     type: faker.commerce.department(),
     category: faker.commerce.productAdjective(),
     price: faker.commerce.price(),
-    imageUrl: faker.image.urlLoremFlickr(),
+    imageUrl: faker.image.urlPicsumPhotos({ width: 100, height: 100 }),
     description: faker.commerce.productDescription(),
     isDeleted: faker.datatype.boolean(),
   }

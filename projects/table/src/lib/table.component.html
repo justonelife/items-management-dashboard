@@ -1,7 +1,7 @@
 @let _columns = columns();
 @let _displayedColumns = _columns | libExtractColumnKeys;
 @let _data = data();
-<div class="mat-elevation-z8 border lib-table p-2 w-fit rounded-md">
+<div class="mat-elevation-z8 border lib-table p-2 w-full rounded-md">
   <div class="flex justify-between items-center p-2">
     <span class="font-bold">Result: {{ _data?.items || 0 | number }}</span>
   </div>
