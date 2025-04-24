@@ -9,9 +9,15 @@ export class ItemsManagementService {
   readonly httpClient = inject(HttpClient);
   readonly URI = 'http://localhost:3000';
 
-  getAll(filter: Filter, page: number = 1, size: number = 10): Observable<AppPageOfData<Item>> {
+  getAll(
+    filter: Filter,
+    isDeleted: boolean = false,
+    page: number = 1,
+    size: number = 10
+  ): Observable<AppPageOfData<Item>> {
     const params = {
       ...filter,
+      isDeleted,
       _page: page,
       _per_page: size,
     }

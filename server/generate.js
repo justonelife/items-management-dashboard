@@ -9,6 +9,7 @@ function createRandomItem() {
     price: faker.commerce.price(),
     imageUrl: faker.image.urlLoremFlickr(),
     description: faker.commerce.productDescription(),
+    isDeleted: faker.datatype.boolean(),
   }
 }
 

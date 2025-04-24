@@ -1,30 +1,27 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, inject, input, OnInit } from '@angular/core';
-import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { Option } from './types';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, inject, input } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { AppAny, OnChangeType, OnTouchedType, provideControlValueAccessor } from '@libs/core';
+import { Option } from "./types/";
 
 @Component({
   standalone: true,
   imports: [
-    MatSelectModule,
-    MatFormFieldModule,
+    MatButtonToggleModule,
     FormsModule,
   ],
-  selector: 'lib-select',
-  templateUrl: './select.component.html',
+  selector: 'lib-toggle-button',
+  templateUrl: './toggle-button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'class': 'inline-flex flex-col'
+    'class': 'h-[40px] p-1 w-fit rounded-md'
   },
-  providers: [provideControlValueAccessor(SelectComponent)]
+  styleUrl: './toggle-button.component.scss',
+  providers: [provideControlValueAccessor(ToggleButtonComponent)]
 })
-export class SelectComponent<TOption extends Option = Option> implements ControlValueAccessor {
+export class ToggleButtonComponent<TOption extends Option = Option> implements ControlValueAccessor {
   readonly cdr = inject(ChangeDetectorRef);
 
-  label = input<string>();
-  placeholder = input<string>('');
   options = input.required<TOption[]>();
 
   state: AppAny;

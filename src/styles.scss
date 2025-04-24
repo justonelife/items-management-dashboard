@@ -16,6 +16,11 @@
       outlined-focus-outline-width: 0,
       container-height: 40px,
       container-vertical-padding: 8px));
+  @include mat.button-toggle-overrides((shape: var(--radius-md),
+      background-color: transparent,
+      selected-state-background-color: white,
+      height: 30px,
+      divider-color: transparent));
 }
 
 html {

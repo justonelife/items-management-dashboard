@@ -6,9 +6,7 @@
 <main class="flex flex-col gap-4">
   <app-items-management-filter [form]="filterForm" (emitFilter)="filter($event)"
     (emitReset)="resetFilter()"></app-items-management-filter>
-  <span>
-    select-button
-  </span>
+  <lib-toggle-button [options]="VIEW_OPTIONS" [formControl]="viewType"></lib-toggle-button>
   @if (vm$ | async; as vm) {
   <app-items-management-table [items]="vm.data" />
   }
