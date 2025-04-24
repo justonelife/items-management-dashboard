@@ -3,3 +3,4 @@ export * from './filter';
 export * from './view-type';
 export * from './category';
 export * from './item-type';
+export * from './edit-item';

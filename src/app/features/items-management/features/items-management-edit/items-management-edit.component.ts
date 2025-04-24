@@ -1,11 +1,14 @@
 import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { CommonService, ItemsManagementService, urlDashboardItems } from '@features/items-management/data-access';
+import { CommonService, EditItem, Item, ItemsManagementService, urlDashboardItems } from '@features/items-management/data-access';
 import { ItemsManagementForm } from '@features/items-management/ui/form/form.component';
 import { CardComponent } from '@libs/card';
+import { AppTypedForm } from '@libs/core';
+
 
 @Component({
   standalone: true,
@@ -36,7 +39,24 @@ export class ItemsManagementEditComponent {
   categoryOptions$ = this.commonService.getCategoryOptions();
   typeOptions$ = this.commonService.getTypeOptions();
 
+  form: AppTypedForm<EditItem> = new FormGroup({
+    name: new FormControl<string>('', { validators: [Validators.required] }),
+    type: new FormControl<string>('', { validators: [Validators.required] }),
+    category: new FormControl<string>('', { validators: [Validators.required] }),
+    price: new FormControl<number>(0, { validators: [Validators.required] }),
+    imageUrl: new FormControl<string>(''),
+    description: new FormControl<string>(''),
+  });
+
   ngOnInit() {
-    this.api.getSingleItem(this.id).subscribe(console.log);
+    this.api.getSingleItem(this.id).subscribe({
+      next: res => {
+        this.form.patchValue(res);
+      },
+      error: err => {
+        // TODO: alert
+        console.log(err);
+      }
+    });
   }
 }
