@@ -6,9 +6,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { ItemsManagementFilterComponent } from '@features/items-management/ui/filter/filter.component';
 import { ItemsManagementTableComponent } from '@features/items-management/ui/table/table.component';
 import { AppTypedForm } from '@libs/core';
-import { BehaviorSubject, combineLatest, map, startWith, switchMap } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, startWith, switchMap, tap } from 'rxjs';
 import { Filter, ItemsManagementService, VIEW_OPTIONS, ViewType } from '../../data-access';
 import { ToggleButtonComponent } from '@libs/toggle-button';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   standalone: true,
@@ -40,8 +41,13 @@ export class ItemsManagementDashboard {
     category: new FormControl<string | null>(null),
   });
 
+  pageChange$ = new BehaviorSubject<null>(null);
+  page = 1;
+  pageSize = 20;
+
   vm$ = combineLatest({
     filter: this.filter$.pipe(
+      tap(_ => this.page = 1),
       takeUntilDestroyed()
     ),
     isDeleted: this.viewType.valueChanges.pipe(
@@ -49,11 +55,17 @@ export class ItemsManagementDashboard {
       map(value => {
         return value === 'deleted';
       }),
+      tap(_ => {
+        this.page = 1;
+      }),
+      takeUntilDestroyed()
+    ),
+    pageChagne: this.pageChange$.pipe(
       takeUntilDestroyed()
     )
   }).pipe(
     switchMap(({ filter, isDeleted }) => {
-      return this.api.getAll(filter, isDeleted, 1, 25);
+      return this.api.getAll(filter, isDeleted, this.page, this.pageSize);
     }),
     takeUntilDestroyed()
   );
@@ -65,5 +77,11 @@ export class ItemsManagementDashboard {
   resetFilter() {
     this.filterForm.reset();
     this.filter$.next(this.filterForm.getRawValue());
+  }
+
+  pageChange(event: PageEvent) {
+    this.page = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.pageChange$.next(null);
   }
 }

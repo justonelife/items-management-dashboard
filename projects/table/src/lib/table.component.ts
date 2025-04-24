@@ -1,6 +1,6 @@
 import { DecimalPipe, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, contentChildren, effect, inject, input, TemplateRef } from '@angular/core';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, contentChildren, effect, inject, input, output, TemplateRef } from '@angular/core';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatTableModule } from "@angular/material/table";
 import { AppAny, AppPageOfData } from '@libs/core';
 import { ColumnTemplateDirective } from './directives/column-template.directive';
@@ -30,9 +30,15 @@ export class TableComponent<
 
   data = input.required<TData>();
   columns = input.required<TColumn[]>();
+  page = input<number>(1); // Start from 1
+  pageIndex = computed(() => this.page() - 1); // Start from 0
+  pageSize = input<number>();
+
+  emitPageChange = output<PageEvent>();
 
   templates = contentChildren(ColumnTemplateDirective);
   templatesMapper: Record<string, TemplateRef<unknown>> = {};
+
 
   readonly PAGE_SIZE_OPTIONS = PAGE_SIZE_OPTIONS;
 
@@ -46,5 +52,13 @@ export class TableComponent<
 
       this.cdr.markForCheck();
     })
+  }
+
+  pageChange(event: PageEvent) {
+    const actualEvent: PageEvent = {
+      ...event,
+      pageIndex: event.pageIndex + 1,
+    }
+    this.emitPageChange.emit(actualEvent);
   }
 }

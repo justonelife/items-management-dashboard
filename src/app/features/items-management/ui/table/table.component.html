@@ -1,4 +1,5 @@
-<lib-table [data]="data()" [columns]="COLUMNS">
+<lib-table [data]="data()" [columns]="COLUMNS" (emitPageChange)="pageChange($event)" [page]="page()"
+  [pageSize]="pageSize()">
   <ng-template libColumnTemplate="type" let-row>
     <lib-chip severity='neutral'>
       {{ row.type }}

@@ -1,5 +1,6 @@
 import { CurrencyPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { Item } from '@features/items-management/data-access';
 import { ChipComponent } from '@libs/chip';
 import { AppPageOfData } from '@libs/core';
@@ -18,6 +19,10 @@ import { Column, TableModule } from '@libs/table';
 })
 export class ItemsManagementTableComponent {
   data = input.required<AppPageOfData<Item>>();
+  page = input.required<number>();
+  pageSize = input.required<number>();
+
+  emitPageChange = output<PageEvent>()
 
   readonly COLUMNS: Column[] = [
     { key: 'name', header: 'Name' },
@@ -27,5 +32,9 @@ export class ItemsManagementTableComponent {
     { key: 'imageUrl', header: 'Attachments' },
     { key: 'description', header: 'Description' },
     { key: 'aciton', header: 'Actions' },
-  ]
+  ];
+
+  pageChange(event: PageEvent) {
+    this.emitPageChange.emit(event);
+  }
 }
