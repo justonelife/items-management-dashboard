@@ -1,7 +1,11 @@
 @let _columns = columns();
 @let _displayedColumns = _columns | libExtractColumnKeys;
+@let _data = data();
 <div class="mat-elevation-z8 border lib-table p-2 w-fit rounded-md">
-  <table mat-table [dataSource]="data()" class="mat-elevation-z8">
+  <div class="flex justify-between items-center p-2">
+    <span class="font-bold">Result: {{ _data?.items || 0 | number }}</span>
+  </div>
+  <table mat-table [dataSource]="_data?.data || []" class="mat-elevation-z8">
 
     @for (col of _columns; track col.key) {
 

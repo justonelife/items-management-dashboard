@@ -1,8 +1,8 @@
-import { NgTemplateOutlet } from '@angular/common';
+import { DecimalPipe, NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, contentChildren, effect, inject, input, TemplateRef } from '@angular/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from "@angular/material/table";
-import { AppAny } from '@libs/core';
+import { AppAny, AppPageOfData } from '@libs/core';
 import { ColumnTemplateDirective } from './directives/column-template.directive';
 import { ExtractColumnKeysPipe } from './pipes/extract-column-keys.pipe';
 import { Column } from './types';
@@ -15,6 +15,7 @@ import { PAGE_SIZE_OPTIONS } from './table.const';
     ExtractColumnKeysPipe,
     NgTemplateOutlet,
     MatPaginatorModule,
+    DecimalPipe,
   ],
   templateUrl: './table.component.html',
   standalone: true,
@@ -22,12 +23,12 @@ import { PAGE_SIZE_OPTIONS } from './table.const';
   styleUrl: './table.component.scss',
 })
 export class TableComponent<
-  TItem extends Record<string, AppAny> = Record<string, AppAny>,
+  TData extends AppPageOfData<Record<string, AppAny>> = AppPageOfData<Record<string, AppAny>>,
   TColumn extends Column = Column,
 > {
   readonly cdr = inject(ChangeDetectorRef);
 
-  data = input.required<TItem[]>();
+  data = input.required<TData>();
   columns = input.required<TColumn[]>();
 
   templates = contentChildren(ColumnTemplateDirective);

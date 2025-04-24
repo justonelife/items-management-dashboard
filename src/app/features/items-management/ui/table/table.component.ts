@@ -2,6 +2,7 @@ import { CurrencyPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Item } from '@features/items-management/data-access';
 import { ChipComponent } from '@libs/chip';
+import { AppPageOfData } from '@libs/core';
 import { Column, TableModule } from '@libs/table';
 
 @Component({
@@ -16,7 +17,7 @@ import { Column, TableModule } from '@libs/table';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemsManagementTableComponent {
-  items = input.required<Item[]>();
+  data = input.required<AppPageOfData<Item>>();
 
   readonly COLUMNS: Column[] = [
     { key: 'name', header: 'Name' },
