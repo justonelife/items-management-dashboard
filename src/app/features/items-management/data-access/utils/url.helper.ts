@@ -4,3 +4,6 @@ export function urlEditItem(id: string): string {
 export function urlDashboardItems(): string {
   return '/items-management/dashboard/';
 }
+export function urlCreateItem(): string {
+  return '/items-management/create/';
+}

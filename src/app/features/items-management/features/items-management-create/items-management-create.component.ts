@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -20,20 +20,17 @@ import { AppTypedForm } from '@libs/core';
     CardComponent,
     AsyncPipe,
   ],
-  selector: 'app-items-management-edit',
-  templateUrl: './items-management-edit.component.html',
+  selector: 'app-items-management-create',
+  templateUrl: './items-management-create.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     'class': 'flex flex-col gap-4',
   }
 })
-export class ItemsManagementEditComponent implements OnInit {
-  readonly activatedRoute = inject(ActivatedRoute);
+export class ItemsManagementCreateComponent {
   readonly router = inject(Router);
   readonly api = inject(ItemsManagementService);
   readonly commonService = inject(CommonService);
-
-  id: string = this.activatedRoute.snapshot.params['id'];
 
   readonly URL_DASHBOARD_ITEMS = urlDashboardItems();
 
@@ -47,27 +44,15 @@ export class ItemsManagementEditComponent implements OnInit {
     price: new FormControl<number>(0, { validators: [Validators.required] }),
     imageUrl: new FormControl<string>(''),
     description: new FormControl<string>(''),
-    status: new FormControl<'active' | 'delete' | null>(null),
+    status: new FormControl<'active' | 'delete'>({ value: 'active', disabled: true }),
   });
-
-  ngOnInit() {
-    this.api.getSingleItem(this.id).subscribe({
-      next: res => {
-        this.form.patchValue(res);
-      },
-      error: err => {
-        // TODO: alert
-        console.log(err);
-      }
-    });
-  }
 
   submit() {
     if (this.form.invalid || this.form.pristine) {
       return;
     }
 
-    this.api.updateItem(this.id, this.form.getRawValue()).subscribe({
+    this.api.createItem(this.form.getRawValue()).subscribe({
       next: _ => {
         // alert success
         this.router.navigate([this.URL_DASHBOARD_ITEMS]);

@@ -1,15 +1,15 @@
 <header class="flex justify-between items-center">
 
   <h1 class="text-xl font-bold">Items Management Dashboard</h1>
-  <a mat-flat-button>Add New Item</a>
+  <a mat-flat-button [routerLink]="URL_CREATE_ITEM">Add New Item</a>
 </header>
 <main class="flex flex-col gap-4">
   <app-items-management-filter [form]="filterForm" (emitFilter)="filter($event)" (emitReset)="resetFilter()"
     [categoryOptions]="(categoryOptions$ | async) || []"
     [typeOptions]="(typeOptions$ | async) || []"></app-items-management-filter>
-  <lib-toggle-button [options]="VIEW_OPTIONS" [formControl]="viewType"></lib-toggle-button>
+  <lib-toggle-button [options]="VIEW_OPTIONS" [formControl]="status"></lib-toggle-button>
   @if (vm$ | async; as data) {
   <app-items-management-table [data]="data" (emitPageChange)="pageChange($event)" [page]="page" [pageSize]="pageSize"
-    (emitSortChange)="sortChange($event)" />
+    (emitSortChange)="sortChange($event)" (emitSoftDelete)="softDelete($event)" (emitRestore)="restore($event)" />
   }
 </main>

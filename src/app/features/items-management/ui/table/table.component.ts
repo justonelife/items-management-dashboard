@@ -39,6 +39,8 @@ export class ItemsManagementTableComponent {
 
   emitPageChange = output<PageEvent>()
   emitSortChange = output<Sort>()
+  emitSoftDelete = output<string>()
+  emitRestore = output<string>()
 
   readonly COLUMNS: Column[] = [
     { key: 'name', header: 'Name', sortable: true },
@@ -59,4 +61,12 @@ export class ItemsManagementTableComponent {
   }
 
   readonly urlEditItem = urlEditItem;
+
+  softDelete(id: string) {
+    this.emitSoftDelete.emit(id);
+  }
+
+  restore(id: string) {
+    this.emitRestore.emit(id);
+  }
 }

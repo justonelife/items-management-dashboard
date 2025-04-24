@@ -1,0 +1,22 @@
+<header class="flex justify-between items-center">
+  <div class="flex gap-1 items-center">
+    <a mat-icon-button [routerLink]="URL_DASHBOARD_ITEMS">
+      <mat-icon>arrow_back</mat-icon>
+    </a>
+    <h1 class="text-xl font-bold">Create Item</h1>
+  </div>
+</header>
+<main>
+  <lib-card>
+    <app-items-management-form [categoryOptions]="(categoryOptions$ | async) || []"
+      [typeOptions]="(typeOptions$ | async) || []" [itemForm]="form" (emitSubmit)="submit()">
+      <div class="flex justify-end items-center">
+        <div class="flex gap-2">
+
+          <a mat-stroked-button [routerLink]="URL_DASHBOARD_ITEMS">Cancel</a>
+          <button mat-flat-button type="submit">Create</button>
+        </div>
+      </div>
+    </app-items-management-form>
+  </lib-card>
+</main>

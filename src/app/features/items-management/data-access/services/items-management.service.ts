@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { AppAny, AppPageOfData } from '@libs/core';
 import { catchError, Observable, of } from 'rxjs';
 import { URI } from '../constants/dashboard.const';
-import { EditItem, Filter, Item } from '../types';
+import { EditItem, Filter, Item, ItemStatus } from '../types';
 
 @Injectable()
 export class ItemsManagementService {
@@ -12,13 +12,13 @@ export class ItemsManagementService {
   getAll(
     filter: Filter,
     sortBy: string | null = null,
-    isDeleted: boolean = false,
+    status: ItemStatus = 'active',
     page: number = 1,
     size: number = 10
   ): Observable<AppPageOfData<Item>> {
     const params = {
       ...filter,
-      isDeleted,
+      status,
       _page: page,
       _per_page: size,
       _sort: sortBy,
@@ -56,5 +56,17 @@ export class ItemsManagementService {
 
   updateItem(id: string, payload: EditItem) {
     return this.httpClient.put(URI + '/items/' + id, payload);
+  }
+
+  createItem(payload: EditItem) {
+    return this.httpClient.post(URI + '/items/', payload);
+  }
+
+  softDelete(id: string) {
+    return this.httpClient.patch(URI + '/items/' + id, { status: 'delete' });
+  }
+
+  restore(id: string) {
+    return this.httpClient.patch(URI + '/items/' + id, { status: 'active' });
   }
 }

@@ -15,5 +15,10 @@ export const routes: Routes = [
     path: 'edit/:id',
     loadComponent: () => import('./features/items-management-edit/items-management-edit.component').then(c => c.ItemsManagementEditComponent),
     title: 'Edit Item'
+  },
+  {
+    path: 'create',
+    loadComponent: () => import('./features/items-management-create/items-management-create.component').then(c => c.ItemsManagementCreateComponent),
+    title: 'Create Item'
   }
 ]

@@ -1,17 +1,17 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { PageEvent } from '@angular/material/paginator';
+import { Sort } from '@angular/material/sort';
 import { ItemsManagementFilterComponent } from '@features/items-management/ui/filter/filter.component';
 import { ItemsManagementTableComponent } from '@features/items-management/ui/table/table.component';
 import { AppTypedForm } from '@libs/core';
-import { Option } from "@libs/select";
 import { ToggleButtonComponent } from '@libs/toggle-button';
-import { BehaviorSubject, catchError, combineLatest, map, of, startWith, switchMap, tap } from 'rxjs';
-import { CommonService, Filter, ItemsManagementService, VIEW_OPTIONS, ViewType } from '../../data-access';
-import { Sort } from '@angular/material/sort';
+import { BehaviorSubject, combineLatest, finalize, map, startWith, switchMap, tap } from 'rxjs';
+import { CommonService, Filter, ItemsManagementService, ItemStatus, urlCreateItem, VIEW_OPTIONS } from '../../data-access';
+import { RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -22,6 +22,7 @@ import { Sort } from '@angular/material/sort';
     AsyncPipe,
     ToggleButtonComponent,
     ReactiveFormsModule,
+    RouterLink,
   ],
   selector: 'app-items-management-dashboard',
   templateUrl: './items-management-dashboard.component.html',
@@ -34,8 +35,11 @@ export class ItemsManagementDashboard {
   readonly api = inject(ItemsManagementService);
   readonly commonService = inject(CommonService);
 
+  readonly URL_CREATE_ITEM = urlCreateItem();
   readonly VIEW_OPTIONS = VIEW_OPTIONS;
-  viewType = new FormControl<ViewType>('active');
+  status = new FormControl<ItemStatus>('active');
+
+  forceReload$ = new BehaviorSubject<null>(null);
 
   filter$ = new BehaviorSubject<Filter>({ name: null, type: null, category: null });
   filterForm: AppTypedForm<Filter> = new FormGroup({
@@ -51,15 +55,17 @@ export class ItemsManagementDashboard {
   sortChange$ = new BehaviorSubject<Sort | null>(null);
 
   vm$ = combineLatest({
+    forceReload: this.forceReload$.pipe(
+      tap(_ => this.page = 1),
+      takeUntilDestroyed()
+    ),
     filter: this.filter$.pipe(
       tap(_ => this.page = 1),
       takeUntilDestroyed()
     ),
-    isDeleted: this.viewType.valueChanges.pipe(
-      startWith(this.viewType.getRawValue()),
-      map(value => {
-        return value === 'deleted';
-      }),
+    status: this.status.valueChanges.pipe(
+      startWith(this.status.getRawValue()),
+      map(value => value ? value : 'active'),
       tap(_ => {
         this.page = 1;
       }),
@@ -76,8 +82,8 @@ export class ItemsManagementDashboard {
       takeUntilDestroyed()
     )
   }).pipe(
-    switchMap(({ filter, isDeleted, sortBy }) => {
-      return this.api.getAll(filter, sortBy, isDeleted, this.page, this.pageSize);
+    switchMap(({ filter, status, sortBy }) => {
+      return this.api.getAll(filter, sortBy, status, this.page, this.pageSize);
     }),
     takeUntilDestroyed()
   );
@@ -102,5 +108,39 @@ export class ItemsManagementDashboard {
 
   sortChange(event: Sort) {
     this.sortChange$.next(event);
+  }
+
+  softDelete(id: string) {
+    this.api.softDelete(id)
+      .pipe(
+        finalize(() => {
+          this.forceReload$.next(null);
+        })
+      )
+      .subscribe({
+        next: _ => {
+          // TODO:
+        },
+        error: err => {
+
+        }
+      });
+  }
+
+  restore(id: string) {
+    this.api.restore(id)
+      .pipe(
+        finalize(() => {
+          this.forceReload$.next(null);
+        })
+      )
+      .subscribe({
+        next: _ => {
+          // TODO:
+        },
+        error: err => {
+
+        }
+      });
   }
 }
