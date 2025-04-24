@@ -4,8 +4,9 @@
   <a mat-flat-button>Add New Item</a>
 </header>
 <main class="flex flex-col gap-4">
-  <app-items-management-filter [form]="filterForm" (emitFilter)="filter($event)"
-    (emitReset)="resetFilter()"></app-items-management-filter>
+  <app-items-management-filter [form]="filterForm" (emitFilter)="filter($event)" (emitReset)="resetFilter()"
+    [categoryOptions]="(categoryOptions$ | async) || []"
+    [typeOptions]="(typeOptions$ | async) || []"></app-items-management-filter>
   <lib-toggle-button [options]="VIEW_OPTIONS" [formControl]="viewType"></lib-toggle-button>
   @if (vm$ | async; as data) {
   <app-items-management-table [data]="data" (emitPageChange)="pageChange($event)" [page]="page" [pageSize]="pageSize" />

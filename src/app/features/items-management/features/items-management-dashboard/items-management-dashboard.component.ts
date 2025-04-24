@@ -1,15 +1,16 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { PageEvent } from '@angular/material/paginator';
 import { ItemsManagementFilterComponent } from '@features/items-management/ui/filter/filter.component';
 import { ItemsManagementTableComponent } from '@features/items-management/ui/table/table.component';
 import { AppTypedForm } from '@libs/core';
-import { BehaviorSubject, combineLatest, map, startWith, switchMap, tap } from 'rxjs';
-import { Filter, ItemsManagementService, VIEW_OPTIONS, ViewType } from '../../data-access';
+import { Option } from "@libs/select";
 import { ToggleButtonComponent } from '@libs/toggle-button';
-import { PageEvent } from '@angular/material/paginator';
+import { BehaviorSubject, catchError, combineLatest, map, of, startWith, switchMap, tap } from 'rxjs';
+import { CommonService, Filter, ItemsManagementService, VIEW_OPTIONS, ViewType } from '../../data-access';
 
 @Component({
   standalone: true,
@@ -30,6 +31,7 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class ItemsManagementDashboard {
   readonly api = inject(ItemsManagementService);
+  readonly commonService = inject(CommonService);
 
   readonly VIEW_OPTIONS = VIEW_OPTIONS;
   viewType = new FormControl<ViewType>('active');
@@ -69,6 +71,9 @@ export class ItemsManagementDashboard {
     }),
     takeUntilDestroyed()
   );
+
+  categoryOptions$ = this.commonService.getCategoryOptions();
+  typeOptions$ = this.commonService.getTypeOptions();
 
   filter(value: Filter) {
     this.filter$.next(value);

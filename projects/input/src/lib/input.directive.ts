@@ -5,7 +5,7 @@ import { Directive } from '@angular/core';
   standalone: true,
   host: {
     'class': `block
-    w-[300px]
+    w-full
     h-[41px]
     px-4
     placeholder:text-[#4c4546]

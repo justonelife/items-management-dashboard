@@ -1,6 +1,8 @@
 import { Option } from "@libs/toggle-button";
 import { ViewType } from "../types";
 
+export const URI = 'http://localhost:3000';
+
 export const VIEW_OPTIONS: Option<ViewType>[] = [
   {
     value: 'active',

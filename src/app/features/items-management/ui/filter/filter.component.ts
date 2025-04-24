@@ -6,6 +6,7 @@ import { AppTypedForm } from '@libs/core';
 import { InputDirective } from "@libs/input";
 import { SelectComponent } from '@libs/select';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Option } from "@libs/select";
 
 @Component({
   standalone: true,
@@ -22,6 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class ItemsManagementFilterComponent {
   form = input.required<AppTypedForm<Filter>>()
+  categoryOptions = input.required<Option[]>();
+  typeOptions = input.required<Option[]>();
 
   emitFilter = output<Filter>();
   emitReset = output<void>();

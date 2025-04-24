@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Filter, Item } from '../types';
 import { AppAny, AppPageOfData } from '@libs/core';
+import { catchError, Observable, of } from 'rxjs';
+import { URI } from '../constants/dashboard.const';
+import { Filter, Item } from '../types';
 
 @Injectable()
 export class ItemsManagementService {
   readonly httpClient = inject(HttpClient);
-  readonly URI = 'http://localhost:3000';
 
   getAll(
     filter: Filter,
@@ -24,7 +24,19 @@ export class ItemsManagementService {
 
     const queryParams = this.generateQueryParams(params);
 
-    return this.httpClient.get<AppPageOfData<Item>>(this.URI + '/items' + queryParams);
+    return this.httpClient.get<AppPageOfData<Item>>(URI + '/items' + queryParams).pipe(
+      catchError(err => {
+        // TODO:  alert
+        console.log(err);
+        return of({
+          data: [],
+        } as AppPageOfData<Item>);
+      })
+    );
+  }
+
+  getSingleItem(id: string): Observable<Item> {
+    return this.httpClient.get<Item>(URI + '/items/' + id);
   }
 
   private generateQueryParams(params: Record<string, AppAny>): string {

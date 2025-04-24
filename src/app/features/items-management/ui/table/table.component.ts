@@ -9,6 +9,8 @@ import { NgOptimizedImage } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { urlEditItem } from '@features/items-management/data-access';
+import { RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -21,6 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatIconModule,
     SeverityDirective,
+    RouterLink,
   ],
   selector: 'app-items-management-table',
   templateUrl: './table.component.html',
@@ -46,4 +49,6 @@ export class ItemsManagementTableComponent {
   pageChange(event: PageEvent) {
     this.emitPageChange.emit(event);
   }
+
+  readonly urlEditItem = urlEditItem;
 }
