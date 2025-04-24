@@ -1,12 +1,13 @@
 import { DecimalPipe, NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, contentChildren, effect, inject, input, output, TemplateRef } from '@angular/core';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableModule } from "@angular/material/table";
 import { AppAny, AppPageOfData } from '@libs/core';
 import { ColumnTemplateDirective } from './directives/column-template.directive';
 import { ExtractColumnKeysPipe } from './pipes/extract-column-keys.pipe';
-import { Column } from './types';
 import { PAGE_SIZE_OPTIONS } from './table.const';
+import { Column } from './types';
 
 @Component({
   selector: 'lib-table',
@@ -16,6 +17,7 @@ import { PAGE_SIZE_OPTIONS } from './table.const';
     NgTemplateOutlet,
     MatPaginatorModule,
     DecimalPipe,
+    MatSortModule,
   ],
   templateUrl: './table.component.html',
   standalone: true,
@@ -35,6 +37,7 @@ export class TableComponent<
   pageSize = input<number>();
 
   emitPageChange = output<PageEvent>();
+  emitSortChange = output<Sort>();
 
   templates = contentChildren(ColumnTemplateDirective);
   templatesMapper: Record<string, TemplateRef<unknown>> = {};
@@ -60,5 +63,9 @@ export class TableComponent<
       pageIndex: event.pageIndex + 1,
     }
     this.emitPageChange.emit(actualEvent);
+  }
+
+  sortChange(event: Sort) {
+    this.emitSortChange.emit(event);
   }
 }

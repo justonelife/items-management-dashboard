@@ -11,6 +11,7 @@ import { Option } from "@libs/select";
 import { ToggleButtonComponent } from '@libs/toggle-button';
 import { BehaviorSubject, catchError, combineLatest, map, of, startWith, switchMap, tap } from 'rxjs';
 import { CommonService, Filter, ItemsManagementService, VIEW_OPTIONS, ViewType } from '../../data-access';
+import { Sort } from '@angular/material/sort';
 
 @Component({
   standalone: true,
@@ -47,6 +48,8 @@ export class ItemsManagementDashboard {
   page = 1;
   pageSize = 20;
 
+  sortChange$ = new BehaviorSubject<Sort | null>(null);
+
   vm$ = combineLatest({
     filter: this.filter$.pipe(
       tap(_ => this.page = 1),
@@ -64,10 +67,17 @@ export class ItemsManagementDashboard {
     ),
     pageChagne: this.pageChange$.pipe(
       takeUntilDestroyed()
+    ),
+    sortBy: this.sortChange$.pipe(
+      map(value => {
+        if (value == null || value.direction === '') return null;
+        return value.direction === 'desc' ? '-' + value.active : value.active;
+      }),
+      takeUntilDestroyed()
     )
   }).pipe(
-    switchMap(({ filter, isDeleted }) => {
-      return this.api.getAll(filter, isDeleted, this.page, this.pageSize);
+    switchMap(({ filter, isDeleted, sortBy }) => {
+      return this.api.getAll(filter, sortBy, isDeleted, this.page, this.pageSize);
     }),
     takeUntilDestroyed()
   );
@@ -88,5 +98,9 @@ export class ItemsManagementDashboard {
     this.page = event.pageIndex;
     this.pageSize = event.pageSize;
     this.pageChange$.next(null);
+  }
+
+  sortChange(event: Sort) {
+    this.sortChange$.next(event);
   }
 }

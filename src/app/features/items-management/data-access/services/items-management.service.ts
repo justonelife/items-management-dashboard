@@ -11,6 +11,7 @@ export class ItemsManagementService {
 
   getAll(
     filter: Filter,
+    sortBy: string | null = null,
     isDeleted: boolean = false,
     page: number = 1,
     size: number = 10
@@ -20,6 +21,7 @@ export class ItemsManagementService {
       isDeleted,
       _page: page,
       _per_page: size,
+      _sort: sortBy,
     }
 
     const queryParams = this.generateQueryParams(params);

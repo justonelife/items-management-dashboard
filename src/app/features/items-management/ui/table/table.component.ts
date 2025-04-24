@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { urlEditItem } from '@features/items-management/data-access';
 import { RouterLink } from '@angular/router';
+import { Sort } from '@angular/material/sort';
 
 @Component({
   standalone: true,
@@ -35,12 +36,13 @@ export class ItemsManagementTableComponent {
   pageSize = input.required<number>();
 
   emitPageChange = output<PageEvent>()
+  emitSortChange = output<Sort>()
 
   readonly COLUMNS: Column[] = [
-    { key: 'name', header: 'Name' },
-    { key: 'type', header: 'Type' },
-    { key: 'category', header: 'Category' },
-    { key: 'price', header: 'Price' },
+    { key: 'name', header: 'Name', sortable: true },
+    { key: 'type', header: 'Type', sortable: true },
+    { key: 'category', header: 'Category', sortable: true },
+    { key: 'price', header: 'Price', sortable: true },
     { key: 'imageUrl', header: 'Attachments' },
     { key: 'description', header: 'Description' },
     { key: 'action', header: 'Actions' },
@@ -48,6 +50,10 @@ export class ItemsManagementTableComponent {
 
   pageChange(event: PageEvent) {
     this.emitPageChange.emit(event);
+  }
+
+  sortChange(event: Sort) {
+    this.emitSortChange.emit(event);
   }
 
   readonly urlEditItem = urlEditItem;
