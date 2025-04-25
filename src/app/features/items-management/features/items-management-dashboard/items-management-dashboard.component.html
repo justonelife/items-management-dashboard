@@ -1,4 +1,4 @@
-<header class="flex justify-between items-center">
+<header class="flex flex-wrap justify-between items-center">
 
   <h1 class="text-xl font-bold">Items Management Dashboard</h1>
   <a mat-flat-button [routerLink]="URL_CREATE_ITEM">Add New Item</a>
@@ -9,7 +9,14 @@
     [typeOptions]="(typeOptions$ | async) || []"></app-items-management-filter>
   <lib-toggle-button [options]="VIEW_OPTIONS" [formControl]="status"></lib-toggle-button>
   @if (vm$ | async; as data) {
+  @if (loading()) {
+  <div class="w-full flex p-2 justify-center items-center">
+    <mat-spinner></mat-spinner>
+  </div>
+  } @else {
+
   <app-items-management-table [data]="data" (emitPageChange)="pageChange($event)" [page]="page" [pageSize]="pageSize"
     (emitSortChange)="sortChange($event)" (emitSoftDelete)="softDelete($event)" (emitRestore)="restore($event)" />
+  }
   }
 </main>

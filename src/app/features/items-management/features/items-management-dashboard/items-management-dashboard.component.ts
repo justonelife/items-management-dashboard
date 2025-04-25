@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,6 +12,7 @@ import { ToggleButtonComponent } from '@libs/toggle-button';
 import { BehaviorSubject, combineLatest, finalize, map, startWith, switchMap, tap } from 'rxjs';
 import { CommonService, Filter, ItemsManagementService, ItemStatus, urlCreateItem, VIEW_OPTIONS } from '../../data-access';
 import { RouterLink } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   standalone: true,
@@ -23,6 +24,7 @@ import { RouterLink } from '@angular/router';
     ToggleButtonComponent,
     ReactiveFormsModule,
     RouterLink,
+    MatProgressSpinnerModule,
   ],
   selector: 'app-items-management-dashboard',
   templateUrl: './items-management-dashboard.component.html',
@@ -40,6 +42,7 @@ export class ItemsManagementDashboard {
   status = new FormControl<ItemStatus>('active');
 
   forceReload$ = new BehaviorSubject<null>(null);
+  loading = signal(true);
 
   filter$ = new BehaviorSubject<Filter>({ name: null, type: null, category: null });
   filterForm: AppTypedForm<Filter> = new FormGroup({
@@ -83,7 +86,12 @@ export class ItemsManagementDashboard {
     )
   }).pipe(
     switchMap(({ filter, status, sortBy }) => {
-      return this.api.getAll(filter, sortBy, status, this.page, this.pageSize);
+      this.loading.update(() => true);
+      return this.api.getAll(filter, sortBy, status, this.page, this.pageSize).pipe(
+        finalize(() => {
+          this.loading.update(() => false);
+        }),
+      );
     }),
     takeUntilDestroyed()
   );
