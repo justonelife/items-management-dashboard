@@ -1,59 +1,82 @@
-# ItemsManagementDashboard
+# Angular Project
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.7.
+A starter Angular project with a Node.js backend for rapid development and prototyping.
 
-## Development server
+## Prerequisites
 
-To start a local development server, run:
+- **Node.js**: v23.6.1
+- **npm**: Comes bundled with Node.js
+- **Angular CLI** (optional, if you need to run Angular CLI commands manually)
 
-```bash
-ng serve
-```
+## Installation
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+1. Clone the repository:
 
-## Code scaffolding
+   ```bash
+   git clone git@github.com:justonelife/items-management-dashboard.git
+   cd items-management-dashboard
+   ```
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+2. Install dependencies:
 
-```bash
-ng generate component component-name
-```
+   ```bash
+   npm install
+   ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Database Generation
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+Generate or update the project database schema using:
 
 ```bash
-ng build
+npm run generate
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Running the Backend Server
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Start the Node.js backend server (listening on `localhost:3000`):
 
 ```bash
-ng test
+npm run server
 ```
 
-## Running end-to-end tests
+Then open your browser to:
 
-For end-to-end (e2e) testing, run:
+```
+http://localhost:3000
+```
+
+## Running the Angular Application
+
+Launch the Angular frontend application:
 
 ```bash
-ng e2e
+npm start
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+By default, the Angular app will run at:
 
-## Additional Resources
+```
+http://localhost:4200
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```
+
+## Available Scripts
+
+- `npm install`
+  Installs all dependencies for both frontend and backend.
+- `npm run generate`
+  Generates or migrates the database schema.
+- `npm run server`
+  Starts the backend server on port 3000.
+- `npm start`
+  Starts the Angular development server on port 4200.
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request with your changes.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+```
