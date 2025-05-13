@@ -7,7 +7,7 @@
       "price": "747.29",
       "imageUrl": "https://picsum.photos/seed/m3oQPK/100/100?grayscale&blur=2",
       "description": "New Shoes model with 20 GB RAM, 672 GB storage, and sugary features",
-      "status": "active",
+      "status": "delete",
       "id": "3c07d352-e6fe-4c58-8aa7-e30a2b37b376"
     },
     {
@@ -18,7 +18,7 @@
       "price": "620.47",
       "imageUrl": "https://picsum.photos/seed/IwL6oGkXRd/100/100?blur=3",
       "description": "Our delicious-inspired Cheese brings a taste of luxury to your fine lifestyle",
-      "status": "active"
+      "status": "delete"
     },
     {
       "id": "4554e9e8-5bf9-4fa8-9079-8dc8b171f9da",
@@ -28,7 +28,7 @@
       "price": "191.75",
       "imageUrl": "https://picsum.photos/seed/5t3qHw/100/100?blur=1",
       "description": "Experience the gold brilliance of our Soap, perfect for whirlwind environments",
-      "status": "active"
+      "status": "delete"
     },
     {
       "id": "d32a569e-f86f-41f6-897e-2963823ce7dd",
@@ -38,7 +38,7 @@
       "price": "90.29",
       "imageUrl": "https://picsum.photos/seed/gMmSm/100/100?blur=5",
       "description": "Discover the well-off new Gloves with an exciting mix of Ceramic ingredients",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "d246738c-9248-4c91-bc58-17a36d8d9b9f",
@@ -48,7 +48,7 @@
       "price": "431.65",
       "imageUrl": "https://picsum.photos/seed/GTKoBmCay/100/100?grayscale&blur=7",
       "description": "Ergonomic Shirt made with Rubber for all-day advanced support",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "ca596cd5-a410-4134-951b-7b4b282c1ece",
@@ -58,7 +58,7 @@
       "price": "21.79",
       "imageUrl": "https://picsum.photos/seed/luHTTxVIo/100/100?blur=6",
       "description": "Savor the rich essence in our Gloves, designed for rubbery culinary adventures",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "b2a2e03c-55fc-4ec7-8f57-d31b335710de",
@@ -68,7 +68,7 @@
       "price": "485.29",
       "imageUrl": "https://picsum.photos/seed/UK6WQz3RzX/100/100?blur=8",
       "description": "The Implemented national system engine Hat offers reliable performance and blond design",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "d68042d5-3eb0-46d2-9482-c1171d1ec3a4",
@@ -78,7 +78,7 @@
       "price": "229.30",
       "imageUrl": "https://picsum.photos/seed/pKR8nVda7Z/100/100?grayscale&blur=1",
       "description": "Experience the azure brilliance of our Chips, perfect for courageous environments",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "c95a164a-3800-4d68-8347-2d0ebba2f8ba",
@@ -88,7 +88,7 @@
       "price": "35.29",
       "imageUrl": "https://picsum.photos/seed/nCIPgzpL/100/100?grayscale&blur=6",
       "description": "New purple Mouse with ergonomic design for remorseful comfort",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "69094c9b-9f79-4471-9fb5-b9cf444c70af",
@@ -98,7 +98,7 @@
       "price": "82.79",
       "imageUrl": "https://picsum.photos/seed/N15MVfyix/100/100",
       "description": "Our spicy-inspired Salad brings a taste of luxury to your blond lifestyle",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "f2206f9b-8e22-4b8f-a170-3866c17364e7",
@@ -108,7 +108,7 @@
       "price": "106.15",
       "imageUrl": "https://picsum.photos/seed/r8Fvl/100/100?grayscale&blur=5",
       "description": "The lavender Car combines Cote d'Ivoire aesthetics with Krypton-based durability",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "7fcce2f8-80dc-4ebb-a5e3-cb2c1ab6da1a",
@@ -118,7 +118,7 @@
       "price": "442.50",
       "imageUrl": "https://picsum.photos/seed/VlB0MFEB/100/100?grayscale&blur=3",
       "description": "Our fox-friendly Table ensures upbeat comfort for your pets",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "489b212e-ef9e-4473-b103-31fc4ecf91a1",
@@ -128,7 +128,7 @@
       "price": "158.55",
       "imageUrl": "https://picsum.photos/seed/a4jMM6RXl/100/100?grayscale",
       "description": "Professional-grade Soap perfect for sudden training and recreational use",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "7b51731c-47c8-44c6-a205-0af7aedfce3c",
@@ -138,7 +138,7 @@
       "price": "798.00",
       "imageUrl": "https://picsum.photos/seed/pDxN5V/100/100?blur=9",
       "description": "Our rabbit-friendly Chicken ensures handy comfort for your pets",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "1b932c60-e111-4cc7-96eb-df33d8e0518a",
@@ -148,7 +148,7 @@
       "price": "404.45",
       "imageUrl": "https://picsum.photos/seed/CU1OoL/100/100?blur=5",
       "description": "Oriental Shirt designed with Metal for tragic performance",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "1717102e-c269-482b-b18a-52bf62dc9519",
@@ -158,7 +158,7 @@
       "price": "616.19",
       "imageUrl": "https://picsum.photos/seed/O43JXWXd/100/100?blur=7",
       "description": "New black Pants with ergonomic design for svelte comfort",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "8e5a72ef-1791-4646-9c9d-dff72a1dd4bf",
@@ -168,7 +168,7 @@
       "price": "915.29",
       "imageUrl": "https://picsum.photos/seed/QJqnGs8/100/100?blur=1",
       "description": "Introducing the Armenia-inspired Table, blending kaleidoscopic style with local craftsmanship",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "3c40e7ab-0236-4020-bfdc-e275470380d1",
@@ -188,7 +188,7 @@
       "price": "127.55",
       "imageUrl": "https://picsum.photos/seed/DT6CkNK/100/100?blur=1",
       "description": "The sleek and elementary Tuna comes with red LED lighting for smart functionality",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "5b183687-e984-49c1-b205-3a849e7f53cc",
@@ -198,7 +198,7 @@
       "price": "921.89",
       "imageUrl": "https://picsum.photos/seed/P96xk9Y/100/100?blur=8",
       "description": "Experience the lime brilliance of our Chicken, perfect for able environments",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "794aafb1-d572-4729-befa-846cc660d7d3",
@@ -238,7 +238,7 @@
       "price": "656.69",
       "imageUrl": "https://picsum.photos/seed/Pcc7l/100/100?grayscale&blur=6",
       "description": "Ergonomic Ball made with Bronze for all-day impossible support",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "c57cbc1a-8937-4994-a4c5-6273c1a07bf4",
@@ -258,7 +258,7 @@
       "price": "264.95",
       "imageUrl": "https://picsum.photos/seed/OGm7Hl1J/100/100?blur=9",
       "description": "Haag Inc's most advanced Computer technology increases likable capabilities",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "a0ae11d3-073c-4b7b-9a3c-a508f57c89bb",
@@ -268,7 +268,7 @@
       "price": "227.65",
       "imageUrl": "https://picsum.photos/seed/rI2yJ2/100/100?grayscale&blur=7",
       "description": "Discover the hamster-like agility of our Chicken, perfect for critical users",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "8d18c71b-70cb-480b-844e-a414c970f95f",
@@ -288,7 +288,7 @@
       "price": "380.55",
       "imageUrl": "https://picsum.photos/seed/SV3XVu/100/100?blur=3",
       "description": "Discover the lion-like agility of our Ball, perfect for great users",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "50f31fe2-7147-43b3-aac9-2c1561bfa86c",
@@ -298,7 +298,7 @@
       "price": "266.25",
       "imageUrl": "https://picsum.photos/seed/edB3b/100/100",
       "description": "Savor the moist essence in our Towels, designed for determined culinary adventures",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "37c35229-96a5-499a-8f29-2bde87aed970",
@@ -318,7 +318,7 @@
       "price": "882.99",
       "imageUrl": "https://picsum.photos/seed/Doz30VDJJi/100/100?grayscale&blur=3",
       "description": "Savor the savory essence in our Chicken, designed for mealy culinary adventures",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "2a89b572-6672-47a9-8368-cb82fdae96b4",
@@ -358,7 +358,7 @@
       "price": "332.85",
       "imageUrl": "https://picsum.photos/seed/Hux1rt/100/100?blur=4",
       "description": "Experience the orchid brilliance of our Soap, perfect for writhing environments",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "8e91c6b5-756c-4332-b77a-42288cbd7ec5",
@@ -388,7 +388,7 @@
       "price": "636.19",
       "imageUrl": "https://picsum.photos/seed/eXcyrPNpq/100/100?blur=1",
       "description": "Featuring Argon-enhanced technology, our Mouse offers unparalleled upright performance",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "3ff4b7d0-9156-4902-96e3-ad0585dfe10c",
@@ -408,7 +408,7 @@
       "price": "446.35",
       "imageUrl": "https://picsum.photos/seed/KJ4wRen/100/100?blur=7",
       "description": "Featuring Ruthenium-enhanced technology, our Ball offers unparalleled drab performance",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "8a1782ea-6865-4bfd-813e-94c90a725405",
@@ -418,7 +418,7 @@
       "price": "289.69",
       "imageUrl": "https://picsum.photos/seed/UlNp2rr/100/100?blur=9",
       "description": "Stylish Chair designed to make you stand out with necessary looks",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "b0243d1a-831b-4d58-b64f-5b842cd696b0",
@@ -458,7 +458,7 @@
       "price": "661.35",
       "imageUrl": "https://picsum.photos/seed/b6zQS/100/100?grayscale&blur=1",
       "description": "New plum Mouse with ergonomic design for colorless comfort",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "dad33615-73de-49e4-ab86-f332d366e545",
@@ -478,7 +478,7 @@
       "price": "316.19",
       "imageUrl": "https://picsum.photos/seed/1svVyXA/100/100?grayscale&blur=10",
       "description": "Crona, Halvorson and Bode's most advanced Tuna technology increases sleepy capabilities",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "e9091d4f-c4d7-4cd5-a26f-3d5276b7d6ad",
@@ -488,7 +488,7 @@
       "price": "197.15",
       "imageUrl": "https://picsum.photos/seed/yBdQb6/100/100?blur=4",
       "description": "Stylish Pants designed to make you stand out with left looks",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "f37254cf-e11c-4264-a122-920b059ef454",
@@ -498,7 +498,7 @@
       "price": "574.99",
       "imageUrl": "https://picsum.photos/seed/7XXVNFF5/100/100?grayscale&blur=8",
       "description": "Savor the fresh essence in our Salad, designed for lonely culinary adventures",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "42a0b44e-9e6b-45dd-8d59-377c17209207",
@@ -528,7 +528,7 @@
       "price": "83.99",
       "imageUrl": "https://picsum.photos/seed/r84hQMy/100/100?grayscale&blur=3",
       "description": "The Chaim Computer is the latest in a series of gloomy products from Lockman, Schumm and Kuvalis",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "4881d5da-836a-41f2-8ac8-b7c30d4bfe09",
@@ -548,7 +548,7 @@
       "price": "698.79",
       "imageUrl": "https://picsum.photos/seed/hxdiG/100/100",
       "description": "Our moist-inspired Bacon brings a taste of luxury to your optimal lifestyle",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "4b88ac06-329c-4242-9919-8aa225c00ece",
@@ -588,7 +588,7 @@
       "price": "193.85",
       "imageUrl": "https://picsum.photos/seed/oCTREcC/100/100?grayscale&blur=7",
       "description": "Our bitter-inspired Car brings a taste of luxury to your fuzzy lifestyle",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "f70675d1-04ec-459f-9611-1e6448876e5f",
@@ -598,7 +598,7 @@
       "price": "888.29",
       "imageUrl": "https://picsum.photos/seed/8f4Ou/100/100?blur=5",
       "description": "Ergonomic Gloves made with Marble for all-day good-natured support",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "8e1e092d-7642-465e-97ca-6a19b1103f9f",
@@ -608,7 +608,7 @@
       "price": "685.09",
       "imageUrl": "https://picsum.photos/seed/aI4cshK14/100/100?blur=4",
       "description": "The Versatile AI-powered application Chips offers reliable performance and dull design",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "2540e44a-47ab-4bd2-a5db-49d21841d009",
@@ -618,7 +618,7 @@
       "price": "25.89",
       "imageUrl": "https://picsum.photos/seed/Pc5JxiL/100/100?blur=2",
       "description": "New Salad model with 1 GB RAM, 586 GB storage, and impractical features",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "1a255f5c-1579-4d9c-8a16-5dda848d0172",
@@ -638,7 +638,7 @@
       "price": "85.89",
       "imageUrl": "https://picsum.photos/seed/dKfte/100/100?blur=8",
       "description": "Featuring Livermorium-enhanced technology, our Chair offers unparalleled earnest performance",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "8e47b6b5-b011-4c80-a7dc-c9bbe2251625",
@@ -668,7 +668,7 @@
       "price": "39.19",
       "imageUrl": "https://picsum.photos/seed/DCqmg/100/100?grayscale",
       "description": "Stylish Soap designed to make you stand out with squeaky looks",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "d5c47135-3bea-4101-a825-4b50dd91d0a1",
@@ -678,7 +678,7 @@
       "price": "118.39",
       "imageUrl": "https://picsum.photos/seed/wclOey5IZ/100/100?blur=10",
       "description": "The lavender Pants combines Belize aesthetics with Terbium-based durability",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "8b70ccb6-2847-4a6f-a5e8-80be17a85dad",
@@ -698,7 +698,7 @@
       "price": "519.09",
       "imageUrl": "https://picsum.photos/seed/iXBGdm/100/100?blur=10",
       "description": "The Proactive bifurcated approach Towels offers reliable performance and burly design",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "5b6402aa-5a01-4ad0-9425-e70b131b3697",
@@ -748,7 +748,7 @@
       "price": "370.75",
       "imageUrl": "https://picsum.photos/seed/DKixufoRV/100/100?grayscale&blur=4",
       "description": "Professional-grade Bacon perfect for substantial training and recreational use",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "abe9d0dc-fa39-4bbe-9a19-d26a14ccde76",
@@ -778,7 +778,7 @@
       "price": "32.90",
       "imageUrl": "https://picsum.photos/seed/RYsMyR29/100/100?grayscale&blur=10",
       "description": "New Salad model with 5 GB RAM, 744 GB storage, and regal features",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "cba3c286-773c-45f5-ae8f-81ea6995771d",
@@ -798,7 +798,7 @@
       "price": "282.45",
       "imageUrl": "https://picsum.photos/seed/hR8j1N/100/100?blur=1",
       "description": "The mint green Bacon combines Mali aesthetics with Titanium-based durability",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "ccb02bb4-a7d0-4b02-9339-8bde97196878",
@@ -818,7 +818,7 @@
       "price": "741.95",
       "imageUrl": "https://picsum.photos/seed/cB3GEka8/100/100?grayscale&blur=8",
       "description": "Experience the yellow brilliance of our Hat, perfect for immaculate environments",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "60ab1826-447e-405f-a4fe-9ac81a1a6026",
@@ -828,7 +828,7 @@
       "price": "804.99",
       "imageUrl": "https://picsum.photos/seed/jkyJ8Q3Xv/100/100?grayscale&blur=4",
       "description": "Introducing the Russian Federation-inspired Soap, blending super style with local craftsmanship",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "f9eacaa9-86d1-4eac-b742-1296dec79218",
@@ -838,7 +838,7 @@
       "price": "236.69",
       "imageUrl": "https://picsum.photos/seed/aIcAMV/100/100?grayscale&blur=9",
       "description": "Innovative Keyboard featuring extroverted technology and Wooden construction",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "22221867-c1fa-4a55-a1a8-d6b230b1d65b",
@@ -858,7 +858,7 @@
       "price": "880.49",
       "imageUrl": "https://picsum.photos/seed/Y7FjEkbQ/100/100?grayscale&blur=3",
       "description": "The orchid Soap combines French Guiana aesthetics with Cadmium-based durability",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "0003eaf1-31bd-4748-8879-700bd45d06ec",
@@ -878,7 +878,7 @@
       "price": "833.69",
       "imageUrl": "https://picsum.photos/seed/vHVjr/100/100?grayscale&blur=6",
       "description": "Our turtle-friendly Keyboard ensures different comfort for your pets",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "7b3c60bd-8fa2-401c-ad0a-1ff0b8a03e70",
@@ -928,7 +928,7 @@
       "price": "978.35",
       "imageUrl": "https://picsum.photos/seed/9PcXx/100/100?blur=9",
       "description": "Featuring Helium-enhanced technology, our Chair offers unparalleled selfish performance",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "976b9b00-29ab-47d6-bdf0-3a1bff00408c",
@@ -958,7 +958,7 @@
       "price": "313.35",
       "imageUrl": "https://picsum.photos/seed/AC7ol2B1/100/100?blur=5",
       "description": "Ergonomic Fish made with Marble for all-day plain support",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "9b62cd12-fe64-4558-a857-e4161b70744f",
@@ -968,7 +968,7 @@
       "price": "769.59",
       "imageUrl": "https://picsum.photos/seed/BSs62YF/100/100?grayscale&blur=1",
       "description": "Huel - Bartell's most advanced Shoes technology increases spherical capabilities",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "dec51156-658a-4d14-89df-4a241eed4909",
@@ -978,7 +978,7 @@
       "price": "452.89",
       "imageUrl": "https://picsum.photos/seed/uEVcUP/100/100?grayscale&blur=10",
       "description": "Our gorilla-friendly Table ensures rotten comfort for your pets",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "af18fac3-8681-4e4c-9a6a-17259bb2a298",
@@ -988,7 +988,7 @@
       "price": "493.83",
       "imageUrl": "https://picsum.photos/seed/aPU4Y7/100/100?blur=2",
       "description": "The grey Ball combines Georgia aesthetics with Gallium-based durability",
-      "status": "delete"
+      "status": "active"
     },
     {
       "id": "654ae6dc-fcd3-4820-9ab1-72d3af8d5917",

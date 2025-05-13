@@ -1,0 +1,19 @@
+@if (isHandset$ | async) {
+<mat-sidenav-container>
+  <mat-sidenav #sidenav [mode]="mode()">
+    <menu class="p-4">
+
+      @for (item of navConfig(); track item.path) {
+      <li>{{ item.title }}</li>
+      } @empty {
+      <ng-content select="[sidebar]">
+        Please provide item through provideNavConfig
+      </ng-content>
+      }
+    </menu>
+  </mat-sidenav>
+  <div class="h-screen w-screen">
+    <ng-content />
+  </div>
+</mat-sidenav-container>
+}

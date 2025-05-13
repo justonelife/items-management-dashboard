@@ -362,6 +362,72 @@
           }
         }
       }
+    },
+    "hys-layouts": {
+      "projectType": "library",
+      "root": "projects/hys-layouts",
+      "sourceRoot": "projects/hys-layouts/src",
+      "prefix": "hys",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/hys-layouts/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/hys-layouts/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/hys-layouts/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/hys-layouts/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "hys-button": {
+      "projectType": "library",
+      "root": "projects/hys-button",
+      "sourceRoot": "projects/hys-button/src",
+      "prefix": "hys",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/hys-button/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/hys-button/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/hys-button/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/hys-button/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   }
 }
