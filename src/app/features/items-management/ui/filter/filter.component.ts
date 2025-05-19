@@ -1,17 +1,14 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { Filter } from '../../data-access';
-import { CardComponent } from '@libs/card';
 import { AppTypedForm } from '@libs/core';
 import { InputDirective } from "@libs/input";
-import { SelectComponent } from '@libs/select';
-import { ReactiveFormsModule } from '@angular/forms';
-import { Option } from "@libs/select";
+import { Option, SelectComponent } from '@libs/select';
+import { Filter } from '../../data-access';
 
 @Component({
   standalone: true,
   imports: [
-    CardComponent,
     InputDirective,
     SelectComponent,
     MatButtonModule,

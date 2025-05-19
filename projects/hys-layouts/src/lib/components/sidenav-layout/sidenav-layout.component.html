@@ -1,19 +1,32 @@
 @if (isHandset$ | async) {
 <mat-sidenav-container>
-  <mat-sidenav #sidenav [mode]="mode()">
-    <menu class="p-4">
+  <mat-sidenav #sidenav mode="over">
+    <div class="p-4">
+      <div class="flex justify-center">
+        <ng-content select="logo"></ng-content>
+      </div>
+      <menu class="mt-4">
 
-      @for (item of navConfig(); track item.path) {
-      <li>{{ item.title }}</li>
-      } @empty {
-      <ng-content select="[sidebar]">
-        Please provide item through provideNavConfig
-      </ng-content>
-      }
-    </menu>
+        @for (item of navConfig(); track item.path) {
+        <!--TODO: Implement-->
+        Comming soon
+        <!-- <li>{{ item.title }}</li> -->
+        } @empty {
+        <ng-content select="sidebar">
+          Please provide item through navConfig or custom through ng-template sidebar
+        </ng-content>
+        }
+      </menu>
+    </div>
   </mat-sidenav>
   <div class="h-screen w-screen">
     <ng-content />
   </div>
 </mat-sidenav-container>
+} @else {
+<div class="h-screen w-screen flex justify-center items-center">
+  <h1 class="font-bold text-lg">
+    Desktop coming soon...
+  </h1>
+</div>
 }

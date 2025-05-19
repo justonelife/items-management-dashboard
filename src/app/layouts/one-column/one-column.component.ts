@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-
+// TODO:  remove this component
 @Component({
   standalone: true,
   imports: [RouterOutlet],

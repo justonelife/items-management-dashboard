@@ -1,5 +1,5 @@
 :host {
-  background: var(--mdc-outlined-card-container-color, var(--mat-sys-surface));
+  background: light-dark(#e4e3e3, green);
 
   ::ng-deep {
     .mat-button-toggle-checked {

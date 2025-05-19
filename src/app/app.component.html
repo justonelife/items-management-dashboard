@@ -1,0 +1,14 @@
+<hys-sidenav-layout #SidenavLayout [navConfig]="MENU">
+  <h1 ngProjectAs="logo">
+    <img class="w-[50px]" src="/images/logo-sample.png" alt="logo">
+  </h1>
+  <header class="flex justify-between items-center p-2 border-b border-stone-300 sticky w-full top-0 z-999 bg-white">
+    <button hys-button variant='icon' icon='sort' (click)="SidenavLayout.open()"></button>
+    _user
+  </header>
+  <main class="px-4 py-6">
+    <lib-card>
+      <router-outlet />
+    </lib-card>
+  </main>
+</hys-sidenav-layout>

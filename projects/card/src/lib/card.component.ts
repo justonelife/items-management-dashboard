@@ -10,7 +10,6 @@ import { Appearance } from './types';
       <mat-card-content><ng-content></ng-content></mat-card-content>
     </mat-card>
   `,
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {

@@ -2,7 +2,6 @@ import { Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, input, viewChild } from '@angular/core';
 import { MatDrawerMode, MatSidenav, MatSidenavModule } from "@angular/material/sidenav";
-import { HysButtonComponent } from '@libs/hys-button';
 import { map, shareReplay } from 'rxjs';
 import { HysBreakpointService } from '../../services';
 
@@ -18,7 +17,6 @@ export type SideMode = MatDrawerMode;
   imports: [
     MatSidenavModule,
     CommonModule,
-    HysButtonComponent,
   ],
   selector: 'hys-sidenav-layout',
   templateUrl: './sidenav-layout.component.html',
@@ -30,7 +28,6 @@ export class HysSidenavLayoutComponent {
   sideNavComponent = viewChild<MatSidenav>('sidenav');
 
   navConfig = input<NavItem[]>();
-  mode = input<SideMode>('over');
 
   isHandset$ = this.bp.observe([
     Breakpoints.Handset,

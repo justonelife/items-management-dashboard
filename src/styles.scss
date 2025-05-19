@@ -13,6 +13,7 @@
   @include mat.card-overrides((
     outlined-container-shape: var(--radius-md),
     elevated-container-shape: var(--radius-md),
+    outlined-container-color: transparent,
   ));
   @include mat.table-overrides((
     row-item-outline-color: var(--mdc-outlined-card-outline-color, var(--mat-sys-outline-variant)),
@@ -31,7 +32,8 @@
     divider-color: transparent
   ));
   @include mat.sidenav-overrides((
-    container-shape: 0
+    container-shape: 0,
+    content-background-color: white,
   ));
 }
 
