@@ -1,30 +1,66 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, effect, inject, input, output } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { AppTypedForm } from '@libs/core';
-import { InputDirective } from "@libs/input";
-import { Option, SelectComponent } from '@libs/select';
+import { DynamicField, DynamicType, HysDynamicFilterComponent } from '@libs/hys-controller';
+import { Option } from '@libs/select';
 import { Filter } from '../../data-access';
 
 @Component({
   standalone: true,
   imports: [
-    InputDirective,
-    SelectComponent,
     MatButtonModule,
     ReactiveFormsModule,
+    HysDynamicFilterComponent,
   ],
   selector: 'app-items-management-filter',
   templateUrl: './filter.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemsManagementFilterComponent {
+  cdr = inject(ChangeDetectorRef);
   form = input.required<AppTypedForm<Filter>>()
   categoryOptions = input.required<Option[]>();
   typeOptions = input.required<Option[]>();
 
   emitFilter = output<Filter>();
   emitReset = output<void>();
+
+  fields: DynamicField[] = [];
+
+  constructor() {
+    effect(() => {
+      const typeOptions = this.typeOptions();
+      const categoryOptions = this.categoryOptions();
+
+      this.fields = [
+        {
+          key: 'name',
+          type: DynamicType.INPUT,
+          withWrapper: true,
+          icon: 'search',
+          inputs: { placeholder: 'Search Items...' }
+        },
+        {
+          key: 'type',
+          type: DynamicType.SELECT,
+          withWrapper: true,
+          icon: 'filter_alt',
+          inputs: { options: typeOptions, placeholder: 'All Types' },
+          styleClass: 'col-span-6',
+        },
+        {
+          key: 'category',
+          type: DynamicType.SELECT,
+          withWrapper: true,
+          icon: 'filter_alt',
+          inputs: { options: categoryOptions, placeholder: 'All Categories' },
+          styleClass: 'col-span-6',
+        },
+      ];
+      this.cdr.markForCheck();
+    })
+  }
 
   reset() {
     this.emitReset.emit();

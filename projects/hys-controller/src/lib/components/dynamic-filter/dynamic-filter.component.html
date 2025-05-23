@@ -1,0 +1,37 @@
+@if (form) {
+
+<form [formGroup]="form" class="grid grid-flow-row grid-cols-12 gap-2">
+
+  @for (item of items(); track item.key) {
+  <div [class]="item.styleClass || 'col-span-12'">
+
+    @if (item.withWrapper) {
+    <hys-controller-wrapper [hysIconPosition]="item.iconPosition || 'center left'" [icon]="item.icon">
+      <ng-container
+        *ngTemplateOutlet="fieldFactory; context: { $implicit: item, isCustom: item.type === DYNAMIC_TYPE.CUSTOM, _control: form.get(item.key) }"></ng-container>
+    </hys-controller-wrapper>
+    } @else {
+
+    <ng-container
+      *ngTemplateOutlet="fieldFactory; context: { $implicit: item, isCustom: item.type === DYNAMIC_TYPE.CUSTOM, _control: form.get(item.key) }"></ng-container>
+    }
+  </div>
+
+  }
+
+  <div class="ms-auto mt-auto flex gap-2">
+
+    <button hys-button type="submit">Filter</button>
+    <button hys-button type="button">Clear</button>
+  </div>
+</form>
+}
+
+<ng-template #fieldFactory let-isCustom="isCustom" let-control="_control" let-item>
+  @if (isCustom) {
+  <ng-template *ngTemplateOutlet="item.templateRef; context: { $implicit: control }"></ng-template>
+  } @else {
+  <ng-template *ngComponentOutlet="item.component | async; inputs: item.inputs || {};
+    injector: control | dynamicControl"></ng-template>
+  }
+</ng-template>

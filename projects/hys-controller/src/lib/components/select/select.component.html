@@ -10,7 +10,7 @@
   border-gray-300
   rounded-md
 " subscriptSizing='dynamic'>
-  <mat-select [placeholder]="placeholder()" [(ngModel)]="state" (ngModelChange)="selectChange()" [disabled]="disabled">
+  <mat-select [placeholder]="placeholder()" [(ngModel)]="state" (ngModelChange)="onChange(state)" [disabled]="disabled">
     @for (option of options(); track option) {
     <mat-option [value]="option.value">{{option.label}}</mat-option>
     }

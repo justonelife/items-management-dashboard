@@ -4,6 +4,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from '@angular/material/form-field';
 import { provideHttpClient } from '@angular/common/http';
+import { provideComponentControlResolver } from '@libs/hys-controller';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,5 +18,6 @@ export const appConfig: ApplicationConfig = {
       } as MatFormFieldDefaultOptions
     },
     provideHttpClient(),
+    provideComponentControlResolver(),
   ]
 };
