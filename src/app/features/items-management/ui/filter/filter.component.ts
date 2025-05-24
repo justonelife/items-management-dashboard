@@ -39,7 +39,8 @@ export class ItemsManagementFilterComponent {
           type: DynamicType.INPUT,
           withWrapper: true,
           icon: 'search',
-          inputs: { placeholder: 'Search Items...' }
+          inputs: { placeholder: 'Search Items...' },
+          styleClass: 'col-span-12 lg:col-span-8',
         },
         {
           key: 'type',
@@ -47,7 +48,7 @@ export class ItemsManagementFilterComponent {
           withWrapper: true,
           icon: 'filter_alt',
           inputs: { options: typeOptions, placeholder: 'All Types' },
-          styleClass: 'col-span-6',
+          styleClass: 'col-span-6 lg:col-span-2',
         },
         {
           key: 'category',
@@ -55,7 +56,7 @@ export class ItemsManagementFilterComponent {
           withWrapper: true,
           icon: 'filter_alt',
           inputs: { options: categoryOptions, placeholder: 'All Categories' },
-          styleClass: 'col-span-6',
+          styleClass: 'col-span-6 lg:col-span-2',
         },
       ];
       this.cdr.markForCheck();

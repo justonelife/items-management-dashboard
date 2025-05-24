@@ -1,7 +1,7 @@
 <header class="flex flex-wrap justify-between items-center">
 
   <h1 class="text-2xl font-bold">Items Management</h1>
-  <a mat-flat-button [routerLink]="URL_CREATE_ITEM" class="w-full">Add Item</a>
+  <a hys-button [routerLink]="URL_CREATE_ITEM" class="w-full lg:w-auto" icon='add'>Add Item</a>
 </header>
 <main class="flex flex-col gap-4">
   <app-items-management-filter [form]="filterForm" (emitFilter)="filter($event)" (emitReset)="resetFilter()"

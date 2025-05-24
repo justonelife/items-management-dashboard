@@ -5,28 +5,44 @@
       <div class="flex justify-center">
         <ng-content select="logo"></ng-content>
       </div>
-      <menu class="mt-4">
-
-        @for (item of navConfig(); track item.path) {
-        <!--TODO: Implement-->
-        Comming soon
-        <!-- <li>{{ item.title }}</li> -->
-        } @empty {
-        <ng-content select="sidebar">
-          Please provide item through navConfig or custom through ng-template sidebar
-        </ng-content>
-        }
-      </menu>
+      <ng-container *ngTemplateOutlet="sidebar"></ng-container>
     </div>
   </mat-sidenav>
   <div class="h-screen w-screen">
-    <ng-content />
+
+    <ng-container *ngTemplateOutlet="_mainTemplate"></ng-container>
   </div>
 </mat-sidenav-container>
 } @else {
-<div class="h-screen w-screen flex justify-center items-center">
-  <h1 class="font-bold text-lg">
-    Desktop coming soon...
-  </h1>
+<div class="h-screen w-screen grid grid-cols-12">
+  <div class="col-span-2 border-r border-gray-200">
+    <ng-container *ngTemplateOutlet="sidebar"></ng-container>
+  </div>
+  <div class="col-span-10">
+    <ng-container *ngTemplateOutlet="_mainTemplate"></ng-container>
+  </div>
 </div>
 }
+
+<ng-template #sidebar>
+  <menu class="mt-4">
+
+    @for (item of navConfig(); track item.path) {
+    <!--TODO: Implement-->
+    Comming soon
+    <!-- <li>{{ item.title }}</li> -->
+    } @empty {
+    <ng-content select="sidebar">
+      Please provide item through navConfig or custom through ng-template sidebar
+    </ng-content>
+    }
+  </menu>
+</ng-template>
+
+<ng-template #_mainTemplate>
+
+  @if (mainTemplate(); as _mainTemplate) {
+
+  <ng-container *ngTemplateOutlet="_mainTemplate"></ng-container>
+  }
+</ng-template>

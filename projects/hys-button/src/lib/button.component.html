@@ -1,32 +1,17 @@
 @let _iconPosition = iconPosition();
 @let _icon = icon();
-@let _variant = variant();
+@let _klass = klass();
 
-
-@switch (_variant) {
+@switch (variant()) {
 @case ('icon') {
-@if (_icon) {
 
-<button mat-icon-button [class]="BUTTON_CLASS">
-  <mat-icon [fontIcon]="_icon"></mat-icon>
+<button mat-icon-button hysIconPosition="center center" [icon]="_icon || ''" [class]="_klass">
 </button>
-}
 }
 @default {
 <!-- basic -->
-<button mat-button [class]="BUTTON_CLASS">
-  <ng-template *ngTemplateOutlet="content"></ng-template>
+<button mat-flat-button [hysIconPosition]="position()" [icon]="_icon || ''" [class]="_klass">
+  <ng-content></ng-content>
 </button>
 }
 }
-
-<ng-template #content>
-  @if (_icon && _iconPosition === 'left') {
-  <mat-icon [fontIcon]="_icon"></mat-icon>
-  }
-  <ng-content></ng-content>
-  @if (_icon && _iconPosition === 'right') {
-  <mat-icon [fontIcon]="_icon"></mat-icon>
-  }
-
-</ng-template>

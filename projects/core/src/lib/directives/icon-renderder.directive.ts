@@ -27,16 +27,24 @@ export class HysRendererService {
 }
 
 @Injectable()
-export class TopLeftIconRenderder implements IconRenderder {
+export class CenterCenterIconRenderder implements IconRenderder {
   renderer = inject(Renderer2);
   el = inject(ElementRef);
   vcr = inject(ViewContainerRef);
   helper = inject(HysRendererService);
-  readonly position = 'top left';
+  readonly position = 'center center';
 
-  render(): void {
-    console.log(this.el);
+  render(icon: string): void {
+    this.helper.addClasses(this.el.nativeElement, 'relative');
 
+    const container = this.renderer.createElement('div');
+    this.helper.addClasses(container, 'absolute', 'inset-0', 'flex', 'items-center', 'justify-center');
+
+    const _icon = this.vcr.createComponent(MatIcon)
+    _icon.setInput('fontIcon', icon);
+    this.renderer.appendChild(container, _icon.location.nativeElement);
+
+    this.renderer.appendChild(this.el.nativeElement, container);
   }
 }
 
@@ -90,7 +98,7 @@ export class CenterRightIconRenderer implements IconRenderder {
   standalone: true,
   providers: [
     { provide: HysRendererService, useClass: HysRendererService },
-    { provide: ICON_RENDERER, useClass: TopLeftIconRenderder, multi: true },
+    { provide: ICON_RENDERER, useClass: CenterCenterIconRenderder, multi: true },
     { provide: ICON_RENDERER, useClass: CenterLeftIconRenderer, multi: true },
     { provide: ICON_RENDERER, useClass: CenterRightIconRenderer, multi: true },
   ]
@@ -105,9 +113,11 @@ export class HysIconPositionDirective {
 
   constructor() {
     effect(() => {
+      const icon = this.icon();
+      if (!icon) return;
       const matched = this.renderers.filter(renderer => renderer.position === this.position());
       if (matched.length) {
-        matched[0].render(this.icon());
+        matched[0].render(icon);
       }
     });
   }

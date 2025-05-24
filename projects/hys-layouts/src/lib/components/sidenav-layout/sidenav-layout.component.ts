@@ -1,6 +1,6 @@
 import { Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, input, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, contentChild, inject, input, TemplateRef, viewChild } from '@angular/core';
 import { MatDrawerMode, MatSidenav, MatSidenavModule } from "@angular/material/sidenav";
 import { map, shareReplay } from 'rxjs';
 import { HysBreakpointService } from '../../services';
@@ -28,6 +28,8 @@ export class HysSidenavLayoutComponent {
   sideNavComponent = viewChild<MatSidenav>('sidenav');
 
   navConfig = input<NavItem[]>();
+
+  mainTemplate = contentChild<TemplateRef<unknown>>('main');
 
   isHandset$ = this.bp.observe([
     Breakpoints.Handset,

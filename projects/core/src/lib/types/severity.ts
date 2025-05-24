@@ -1,1 +1,1 @@
-export type AppSeverity = 'neutral' | 'info' | 'danger';
+export type AppSeverity = 'neutral' | 'info' | 'danger' | 'primary' | 'secondary';
