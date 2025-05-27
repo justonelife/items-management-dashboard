@@ -5,25 +5,21 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Sort } from '@angular/material/sort';
-import { RouterLink } from '@angular/router';
 import { ItemsManagementFilterComponent } from '@features/items-management/ui/filter/filter.component';
 import { ItemsManagementTableComponent } from '@features/items-management/ui/table/table.component';
 import { AppTypedForm } from '@libs/core';
-import { HysButtonComponent } from '@libs/hys-button';
 import { ToggleButtonComponent } from '@libs/toggle-button';
 import { BehaviorSubject, combineLatest, finalize, map, startWith, switchMap, tap } from 'rxjs';
-import { CommonService, Filter, ItemsManagementService, ItemStatus, urlCreateItem, VIEW_OPTIONS } from '../../data-access';
+import { CommonService, Filter, ItemsManagementService, ItemStatus, VIEW_OPTIONS } from '../../data-access';
 
 @Component({
   standalone: true,
   imports: [
-    HysButtonComponent,
     ItemsManagementFilterComponent,
     ItemsManagementTableComponent,
     AsyncPipe,
     ToggleButtonComponent,
     ReactiveFormsModule,
-    RouterLink,
     MatProgressSpinnerModule,
   ],
   selector: 'app-items-management-dashboard',
@@ -37,7 +33,6 @@ export class ItemsManagementDashboard {
   readonly api = inject(ItemsManagementService);
   readonly commonService = inject(CommonService);
 
-  readonly URL_CREATE_ITEM = urlCreateItem();
   readonly VIEW_OPTIONS = VIEW_OPTIONS;
   status = new FormControl<ItemStatus>('active');
 

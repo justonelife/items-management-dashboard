@@ -1,48 +1,69 @@
 @if (isHandset$ | async) {
 <mat-sidenav-container>
   <mat-sidenav #sidenav mode="over">
-    <div class="p-4">
-      <div class="flex justify-center">
-        <ng-content select="logo"></ng-content>
-      </div>
-      <ng-container *ngTemplateOutlet="sidebar"></ng-container>
-    </div>
+    <ng-container *ngTemplateOutlet="sidebar"></ng-container>
   </mat-sidenav>
   <div class="h-screen w-screen">
 
-    <ng-container *ngTemplateOutlet="_mainTemplate"></ng-container>
+    <header class="flex justify-between items-center p-2 border-b border-stone-300 sticky w-full top-0 z-999 bg-white">
+
+      <button hys-button variant='icon' icon='sort' (click)="open()"></button>
+    </header>
+    <ng-container *ngTemplateOutlet="_main"></ng-container>
   </div>
 </mat-sidenav-container>
 } @else {
-<div class="h-screen w-screen grid grid-cols-12">
-  <div class="col-span-2 border-r border-gray-200">
+<div class="h-svh w-screen">
+  <div class="w-[300px] fixed h-svh border-r border-gray-200">
     <ng-container *ngTemplateOutlet="sidebar"></ng-container>
   </div>
-  <div class="col-span-10">
-    <ng-container *ngTemplateOutlet="_mainTemplate"></ng-container>
+  <div class="ms-[300px]">
+
+    <header class="flex justify-between items-center p-4 border-b border-stone-300 sticky w-full top-0 z-999 bg-white">
+      <h1 class="text-2xl font-bold">
+        {{ pageTitle() }}
+      </h1>
+      <ng-container #globalAction></ng-container>
+    </header>
+    <ng-container *ngTemplateOutlet="_main"></ng-container>
   </div>
 </div>
 }
 
 <ng-template #sidebar>
-  <menu class="mt-4">
+  <div class="p-4">
+    <ng-container *ngTemplateOutlet="_logo"></ng-container>
+    <menu class="mt-4 flex flex-col gap-2">
 
-    @for (item of navConfig(); track item.path) {
-    <!--TODO: Implement-->
-    Comming soon
-    <!-- <li>{{ item.title }}</li> -->
-    } @empty {
-    <ng-content select="sidebar">
-      Please provide item through navConfig or custom through ng-template sidebar
-    </ng-content>
-    }
-  </menu>
+      @for (item of navConfig(); track item.path) {
+      <li
+        class="cursor-pointer flex items-center gap-3 rounded-md px-3 py-2 text-sm hover:bg-gray-100 transition-colors text-primary font-medium"
+        hysIconPosition="center left" [icon]="item.icon || ''" routerLinkActive="bg-gray-100">
+        <a [routerLink]="item.path" class="overflow-hidden text-ellipsis line-clamp-1">
+          {{ item.title }}
+        </a>
+      </li>
+      } @empty {
+      <ng-content select="sidebar">
+        Please provide item through navConfig or custom through ng-template sidebar
+      </ng-content>
+      }
+    </menu>
+  </div>
 </ng-template>
 
-<ng-template #_mainTemplate>
+<ng-template #_main>
 
   @if (mainTemplate(); as _mainTemplate) {
 
   <ng-container *ngTemplateOutlet="_mainTemplate"></ng-container>
+  }
+</ng-template>
+
+<ng-template #_logo>
+  @if (logoTemplate(); as _lg) {
+  <div class="flex justify-center">
+    <ng-container *ngTemplateOutlet="_lg"></ng-container>
+  </div>
   }
 </ng-template>

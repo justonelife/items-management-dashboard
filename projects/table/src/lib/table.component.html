@@ -1,31 +1,29 @@
 @let _columns = columns();
 @let _displayedColumns = _columns | libExtractColumnKeys;
 @let _data = data();
-<div class="mat-elevation-z8 border lib-table p-2 w-full rounded-md overflow-x-auto">
-  <div class="flex justify-between items-center p-2">
-    <span class="font-bold">Result: {{ _data?.items || 0 | number }}</span>
-  </div>
-  <table mat-table matSort (matSortChange)="sortChange($event)" [dataSource]="_data?.data || []"
-    class="mat-elevation-z8 min-w-full">
-
-    @for (col of _columns; track col.key) {
-
-    <ng-container [matColumnDef]="col.key">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="!col.sortable"> {{ col.header }} </th>
-      <td mat-cell *matCellDef="let element">
-        @if (templatesMapper[col.key]; as _template) {
-        <ng-template [ngTemplateOutlet]="_template" [ngTemplateOutletContext]="{ $implicit: element }"></ng-template>
-        } @else {
-        {{element[col.key]}}
-        }
-      </td>
-    </ng-container>
-    }
-
-    <tr mat-header-row *matHeaderRowDef="_displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: _displayedColumns;"></tr>
-  </table>
-  <mat-paginator class="mt-2" [pageIndex]="pageIndex()" [pageSize]="pageSize()" [pageSizeOptions]="PAGE_SIZE_OPTIONS"
-    showFirstLastButtons [length]="_data?.items || 0" (page)="pageChange($event)">
-  </mat-paginator>
+<div class="flex justify-between items-center p-2">
+  <span class="font-bold">Result: {{ _data?.items || 0 | number }}</span>
 </div>
+<table mat-table matSort (matSortChange)="sortChange($event)" [dataSource]="_data?.data || []"
+  class="mat-elevation-z8 min-w-full">
+
+  @for (col of _columns; track col.key) {
+
+  <ng-container [matColumnDef]="col.key">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="!col.sortable"> {{ col.header }} </th>
+    <td mat-cell *matCellDef="let element">
+      @if (templatesMapper[col.key]; as _template) {
+      <ng-template [ngTemplateOutlet]="_template" [ngTemplateOutletContext]="{ $implicit: element }"></ng-template>
+      } @else {
+      {{element[col.key]}}
+      }
+    </td>
+  </ng-container>
+  }
+
+  <tr mat-header-row *matHeaderRowDef="_displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: _displayedColumns;"></tr>
+</table>
+<mat-paginator class="mt-2" [pageIndex]="pageIndex()" [pageSize]="pageSize()" [pageSizeOptions]="PAGE_SIZE_OPTIONS"
+  showFirstLastButtons [length]="_data?.items || 0" (page)="pageChange($event)">
+</mat-paginator>

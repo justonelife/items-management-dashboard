@@ -1,4 +1,5 @@
 import { Routes } from "@angular/router";
+import { ItemsManagementActionsComponent } from "./ui/actions/actions.component";
 
 export const routes: Routes = [
   {
@@ -9,7 +10,10 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     loadComponent: () => import('./features/items-management-dashboard/items-management-dashboard.component').then(c => c.ItemsManagementDashboard),
-    title: 'Items Management Dashboard'
+    title: 'Items Management',
+    data: {
+      component: ItemsManagementActionsComponent,
+    }
   },
   {
     path: 'edit/:id',

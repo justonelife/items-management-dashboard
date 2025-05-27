@@ -3,6 +3,7 @@
 
 $export-config: (
   'radius': variables.$radius,
+  'color': variables.$color,
 );
 
 @include mixins.export-root-from-config($export-config);
