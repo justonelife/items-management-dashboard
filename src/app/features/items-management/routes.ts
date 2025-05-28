@@ -12,7 +12,7 @@ export const routes: Routes = [
     loadComponent: () => import('./features/items-management-dashboard/items-management-dashboard.component').then(c => c.ItemsManagementDashboard),
     title: 'Items Management',
     data: {
-      component: ItemsManagementActionsComponent,
+      component: () => import('./ui/actions/actions.component').then(c => c.ItemsManagementActionsComponent),
     }
   },
   {

@@ -48,7 +48,7 @@ export class ItemsManagementDashboard {
 
   pageChange$ = new BehaviorSubject<null>(null);
   page = 1;
-  pageSize = 20;
+  pageSize = 5;
 
   sortChange$ = new BehaviorSubject<Sort | null>(null);
 

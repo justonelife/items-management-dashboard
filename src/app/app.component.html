@@ -1,14 +1,15 @@
 <hys-sidenav-layout [navConfig]="MENU">
   <ng-template #logo>
-    <h1>
-      <img class="w-[40px]" src="/images/logo-sample.png" alt="logo">
-    </h1>
+    <h1 class="app-logo"></h1>
   </ng-template>
   <ng-template #main>
-    <main class="px-4 py-6 bg-gray-50">
+    <main class="px-4 py-6 bg-secondary h-full">
       <lib-card appearance="raised">
         <router-outlet />
       </lib-card>
     </main>
+    <button hys-button severity="info" variant="raised" class="fixed right-8 bottom-8"
+      [icon]="(theme() | isLightTheme) ? 'light_mode' : 'dark_mode'" (click)="toggleTheme()">
+    </button>
   </ng-template>
 </hys-sidenav-layout>

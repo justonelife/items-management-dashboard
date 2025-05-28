@@ -10,13 +10,14 @@ import { HysIconPositionDirective } from '@libs/core';
     'class': `inline-flex
     items-center
     w-full
-    h-[41px]
-    py-2
+    h-[32px]
+    py-0
     px-2
     placeholder:text-[#4c4546]
-    bg-white
+    bg-secondary
     border
-    border-gray-300
+    border-gray-100
+    dark:border-stone-800
     rounded-md
     focus:outline-none
     focus:border-transparent

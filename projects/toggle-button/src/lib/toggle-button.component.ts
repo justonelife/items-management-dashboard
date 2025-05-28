@@ -14,7 +14,7 @@ import { Option } from "./types/";
   templateUrl: './toggle-button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'class': 'h-[40px] p-1 w-fit rounded-md'
+    'class': 'h-[40px] p-1 w-fit rounded-md bg-secondary'
   },
   styleUrl: './toggle-button.component.scss',
   providers: [provideControlValueAccessor(ToggleButtonComponent)]

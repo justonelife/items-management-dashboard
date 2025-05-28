@@ -1,4 +1,4 @@
-import { ApplicationRef, ComponentRef, createComponent, Directive, effect, ElementRef, EnvironmentInjector, inject, Injectable, InjectionToken, Injector, input, OnInit, Renderer2, SkipSelf, viewChild, ViewContainerRef } from '@angular/core';
+import { Directive, effect, ElementRef, inject, Injectable, InjectionToken, input, Renderer2, ViewContainerRef } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { AppAny } from '../types';
 
@@ -14,6 +14,7 @@ interface IconRenderder {
   renderer: Renderer2;
   vcr: ViewContainerRef;
   helper: HysRendererService;
+  iconContainerNode: AppAny;
   render(icon: string): void;
 }
 
@@ -24,6 +25,12 @@ export class HysRendererService {
   addClasses(native: AppAny, ...classes: string[]) {
     classes.forEach(c => this.renderer.addClass(native, c));
   }
+
+  clearIcon(el: ElementRef, container: AppAny) {
+    if (container) {
+      this.renderer.removeChild(el.nativeElement, container);
+    }
+  }
 }
 
 @Injectable()
@@ -33,18 +40,20 @@ export class CenterCenterIconRenderder implements IconRenderder {
   vcr = inject(ViewContainerRef);
   helper = inject(HysRendererService);
   readonly position = 'center center';
+  iconContainerNode: AppAny;
 
   render(icon: string): void {
     this.helper.addClasses(this.el.nativeElement, 'relative');
+    this.helper.clearIcon(this.el, this.iconContainerNode);
 
-    const container = this.renderer.createElement('div');
-    this.helper.addClasses(container, 'absolute', 'inset-0', 'flex', 'items-center', 'justify-center');
+    this.iconContainerNode = this.renderer.createElement('div');
+    this.helper.addClasses(this.iconContainerNode, 'absolute', 'inset-0', 'flex', 'items-center', 'justify-center');
 
     const _icon = this.vcr.createComponent(MatIcon)
     _icon.setInput('fontIcon', icon);
-    this.renderer.appendChild(container, _icon.location.nativeElement);
+    this.renderer.appendChild(this.iconContainerNode, _icon.location.nativeElement);
 
-    this.renderer.appendChild(this.el.nativeElement, container);
+    this.renderer.appendChild(this.el.nativeElement, this.iconContainerNode);
   }
 }
 
@@ -55,18 +64,20 @@ export class CenterLeftIconRenderer implements IconRenderder {
   vcr = inject(ViewContainerRef);
   helper = inject(HysRendererService);
   readonly position = 'center left';
+  iconContainerNode: AppAny;
 
   render(icon: string): void {
     this.helper.addClasses(this.el.nativeElement, 'flex', 'items-center', 'gap-2');
+    this.helper.clearIcon(this.el, this.iconContainerNode);
 
-    const leftColumn = this.renderer.createElement('div');
-    this.helper.addClasses(leftColumn, 'order-first', 'h-full', 'flex', 'items-center');
+    this.iconContainerNode = this.renderer.createElement('div');
+    this.helper.addClasses(this.iconContainerNode, 'order-first', 'h-full', 'flex', 'items-center');
 
     const _icon = this.vcr.createComponent(MatIcon)
     _icon.setInput('fontIcon', icon);
-    this.renderer.appendChild(leftColumn, _icon.location.nativeElement);
+    this.renderer.appendChild(this.iconContainerNode, _icon.location.nativeElement);
 
-    this.renderer.appendChild(this.el.nativeElement, leftColumn);
+    this.renderer.appendChild(this.el.nativeElement, this.iconContainerNode);
   }
 }
 
@@ -77,18 +88,20 @@ export class CenterRightIconRenderer implements IconRenderder {
   vcr = inject(ViewContainerRef);
   helper = inject(HysRendererService);
   readonly position = 'center right';
+  iconContainerNode: AppAny;
 
   render(icon: string): void {
     this.helper.addClasses(this.el.nativeElement, 'flex', 'items-center', 'gap-2');
+    this.helper.clearIcon(this.el, this.iconContainerNode);
 
-    const rightColumn = this.renderer.createElement('div');
-    this.helper.addClasses(rightColumn, 'order-last', 'h-full', 'flex', 'items-center');
+    this.iconContainerNode = this.renderer.createElement('div');
+    this.helper.addClasses(this.iconContainerNode, 'order-last', 'h-full', 'flex', 'items-center');
 
     const _icon = this.vcr.createComponent(MatIcon)
     _icon.setInput('fontIcon', icon);
-    this.renderer.appendChild(rightColumn, _icon.location.nativeElement);
+    this.renderer.appendChild(this.iconContainerNode, _icon.location.nativeElement);
 
-    this.renderer.appendChild(this.el.nativeElement, rightColumn);
+    this.renderer.appendChild(this.el.nativeElement, this.iconContainerNode);
   }
 
 }

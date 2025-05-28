@@ -28,6 +28,9 @@
       "@libs/*": [
         "./projects/*/src/public-api.ts"
       ],
+      "@shared/*": [
+        "./src/app/shared/*"
+      ],
     }
   },
   "angularCompilerOptions": {

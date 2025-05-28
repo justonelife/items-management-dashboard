@@ -40,7 +40,7 @@ export class ItemsManagementFilterComponent {
           withWrapper: true,
           icon: 'search',
           inputs: { placeholder: 'Search Items...' },
-          styleClass: 'col-span-12 lg:col-span-8',
+          styleClass: 'col-span-12 lg:col-span-2',
         },
         {
           key: 'type',

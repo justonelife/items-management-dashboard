@@ -19,7 +19,7 @@ import { FormsModule } from '@angular/forms';
     h-[41px]
     px-4
     placeholder:text-[#4c4546]
-    bg-white
+    bg-transparent
     border
     border-gray-300
     rounded-md

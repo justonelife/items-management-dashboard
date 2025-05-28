@@ -73,9 +73,11 @@ export class HysSidenavLayoutComponent {
       takeUntilDestroyed(),
     ).subscribe((route) => {
       this.pageTitle.set(route.snapshot.title?.toString() || '');
-      const component = route.snapshot.data['component'];
+      const component: () => Promise<Type<unknown>> = route.snapshot.data['component'];
       if (component) {
-        this.globalAction()?.createComponent(component);
+        component().then(c => {
+          this.globalAction()?.createComponent(c);
+        });
       }
     });
   }

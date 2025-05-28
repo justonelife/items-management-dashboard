@@ -1,16 +1,41 @@
-import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, forwardRef, inject, Injectable, InjectionToken, input } from '@angular/core';
 import { HysIconPositionDirective, IconCombinePosition, SeverityDirective } from '@libs/core';
 
 type IconPosition = 'left' | 'right';
-type ButtonVariant = 'normal' | 'icon';
+type ButtonVariant = 'normal' | 'icon' | 'raised';
+const VARIANT_RESOLVER = new InjectionToken<IVariantResolve>('VARIANT_RESOLVER');
+
+interface IVariantResolve {
+  variant: ButtonVariant;
+  getClass(): string;
+}
+
+@Injectable()
+class NormalVariantResolver implements IVariantResolve {
+  variant: ButtonVariant = 'normal';
+  getClass(): string {
+    return '';
+  }
+}
+
+@Injectable()
+class IconVariantResolver implements IVariantResolve {
+  variant: ButtonVariant = 'icon';
+  getClass(): string {
+    return 'bg-transparent! text-black! px-1!';
+  }
+}
+
+@Injectable()
+class RaisedVariantResolver implements IVariantResolve {
+  variant: ButtonVariant = 'raised';
+  getClass(): string {
+    return 'shadow-lg rounded-full! px-1!';
+  }
+}
 
 @Component({
-  imports: [
-    NgTemplateOutlet,
-  ],
   selector: 'a[hys-button], button[hys-button]',
-  // templateUrl: './button.component.html',
   template: `<ng-content />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
   hostDirectives: [
@@ -26,9 +51,15 @@ type ButtonVariant = 'normal' | 'icon';
   styleUrl: './button.component.scss',
   host: {
     '[class]': 'klass()'
-  }
+  },
+  providers: [
+    { provide: VARIANT_RESOLVER, useClass: NormalVariantResolver, multi: true },
+    { provide: VARIANT_RESOLVER, useClass: IconVariantResolver, multi: true },
+    { provide: VARIANT_RESOLVER, useClass: RaisedVariantResolver, multi: true },
+  ]
 })
 export class HysButtonComponent {
+  variantResolvers = inject<IVariantResolve[]>(VARIANT_RESOLVER);
 
   iconPosition = input<IconPosition>('left');
   position = computed(() => {
@@ -38,12 +69,17 @@ export class HysButtonComponent {
   icon = input<string>();
   variant = input<ButtonVariant>('normal');
 
-  readonly DEFAULT_CLASS = 'cursor-pointer inline-flex items-center justify-center p-2 px-6';
+  readonly DEFAULT_CLASS = 'cursor-pointer inline-flex items-center justify-center p-1 px-4 font-normal h-[32px]';
 
   klass = computed(() => {
     const variant = this.variant()
-
-    return `${this.DEFAULT_CLASS} ${variant === 'icon' ? 'bg-transparent! text-black! px-2!' : ''}`;
+    try {
+      const klassByVariant = this.variantResolvers.filter(v => v.variant === variant)[0].getClass();
+      return `${this.DEFAULT_CLASS} ${klassByVariant}`;
+    } catch {
+      return this.DEFAULT_CLASS;
+    }
   });
 
 }
+

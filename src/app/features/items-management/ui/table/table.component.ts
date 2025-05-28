@@ -47,7 +47,7 @@ export class ItemsManagementTableComponent {
     { key: 'type', header: 'Type', sortable: true },
     { key: 'category', header: 'Category', sortable: true },
     { key: 'price', header: 'Price', sortable: true },
-    { key: 'imageUrl', header: 'Attachments' },
+    // { key: 'imageUrl', header: 'Attachments' },
     { key: 'description', header: 'Description' },
     { key: 'action', header: 'Actions' },
   ];
