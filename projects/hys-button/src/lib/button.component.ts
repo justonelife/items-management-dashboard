@@ -44,7 +44,7 @@ class RaisedVariantResolver implements IVariantResolve {
       directive: SeverityDirective,
     },
     {
-      inputs: ['hysIconPosition', 'icon'],
+      inputs: ['hysIconPosition', 'icon', 'iconSet'],
       directive: HysIconPositionDirective,
     }
   ],

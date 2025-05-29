@@ -1,10 +1,13 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-import { routes } from './app.routes';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from '@angular/material/form-field';
 import { provideHttpClient } from '@angular/common/http';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from '@angular/material/form-field';
 import { provideComponentControlResolver } from '@libs/hys-controller';
+import { routes } from './app.routes';
+
+import { IconModule } from './icon.module';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,5 +22,6 @@ export const appConfig: ApplicationConfig = {
     },
     provideHttpClient(),
     provideComponentControlResolver(),
+    importProvidersFrom(IconModule),
   ]
 };

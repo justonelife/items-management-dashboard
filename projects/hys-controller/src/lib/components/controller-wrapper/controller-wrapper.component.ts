@@ -27,7 +27,7 @@ import { HysIconPositionDirective } from '@libs/core';
   },
   hostDirectives: [
     {
-      inputs: ['hysIconPosition', 'icon'],
+      inputs: ['hysIconPosition', 'icon', 'iconSet'],
       directive: HysIconPositionDirective,
     }
   ]

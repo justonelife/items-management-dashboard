@@ -19,7 +19,7 @@ export type DynamicField = {
   label?: string;
   styleClass?: string;
 }
-  & BranchTrueFalseOnKey<'withWrapper', { icon: string; iconPosition?: IconCombinePosition }>
+  & BranchTrueFalseOnKey<'withWrapper', { icon: string; iconSet?: string; iconPosition?: IconCombinePosition }>
   & (
     { type: DynamicType.CUSTOM; templateRef?: TemplateRef<unknown> } |
     ({ type: Exclude<DynamicType, DynamicType.CUSTOM> } & {

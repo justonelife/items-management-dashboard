@@ -34,7 +34,11 @@ export class SelectResolver implements ComponentResolver {
 export class HysComponentControlResolveService {
   private resolvers = inject<ComponentResolver[]>(COMPONENT_RESOLVER);
 
-  resolve(type: DynamicType): Promise<Type<unknown>> {
-    return this.resolvers.filter(r => r.type === type)[0].resolve();
+  resolve(type: DynamicType): Promise<Type<unknown>> | null {
+    const strategy = this.resolvers.find(r => r.type === type);
+    if (strategy) {
+      return strategy.resolve();
+    }
+    return null;
   }
 }

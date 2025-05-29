@@ -13,7 +13,7 @@ export class SeverityDirective {
     'neutral': 'border text-foreground',
     'info': 'border-transparent bg-slate-200 dark:text-zinc-600 hover:bg-slate-100',
     'danger': 'text-red-500!',
-    'primary': 'bg-black dark:bg-yellow-400 text-white dark:text-black',
+    'primary': 'bg-gradient text-white',
     'secondary': 'bg-secondary',
   }
 

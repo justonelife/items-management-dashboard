@@ -13,6 +13,7 @@ export interface NavItem {
   title: string;
   path: string;
   icon?: string;
+  iconSet?: string;
 }
 
 export type SideMode = MatDrawerMode;
@@ -42,6 +43,7 @@ export class HysSidenavLayoutComponent {
   logoTemplate = contentChild<TemplateRef<unknown>>('logo');
 
   pageTitle = signal<string>('');
+  pageSubTitle = signal<string>('');
 
   isHandset$ = this.bp.observe([
     Breakpoints.Handset,
@@ -73,6 +75,7 @@ export class HysSidenavLayoutComponent {
       takeUntilDestroyed(),
     ).subscribe((route) => {
       this.pageTitle.set(route.snapshot.title?.toString() || '');
+      this.pageSubTitle.set(route.snapshot.data['subTitle'] || '');
       const component: () => Promise<Type<unknown>> = route.snapshot.data['component'];
       if (component) {
         component().then(c => {

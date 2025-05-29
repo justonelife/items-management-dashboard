@@ -13,6 +13,7 @@ export const routes: Routes = [
     title: 'Items Management',
     data: {
       component: () => import('./ui/actions/actions.component').then(c => c.ItemsManagementActionsComponent),
+      subTitle: 'Manage your inventory and product catalog'
     }
   },
   {

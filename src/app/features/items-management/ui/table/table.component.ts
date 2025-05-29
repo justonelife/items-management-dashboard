@@ -1,18 +1,16 @@
 import { CurrencyPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
-import { Item } from '@features/items-management/data-access';
-import { ChipComponent } from '@libs/chip';
-import { AppPageOfData, SeverityDirective } from '@libs/core';
-import { Column, TableModule } from '@libs/table';
-import { NgOptimizedImage } from '@angular/common';
-import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { urlEditItem } from '@features/items-management/data-access';
-import { RouterLink } from '@angular/router';
+import { MatMenuModule } from '@angular/material/menu';
+import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
+import { RouterLink } from '@angular/router';
+import { Item, urlEditItem } from '@features/items-management/data-access';
+import { ChipComponent } from '@libs/chip';
+import { AppPageOfData, SeverityDirective } from '@libs/core';
 import { ReadMoreComponent } from '@libs/read-more';
+import { Column, TableModule } from '@libs/table';
 
 @Component({
   standalone: true,
@@ -20,7 +18,6 @@ import { ReadMoreComponent } from '@libs/read-more';
     TableModule,
     ChipComponent,
     CurrencyPipe,
-    NgOptimizedImage,
     MatMenuModule,
     MatButtonModule,
     MatIconModule,

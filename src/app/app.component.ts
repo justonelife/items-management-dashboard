@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { CardComponent } from '@libs/card';
 import { HysSidenavLayoutComponent } from '@libs/hys-layouts';
 import { MENU } from './app.const';
@@ -7,6 +7,7 @@ import { HysButtonComponent } from '@libs/hys-button';
 import { DOCUMENT } from '@angular/common';
 import { AppTheme } from '@shared/data-access';
 import { IsLightThemePipe } from '@shared/pipes';
+import { HysIconPositionDirective } from '@libs/core';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,8 @@ import { IsLightThemePipe } from '@shared/pipes';
     CardComponent,
     HysButtonComponent,
     IsLightThemePipe,
+    RouterLink,
+    HysIconPositionDirective,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

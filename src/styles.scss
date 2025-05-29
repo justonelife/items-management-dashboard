@@ -3,34 +3,15 @@
 @use './styles/global.scss';
 @use '@angular/material' as mat;
 @use './styles/_theme-colors.scss' as app-theme; // location of generated file
-@use "tailwindcss";
 
-$logo-size: 80px;
+.mat-icon {
+  height: fit-content !important;
+  width: fit-content !important;
+}
 
-@custom-variant dark (&:where(.dark, .dark *));
-
-@layer utility {
-  .app-logo {
-    background-image: url('/images/logo-sample.png');
-    width: $logo-size;
-    height: $logo-size;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-
-  .bg-primary {
-    background-color: light-dark(var(--color-white), var(--color-black));
-  }
-
-  .fg-primary {
-    background-color: light-dark(var(--color-black), var(--color-white));
-  }
-
-  .bg-secondary {
-    background-color: light-dark(#fbf9fa, #404040);
-    //TODO:why class not work
-    // @apply bg-gray-50 dark:bg-neutral-700;
-  }
+.size-20 {
+  font-size: 20px;
+  font-variation-settings: 'OPSZ' 20;
 }
 
 :root {
@@ -63,7 +44,7 @@ html {
   @include mat.theme((color: (primary: app-theme.$primary-palette,
         tertiary: app-theme.$tertiary-palette,
       ),
-      typography: Roboto,
+      typography: "IBM Plex Mono",
       density: 0,
     ));
 }
