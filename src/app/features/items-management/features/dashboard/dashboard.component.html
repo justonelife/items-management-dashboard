@@ -1,0 +1,7 @@
+<main class="flex flex-col gap-4">
+
+  <app-items-management-table [data]="store.data()" (emitPageChange)="pageChange($event)" [page]="store.page()"
+    [pageSize]="10" (emitSortChange)="sortChange($event)" (emitSoftDelete)="softDelete($event)"
+    (emitRestore)="restore($event)" />
+
+</main>

@@ -1,4 +1,4 @@
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -6,11 +6,12 @@ import { MatMenuModule } from '@angular/material/menu';
 import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
 import { RouterLink } from '@angular/router';
-import { Item, urlEditItem } from '@features/items-management/data-access';
+import { Item, urlEditItem, VIEW_OPTIONS } from '@features/items-management/data-access';
 import { ChipComponent } from '@libs/chip';
 import { AppPageOfData, SeverityDirective } from '@libs/core';
 import { ReadMoreComponent } from '@libs/read-more';
 import { Column, TableModule } from '@libs/table';
+import { ToggleButtonComponent } from '@libs/toggle-button';
 
 @Component({
   standalone: true,
@@ -24,6 +25,8 @@ import { Column, TableModule } from '@libs/table';
     SeverityDirective,
     RouterLink,
     ReadMoreComponent,
+    ToggleButtonComponent,
+    JsonPipe,
   ],
   selector: 'app-items-management-table',
   templateUrl: './table.component.html',
@@ -38,6 +41,8 @@ export class ItemsManagementTableComponent {
   emitSortChange = output<Sort>()
   emitSoftDelete = output<string>()
   emitRestore = output<string>()
+
+  readonly VIEW_OPTIONS = VIEW_OPTIONS;
 
   readonly COLUMNS: Column[] = [
     { key: 'name', header: 'Name', sortable: true },

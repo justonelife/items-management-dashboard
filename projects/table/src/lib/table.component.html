@@ -3,6 +3,10 @@
 @let _data = data();
 <div class="flex justify-between items-center p-2">
   <span class="font-bold">Result: {{ _data?.items || 0 | number }}</span>
+
+  @if (globalAction(); as _globalAction) {
+  <ng-container *ngTemplateOutlet="_globalAction"></ng-container>
+  }
 </div>
 <table mat-table matSort (matSortChange)="sortChange($event)" [dataSource]="_data?.data || []"
   class="mat-elevation-z8 min-w-full">

@@ -9,11 +9,11 @@ export class IconModule {
   constructor(iconRegistry: MatIconRegistry) {
     iconRegistry.registerFontClassAlias(
       'filled',
-      'material-icons mat-ligature-font'
+      'material-icons mat-ligature-font size-20'
     );
     iconRegistry.registerFontClassAlias(
       'outlined',
-      'material-symbols-outlined mat-ligature-font material-icons size-20'
+      'material-symbols-outlined mat-ligature-font material-icons size-20' //TODO: find better way than hardcode size-20
     );
     iconRegistry.registerFontClassAlias(
       'symbols-outlined',

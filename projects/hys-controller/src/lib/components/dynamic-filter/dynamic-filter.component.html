@@ -1,9 +1,9 @@
 @if (form) {
 
-<form [formGroup]="form" class="grid grid-flow-row grid-cols-12 gap-2">
+<form [formGroup]="form" class="flex flex-wrap gap-2">
 
   @for (item of items(); track item.key) {
-  <div [class]="item.styleClass || 'col-span-12'">
+  <div [class]="item.styleClass || 'w-3xs'">
 
     @if (item.withWrapper) {
     <hys-controller-wrapper [hysIconPosition]="item.iconPosition || 'center left'" [icon]="item.icon"
@@ -20,11 +20,13 @@
 
   }
 
-  <div class="ms-auto mt-auto flex gap-2 h-full items-center">
-
-    <button hys-button type="submit">Filter</button>
-    <button hys-button type="reset" severity="secondary">Clear</button>
-  </div>
+  @if (actionTemplate(); as _actionTemplate) {
+  <ng-container *ngTemplateOutlet="_actionTemplate"></ng-container>
+  }
+  <!-- <div class="ms-auto mt-auto flex gap-2 h-full items-center"> -->
+  <!--   <button hys-button type="submit">Filter</button> -->
+  <!--   <button hys-button type="reset" severity="secondary">Clear</button> -->
+  <!-- </div> -->
 </form>
 }
 

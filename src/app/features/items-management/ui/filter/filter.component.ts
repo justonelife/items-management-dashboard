@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, effect, inject, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, input, output, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { AppTypedForm } from '@libs/core';
+import { HysButtonComponent } from '@libs/hys-button';
 import { DynamicField, DynamicType, HysDynamicFilterComponent } from '@libs/hys-controller';
 import { Option } from '@libs/select';
 import { Filter } from '../../data-access';
@@ -12,13 +13,13 @@ import { Filter } from '../../data-access';
     MatButtonModule,
     ReactiveFormsModule,
     HysDynamicFilterComponent,
+    HysButtonComponent,
   ],
-  selector: 'app-items-management-filter',
+  selector: 'app-items-management-filter-view',
   templateUrl: './filter.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ItemsManagementFilterComponent {
-  cdr = inject(ChangeDetectorRef);
+export class FilterComponent {
   form = input.required<AppTypedForm<Filter>>()
   categoryOptions = input.required<Option[]>();
   typeOptions = input.required<Option[]>();
@@ -26,21 +27,21 @@ export class ItemsManagementFilterComponent {
   emitFilter = output<Filter>();
   emitReset = output<void>();
 
-  fields: DynamicField[] = [];
+  fields = signal<DynamicField[]>([]);
 
   constructor() {
     effect(() => {
       const typeOptions = this.typeOptions();
       const categoryOptions = this.categoryOptions();
 
-      this.fields = [
+      this.fields.set([
         {
           key: 'name',
           type: DynamicType.INPUT,
           withWrapper: true,
           icon: 'search',
+          iconSet: 'filled',
           inputs: { placeholder: 'Search Items...' },
-          styleClass: 'col-span-12 lg:col-span-2',
         },
         {
           key: 'type',
@@ -49,7 +50,6 @@ export class ItemsManagementFilterComponent {
           icon: 'filter_alt',
           iconSet: 'outlined',
           inputs: { options: typeOptions, placeholder: 'All Types' },
-          styleClass: 'col-span-6 lg:col-span-2',
         },
         {
           key: 'category',
@@ -58,10 +58,8 @@ export class ItemsManagementFilterComponent {
           icon: 'filter_alt',
           iconSet: 'outlined',
           inputs: { options: categoryOptions, placeholder: 'All Categories' },
-          styleClass: 'col-span-6 lg:col-span-2',
         },
-      ];
-      this.cdr.markForCheck();
+      ]);
     })
   }
 

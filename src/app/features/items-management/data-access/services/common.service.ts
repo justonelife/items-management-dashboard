@@ -5,8 +5,8 @@ import { URI } from '../constants/dashboard.const';
 import { Category, ItemType } from '../types';
 import { Option } from '@libs/select';
 
-@Injectable()
-export class CommonService {
+@Injectable({ providedIn: 'root' })
+export class ItemsManagementCommonService {
   readonly httpClient = inject(HttpClient);
   private categories$?: Observable<Category[]>;
   private types$?: Observable<ItemType[]>;

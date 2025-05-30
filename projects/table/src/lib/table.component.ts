@@ -1,5 +1,5 @@
 import { DecimalPipe, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, contentChildren, effect, inject, input, output, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, contentChild, contentChildren, effect, inject, input, output, TemplateRef } from '@angular/core';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableModule } from "@angular/material/table";
@@ -41,6 +41,8 @@ export class TableComponent<
 
   templates = contentChildren(ColumnTemplateDirective);
   templatesMapper: Record<string, TemplateRef<unknown>> = {};
+
+  globalAction = contentChild<TemplateRef<unknown>>('globalAction');
 
 
   readonly PAGE_SIZE_OPTIONS = PAGE_SIZE_OPTIONS;

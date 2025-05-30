@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
 import { ItemsManagementActionsComponent } from "./ui/actions/actions.component";
+import { ItemSearchStore } from "./data-access/store";
 
 export const routes: Routes = [
   {
@@ -9,12 +10,13 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadComponent: () => import('./features/items-management-dashboard/items-management-dashboard.component').then(c => c.ItemsManagementDashboard),
+    loadComponent: () => import('./features/dashboard/dashboard.component').then(c => c.DashboardContainerComponent),
     title: 'Items Management',
     data: {
-      component: () => import('./ui/actions/actions.component').then(c => c.ItemsManagementActionsComponent),
+      // component: () => import('./ui/actions/actions.component').then(c => c.ItemsManagementActionsComponent),
+      component: () => import('./features/filter/filter.component').then(c => c.FilterContainerComponent),
       subTitle: 'Manage your inventory and product catalog'
-    }
+    },
   },
   {
     path: 'edit/:id',

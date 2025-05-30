@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { CommonService, ItemsManagementService } from '@features/items-management/data-access';
+import { ItemsManagementService } from '@features/items-management/data-access';
 
 export const routes: Routes = [
   {
@@ -10,6 +10,6 @@ export const routes: Routes = [
   {
     path: 'items-management',
     loadChildren: () => import('@features/items-management/routes').then(r => r.routes),
-    providers: [ItemsManagementService, CommonService],
+    // providers: [ItemsManagementService],
   }
 ];

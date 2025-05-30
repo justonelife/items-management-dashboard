@@ -1,11 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { AppAny, AppPageOfData } from '@libs/core';
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
 import { URI } from '../constants/dashboard.const';
 import { EditItem, Filter, Item, ItemStatus } from '../types';
 
-@Injectable()
+//FIXME: try not providedIn root
+@Injectable({
+  providedIn: 'root'
+})
 export class ItemsManagementService {
   readonly httpClient = inject(HttpClient);
 
@@ -27,6 +30,7 @@ export class ItemsManagementService {
     const queryParams = this.generateQueryParams(params);
 
     return this.httpClient.get<AppPageOfData<Item>>(URI + '/items' + queryParams).pipe(
+      tap(console.log),
       catchError(err => {
         // TODO:  alert
         console.log(err);

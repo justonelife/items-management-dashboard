@@ -18,10 +18,10 @@
   font-size: 14px;
   @include mat.card-overrides((outlined-container-shape: var(--radius-md),
       elevated-container-shape: var(--radius-md),
-      outlined-container-color: light-dark(var(--color-white), var(--color-black)),
-      elevated-container-color: light-dark(var(--color-white), var(--color-black)),
+      outlined-container-color: light-dark(var(--hys-color-white), var(--hys-color-black)),
+      elevated-container-color: light-dark(var(--hys-color-white), var(--hys-color-black)),
     ));
-  @include mat.table-overrides((background-color: light-dark(var(--color-white), var(--color-black)),
+  @include mat.table-overrides((background-color: light-dark(var(--hys-color-white), var(--hys-color-black)),
       row-item-outline-color: var(--mdc-outlined-card-outline-color, var(--mat-sys-outline-variant)),
     ));
   @include mat.form-field-overrides((outlined-outline-width: 0,
@@ -31,11 +31,11 @@
     ));
   @include mat.button-toggle-overrides((shape: var(--radius-md),
       background-color: transparent,
-      selected-state-background-color: var(--color-white),
+      selected-state-background-color: light-dark(var(--hys-color-white), var(--hys-color-black)),
       height: 30px,
       divider-color: transparent));
   @include mat.sidenav-overrides((container-shape: 0,
-      content-background-color: var(--color-white),
+      content-background-color: var(--hys-color-white),
     ));
 }
 

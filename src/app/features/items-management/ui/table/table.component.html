@@ -1,5 +1,8 @@
 <lib-table [data]="data()" [columns]="COLUMNS" (emitPageChange)="pageChange($event)" [page]="page()"
   [pageSize]="pageSize()" (emitSortChange)="sortChange($event)">
+  <ng-template #globalAction>
+    <lib-toggle-button [options]="VIEW_OPTIONS"></lib-toggle-button>
+  </ng-template>
   <ng-template libColumnTemplate="type" let-row>
     <lib-chip severity='neutral'>
       {{ row.type }}
