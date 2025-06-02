@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { CardComponent } from '@libs/card';
 import { HysSidenavLayoutComponent } from '@libs/hys-layouts';
@@ -26,15 +26,27 @@ import { HysIconPositionDirective } from '@libs/core';
 export class AppComponent {
   document = inject(DOCUMENT);
   readonly MENU = MENU;
-  theme = signal<AppTheme>('light');
+  readonly KEY = 'cmspro:theme';
+  theme = signal<AppTheme>((localStorage.getItem(this.KEY)?.toString() || 'light') as AppTheme);
+
+  constructor() {
+    effect(() => {
+      const theme = this.theme();
+      if (this.isLightTheme(theme)) {
+        this.document.getElementsByTagName('body')[0].classList.remove('dark');
+        localStorage.setItem(this.KEY, 'light');
+      } else {
+        this.document.getElementsByTagName('body')[0].classList.add('dark');
+        localStorage.setItem(this.KEY, 'dark');
+      }
+    });
+  }
 
   toggleTheme(): void {
     if (this.isLightTheme(this.theme())) {
       this.theme.set('dark');
-      this.document.getElementsByTagName('body')[0].classList.add('dark');
     } else {
       this.theme.set('light');
-      this.document.getElementsByTagName('body')[0].classList.remove('dark');
     }
   }
 

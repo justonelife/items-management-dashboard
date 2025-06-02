@@ -1,4 +1,4 @@
-import { CurrencyPipe, JsonPipe } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -25,9 +25,8 @@ import { ToggleButtonComponent } from '@libs/toggle-button';
     SeverityDirective,
     RouterLink,
     ReadMoreComponent,
-    ToggleButtonComponent,
-    JsonPipe,
-  ],
+    ToggleButtonComponent
+],
   selector: 'app-items-management-table',
   templateUrl: './table.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

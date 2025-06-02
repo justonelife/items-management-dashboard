@@ -11,5 +11,9 @@ export const routes: Routes = [
     path: 'items-management',
     loadChildren: () => import('@features/items-management/routes').then(r => r.routes),
     // providers: [ItemsManagementService],
+  },
+  {
+    path: 'workflow',
+    loadChildren: () => import('@features/workflow/routes').then(r => r.routes),
   }
 ];

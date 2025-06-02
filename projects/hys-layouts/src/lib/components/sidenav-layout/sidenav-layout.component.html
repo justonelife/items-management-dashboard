@@ -40,11 +40,11 @@
     <menu class="mt-4 flex flex-col gap-2">
 
       @for (item of navConfig(); track item.path) {
-      <li
+      <li [routerLink]="item.path"
         class="cursor-pointer flex items-center gap-3 rounded-md px-3 py-2 text-sm hover:bg-orange-50 hover:dark:bg-slate-800/50 transition-colors text-primary font-medium dark:text-slate-400 dark:hover:text-white"
         hysIconPosition="center left" [icon]="item.icon || ''" [iconSet]="item.iconSet || ''"
         routerLinkActive="bg-orange-100 text-orange-700 dark:bg-slate-800/50 dark:text-white">
-        <a [routerLink]="item.path" class="overflow-hidden text-ellipsis line-clamp-1">
+        <a class="overflow-hidden text-ellipsis line-clamp-1">
           {{ item.title }}
         </a>
       </li>

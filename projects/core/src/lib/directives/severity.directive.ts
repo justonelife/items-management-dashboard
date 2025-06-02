@@ -12,7 +12,7 @@ export class SeverityDirective {
   readonly CLASS_MAPPER: Record<AppSeverity, string> = {
     'neutral': 'border text-foreground',
     'info': 'border-transparent bg-slate-200 dark:text-zinc-600 hover:bg-slate-100',
-    'danger': 'text-red-500!',
+    'danger': 'text-red-500! bg-red-200',
     'primary': 'bg-gradient text-white',
     'secondary': 'bg-secondary',
   }

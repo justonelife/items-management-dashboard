@@ -1,4 +1,4 @@
-import { AsyncPipe, JsonPipe } from '@angular/common';
+
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
@@ -13,10 +13,8 @@ import { ItemsManagementService } from '../../data-access';
 @Component({
   imports: [
     ItemsManagementTableComponent,
-    AsyncPipe,
-    ReactiveFormsModule,
-    JsonPipe,
-  ],
+    ReactiveFormsModule
+],
   selector: 'app-items-management-dashboard',
   templateUrl: './dashboard.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
