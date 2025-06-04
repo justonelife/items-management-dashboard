@@ -27,4 +27,5 @@ export class HysSelectComponent extends HysBaseController {
   override label = input<string>('');
 
   options = input.required<Option[]>();
+  multiple = input<boolean>(false);
 }

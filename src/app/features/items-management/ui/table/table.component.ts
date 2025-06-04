@@ -1,17 +1,22 @@
 import { CurrencyPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
 import { RouterLink } from '@angular/router';
-import { Item, urlEditItem, VIEW_OPTIONS } from '@features/items-management/data-access';
+import { Item, ItemStatus, urlEditItem, VIEW_OPTIONS } from '@features/items-management/data-access';
+import { itemSearchEvents } from '@features/items-management/data-access/store/item-search-events';
 import { ChipComponent } from '@libs/chip';
 import { AppPageOfData, SeverityDirective } from '@libs/core';
 import { ReadMoreComponent } from '@libs/read-more';
 import { Column, TableModule } from '@libs/table';
 import { ToggleButtonComponent } from '@libs/toggle-button';
+import { Dispatcher } from '@ngrx/signals/events';
+import { distinctUntilChanged, tap } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -25,13 +30,15 @@ import { ToggleButtonComponent } from '@libs/toggle-button';
     SeverityDirective,
     RouterLink,
     ReadMoreComponent,
-    ToggleButtonComponent
-],
+    ToggleButtonComponent,
+    ReactiveFormsModule,
+  ],
   selector: 'app-items-management-table',
   templateUrl: './table.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemsManagementTableComponent {
+  dispatcher = inject(Dispatcher);
   data = input.required<AppPageOfData<Item>>();
   page = input.required<number>();
   pageSize = input.required<number>();
@@ -52,6 +59,18 @@ export class ItemsManagementTableComponent {
     { key: 'description', header: 'Description' },
     { key: 'action', header: 'Actions' },
   ];
+
+  statusForm = new FormControl<ItemStatus>('active');
+
+  constructor() {
+    this.statusForm.valueChanges.pipe(
+      distinctUntilChanged(),
+      tap(value => {
+        this.dispatcher.dispatch(itemSearchEvents.statusChanged(value as ItemStatus))
+      }),
+      takeUntilDestroyed(),
+    ).subscribe();
+  }
 
   pageChange(event: PageEvent) {
     this.emitPageChange.emit(event);

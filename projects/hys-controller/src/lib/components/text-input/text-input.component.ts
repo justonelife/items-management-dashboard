@@ -1,34 +1,25 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatInput } from '@angular/material/input';
 import { HysBaseController } from '../../directives/base-controller.directive';
 import { provideControlValueAccessor } from '../../utils';
-import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   imports: [
-    MatIconModule,
     FormsModule,
+    MatInput,
+    MatFormFieldModule,
   ],
   selector: 'hys-text-input',
   templateUrl: './text-input.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [provideControlValueAccessor(HysTextInputComponent)],
-  host: {
-    'class': `inline-flex
-    w-full
-    h-[41px]
-    px-4
-    placeholder:text-[#4c4546]
-    bg-transparent
-    border
-    border-gray-300
-    rounded-md
-    focus:outline-none
-    focus:border-transparent
-    focus:ring-1
-    focus:ring-black-500
-    `
-  }
+  styles: [`
+    :host ::ng-deep {
+      .mat-mdc-form-field-subscript-wrapper { display: none; }
+    }
+  `],
 })
 export class HysTextInputComponent extends HysBaseController {
 

@@ -6,6 +6,7 @@ import { DynamicField, DynamicType, HysControllerWrapperComponent } from '@libs/
 import { HysBaseDynamic } from '../../directives/base-dynamic.directive';
 import { DynamicControlPipe } from '../../pipes/dynamic-control.pipe';
 import { HysComponentControlResolveService } from '../../services/component-control-resolve.service';
+import { MergeObjectsPipe } from '../../pipes/merge-objects.pipe';
 
 @Component({
   imports: [
@@ -14,8 +15,9 @@ import { HysComponentControlResolveService } from '../../services/component-cont
     NgTemplateOutlet,
     ReactiveFormsModule,
     HysControllerWrapperComponent,
-    DynamicControlPipe
-],
+    DynamicControlPipe,
+    MergeObjectsPipe,
+  ],
   selector: 'hys-dynamic-filter',
   templateUrl: './dynamic-filter.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

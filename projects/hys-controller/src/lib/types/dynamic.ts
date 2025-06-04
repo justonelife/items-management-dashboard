@@ -4,6 +4,7 @@ import { AppAny, IconCombinePosition } from "@libs/core";
 export enum DynamicType {
   INPUT = 'INPUT',
   SELECT = 'SELECT',
+  MULTIPLE = 'MULTIPLE',
   CUSTOM = 'CUSTOM',
 }
 export type BranchTrueFalseOnKey<

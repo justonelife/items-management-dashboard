@@ -5,7 +5,6 @@ export const DYNAMIC_CONTROL = new InjectionToken<FormControl>('DYNAMIC_CONTROL'
 
 @Pipe({
   name: 'dynamicControl',
-  standalone: true,
 })
 export class DynamicControlPipe implements PipeTransform {
   readonly injector = inject(Injector);

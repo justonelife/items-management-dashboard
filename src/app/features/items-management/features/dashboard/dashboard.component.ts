@@ -1,4 +1,3 @@
-
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
@@ -14,7 +13,7 @@ import { ItemsManagementService } from '../../data-access';
   imports: [
     ItemsManagementTableComponent,
     ReactiveFormsModule
-],
+  ],
   selector: 'app-items-management-dashboard',
   templateUrl: './dashboard.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -44,6 +43,7 @@ export class DashboardContainerComponent {
       .pipe(
         finalize(() => {
           // this.forceReload$.next(null);
+          this.dispatcher.dispatch(itemSearchEvents.opened());
         })
       )
       .subscribe({
@@ -60,6 +60,7 @@ export class DashboardContainerComponent {
     this.api.restore(id)
       .pipe(
         finalize(() => {
+          this.dispatcher.dispatch(itemSearchEvents.opened());
           // this.forceReload$.next(null);
         })
       )

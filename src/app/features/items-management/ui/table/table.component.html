@@ -1,7 +1,7 @@
 <lib-table [data]="data()" [columns]="COLUMNS" (emitPageChange)="pageChange($event)" [page]="page()"
   [pageSize]="pageSize()" (emitSortChange)="sortChange($event)">
   <ng-template #globalAction>
-    <lib-toggle-button [options]="VIEW_OPTIONS"></lib-toggle-button>
+    <lib-toggle-button [options]="VIEW_OPTIONS" [formControl]="statusForm"></lib-toggle-button>
   </ng-template>
   <ng-template libColumnTemplate="type" let-row>
     <lib-chip severity='neutral'>
@@ -45,7 +45,7 @@
         <span>Edit</span>
       </button>
       <button mat-menu-item lib-severity severity='danger' (click)="softDelete(row.id)">
-        <mat-icon lib-severity severity='danger'>delete</mat-icon>
+        <mat-icon lib-severity severity='danger' class="bg-transparent">delete</mat-icon>
         <span>Delete</span>
       </button>
       }
