@@ -22,10 +22,10 @@ export interface Option<T = AppAny> {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [provideControlValueAccessor(HysSelectComponent)]
 })
-export class HysSelectComponent extends HysBaseController {
+export class HysSelectComponent extends HysBaseController<unknown> {
   override placeholder = input<string>('');
   override label = input<string>('');
 
-  options = input.required<Option[]>();
+  options = input.required<Option<unknown>[]>();
   multiple = input<boolean>(false);
 }

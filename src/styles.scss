@@ -4,16 +4,6 @@
 @use '@angular/material' as mat;
 @use './styles/_theme-colors.scss' as app-theme; // location of generated file
 
-.mat-icon {
-  height: fit-content !important;
-  width: fit-content !important;
-}
-
-.size-20 {
-  font-size: 20px;
-  font-variation-settings: 'OPSZ' 20;
-}
-
 :root {
   font-size: 14px;
   @include mat.card-overrides((outlined-container-shape: var(--radius-md),
@@ -37,6 +27,11 @@
   @include mat.sidenav-overrides((container-shape: 0,
       content-background-color: var(--hys-color-white),
     ));
+  @include mat.chips-overrides((container-shape-radius: var(--radius-full),
+      container-height: 22px,
+      label-text-color: light-dark(var(--color-orange-700), var(--hys-color-white)),
+      outline-color: light-dark(var(--color-orange-700), var(--hys-color-white)),
+    ));
 }
 
 html {
@@ -47,6 +42,13 @@ html {
       typography: "IBM Plex Mono",
       density: 0,
     ));
+
+  .hys-controller {
+    .mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) {
+      background: var(--color-orange-100);
+      color: var(--color-orange-700);
+    }
+  }
 }
 
 /* You can add global styles to this file, and also import other style files */
@@ -54,4 +56,10 @@ html {
 body.dark {
   color-scheme: dark;
   color: var(--color-white);
+
+  .hys-controller {
+    .mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) {
+      background: color-mix(in oklab, var(--color-slate-800) 50%, transparent);
+    }
+  }
 }

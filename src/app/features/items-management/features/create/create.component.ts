@@ -3,12 +3,10 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { ItemsManagementCommonService, EditItem, ItemsManagementService, urlDashboardItems } from '@features/items-management/data-access';
+import { Router } from '@angular/router';
+import { EditItem, ItemsManagementCommonService, ItemsManagementService, urlDashboardItems } from '@features/items-management/data-access';
 import { ItemsManagementForm } from '@features/items-management/ui/form/form.component';
-import { CardComponent } from '@libs/card';
 import { AppTypedForm } from '@libs/core';
-
 
 @Component({
   standalone: true,
@@ -16,18 +14,16 @@ import { AppTypedForm } from '@libs/core';
     ItemsManagementForm,
     MatButtonModule,
     MatIconModule,
-    RouterLink,
-    CardComponent,
     AsyncPipe,
   ],
   selector: 'app-items-management-create',
-  templateUrl: './items-management-create.component.html',
+  templateUrl: './create.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     'class': 'flex flex-col gap-4',
   }
 })
-export class ItemsManagementCreateComponent {
+export class CreateItemContainerComponent {
   readonly router = inject(Router);
   readonly api = inject(ItemsManagementService);
   readonly commonService = inject(ItemsManagementCommonService);
@@ -45,6 +41,7 @@ export class ItemsManagementCreateComponent {
     imageUrl: new FormControl<string>(''),
     description: new FormControl<string>(''),
     status: new FormControl<'active' | 'delete'>({ value: 'active', disabled: true }),
+    tags: new FormControl<string[]>([]),
   });
 
   submit() {

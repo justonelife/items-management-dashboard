@@ -9,4 +9,5 @@ export interface Item {
   imageUrl?: string;
   description?: string;
   status?: ItemStatus;
+  tags?: string[];
 }

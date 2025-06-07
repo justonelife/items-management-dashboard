@@ -9,7 +9,7 @@
 <main>
   <lib-card>
     <app-items-management-form [categoryOptions]="(categoryOptions$ | async) || []"
-      [typeOptions]="(typeOptions$ | async) || []" [itemForm]="form" (emitSubmit)="submit()">
+      [typeOptions]="(typeOptions$ | async) || []" [form]="form" (emitSubmit)="submit()">
       <div class="flex justify-end items-center">
         <div class="flex gap-2">
 

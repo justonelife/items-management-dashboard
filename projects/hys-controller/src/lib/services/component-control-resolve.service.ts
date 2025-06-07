@@ -4,8 +4,10 @@ import { DynamicType } from '../types';
 export function provideComponentControlResolver() {
   return makeEnvironmentProviders([
     { provide: COMPONENT_RESOLVER, useClass: TextInputResolver, multi: true },
+    { provide: COMPONENT_RESOLVER, useClass: TextareaResolver, multi: true },
     { provide: COMPONENT_RESOLVER, useClass: SelectResolver, multi: true },
     { provide: COMPONENT_RESOLVER, useClass: MultipleResolver, multi: true },
+    { provide: COMPONENT_RESOLVER, useClass: ChipsInputResolver, multi: true },
   ]);
 }
 
@@ -31,6 +33,19 @@ export class TextInputResolver implements ComponentResolver {
 }
 
 @Injectable()
+export class TextareaResolver implements ComponentResolver {
+  type = DynamicType.TEXTAREA;
+  resolve(): ResolveType {
+    return {
+      component: import('../components/text-input/text-input.component').then(c => c.HysTextInputComponent),
+      inputs: {
+        type: 'textarea'
+      }
+    }
+  }
+}
+
+@Injectable()
 export class SelectResolver implements ComponentResolver {
   type = DynamicType.SELECT;
   resolve() {
@@ -50,6 +65,16 @@ export class MultipleResolver implements ComponentResolver {
       inputs: {
         multiple: true
       }
+    }
+  }
+}
+
+@Injectable()
+export class ChipsInputResolver implements ComponentResolver {
+  type = DynamicType.CHIPS_INPUT;
+  resolve(): ResolveType {
+    return {
+      component: import('../components/chips-input/chips-input.component').then(c => c.HysChipsInputComponent),
     }
   }
 }

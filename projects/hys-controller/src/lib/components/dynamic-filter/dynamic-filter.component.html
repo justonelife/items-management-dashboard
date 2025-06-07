@@ -20,13 +20,7 @@
 
   }
 
-  @if (actionTemplate(); as _actionTemplate) {
-  <ng-container *ngTemplateOutlet="_actionTemplate"></ng-container>
-  }
-  <!-- <div class="ms-auto mt-auto flex gap-2 h-full items-center"> -->
-  <!--   <button hys-button type="submit">Filter</button> -->
-  <!--   <button hys-button type="reset" severity="secondary">Clear</button> -->
-  <!-- </div> -->
+  <ng-container *ngTemplateOutlet="actionTemplate() || defaultAction"></ng-container>
 </form>
 }
 
@@ -37,4 +31,11 @@
   <ng-template *ngComponentOutlet="item.component.component | async; inputs: item.component.inputs | mergeObjects:item.inputs || {};
     injector: control | dynamicControl"></ng-template>
   }
+</ng-template>
+
+<ng-template #defaultAction>
+  <div class="ms-auto mt-auto flex gap-2 h-full items-center">
+    <button hys-button type="submit">Filter</button>
+    <button hys-button type="reset" severity="secondary">Clear</button>
+  </div>
 </ng-template>

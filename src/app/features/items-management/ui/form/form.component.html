@@ -1,23 +1,32 @@
-<form [formGroup]="itemForm()" (ngSubmit)="submit()" class="flex flex-col gap-4">
+<form [formGroup]="form()" (ngSubmit)="submit()" class="max-w-6xl grid mx-auto grid-cols-3 gap-8">
 
-  <div class="grid md:grid-cols-2 grid-cols-1 gap-6">
-    <div class="inline-flex flex-col">
-      <label class="text-xs font-semibold text-gray-500">Name</label>
-      <input libInput placeholder="Name" type="text" formControlName="name">
-    </div>
-    <div class="inline-flex flex-col">
-      <label class="text-xs font-semibold text-gray-500">Price</label>
-      <input libInput placeholder="0,00" [step]="0.01" type="number" [min]="0" formControlName="price">
-    </div>
-    <lib-select placeholder='Type' label="Type" [options]="typeOptions()" formControlName="type"></lib-select>
-    <lib-select placeholder='Category' label="Category" [options]="categoryOptions()"
-      formControlName="category"></lib-select>
-    <div class="inline-flex flex-col">
-      <label class="text-xs font-semibold text-gray-500">Description</label>
-      <textarea libInput class="h-auto! resize-none py-2" placeholder="Description" [rows]="5"
-        formControlName="description"></textarea>
-    </div>
-    <!-- <span>input</span> -->
+  <div class="col-span-2 flex flex-col gap-8">
+    <lib-card appearance="raised" header="Basic Information">
+      <hys-dynamic-form [fields]="basicInformationFields()"></hys-dynamic-form>
+    </lib-card>
+
+    <lib-card appearance="raised" header="Tags">
+      <hys-dynamic-form [fields]="tagsFields()"></hys-dynamic-form>
+    </lib-card>
   </div>
-  <ng-content></ng-content>
+
+  <div class="flex flex-col gap-8">
+
+    <lib-card appearance="raised" header="Status & Visibility">
+      <div class="w-full h-[100px]">
+
+      </div>
+    </lib-card>
+
+    <lib-card appearance="raised" header="Actions">
+      <div class="flex gap-4 flex-col">
+        <button hys-button icon="save" iconSet="outlined">
+          <span class="truncate">Create & Publish</span>
+        </button>
+        <button hys-button severity="neutral">
+          <span class="truncate">Save as Draft</span>
+        </button>
+      </div>
+    </lib-card>
+  </div>
 </form>

@@ -1,20 +1,18 @@
+import { DOCUMENT } from '@angular/common';
 import { Component, effect, inject, signal } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { CardComponent } from '@libs/card';
-import { HysSidenavLayoutComponent } from '@libs/hys-layouts';
-import { MENU } from './app.const';
+import { HysIconPositionDirective } from '@libs/core';
 import { HysButtonComponent } from '@libs/hys-button';
-import { DOCUMENT } from '@angular/common';
+import { HysSidenavLayoutComponent } from '@libs/hys-layouts';
 import { AppTheme } from '@shared/data-access';
 import { IsLightThemePipe } from '@shared/pipes';
-import { HysIconPositionDirective } from '@libs/core';
+import { MENU } from './app.const';
 
 @Component({
   selector: 'app-root',
   imports: [
     HysSidenavLayoutComponent,
     RouterOutlet,
-    CardComponent,
     HysButtonComponent,
     IsLightThemePipe,
     RouterLink,

@@ -48,6 +48,7 @@ export class ItemsManagementEditComponent implements OnInit {
     imageUrl: new FormControl<string>(''),
     description: new FormControl<string>(''),
     status: new FormControl<'active' | 'delete' | null>(null),
+    tags: new FormControl<string[]>([]),
   });
 
   ngOnInit() {

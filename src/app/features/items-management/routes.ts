@@ -1,6 +1,4 @@
 import { Routes } from "@angular/router";
-import { ItemsManagementActionsComponent } from "./ui/actions/actions.component";
-import { ItemSearchStore } from "./data-access/store";
 
 export const routes: Routes = [
   {
@@ -25,7 +23,10 @@ export const routes: Routes = [
   },
   {
     path: 'create',
-    loadComponent: () => import('./features/items-management-create/items-management-create.component').then(c => c.ItemsManagementCreateComponent),
-    title: 'Create Item'
+    loadComponent: () => import('./features/create/create.component').then(c => c.CreateItemContainerComponent),
+    title: 'Create New Item',
+    data: {
+      subTitle: 'Add a new product to your inventory'
+    }
   }
 ]

@@ -17,15 +17,22 @@ export abstract class HysBaseDynamic<T extends DynamicField = DynamicField> {
   items = computed<T[]>(() => {
 
     return this.fields().map(f => {
-      const extras = this.isCustomField(f)
-        ? (() => {
+      if (this.isCustomField(f)) {
+        const extras = (() => {
           const templateRef = this.templatesMapper[f.key];
           if (!templateRef) console.error(`Missing template for "${f.key}"`);
           return { templateRef };
-        })()
-        : { component: this.service.resolve(f.type) };
-
-      return { ...f, ...extras };
+        })();
+        return { ...f, ...extras };
+      } else {
+        const resolve = this.service.resolve(f.type);
+        return {
+          ...f, component: {
+            component: resolve?.component,
+            inputs: { ...resolve?.inputs, label: f.label }
+          }
+        }
+      }
     })
   });
 

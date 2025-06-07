@@ -1,7 +1,6 @@
 import { AsyncPipe, NgComponentOutlet, NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, contentChild, inject, input, TemplateRef } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { DynamicField, DynamicType, HysControllerWrapperComponent } from '@libs/hys-controller';
 import { HysBaseDynamic } from '../../directives/base-dynamic.directive';
 import { DynamicControlPipe } from '../../pipes/dynamic-control.pipe';
@@ -29,6 +28,5 @@ export class HysDynamicFilterComponent extends HysBaseDynamic {
 
   readonly DYNAMIC_TYPE = DynamicType;
 
-  //TODO: refactor
   actionTemplate = contentChild<TemplateRef<unknown>>('action');
 }

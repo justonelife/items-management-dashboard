@@ -1,0 +1,11 @@
+<!-- <header class="flex justify-between items-center"> -->
+<!--   <div class="flex gap-1 items-center"> -->
+<!--     <a [routerLink]="URL_DASHBOARD_ITEMS" class="flex items-center gap-2"> -->
+<!--       <span hysIconPosition="center center" icon="arrow_back" class="h-[20px] w-[20px]"></span> -->
+<!--       <h3 class="text-xl font-bold">Back</h3> -->
+<!--     </a> -->
+<!--   </div> -->
+<!-- </header> -->
+<app-items-management-form [categoryOptions]="(categoryOptions$ | async) || []"
+  [typeOptions]="(typeOptions$ | async) || []" [form]="form" (emitSubmit)="submit()">
+</app-items-management-form>

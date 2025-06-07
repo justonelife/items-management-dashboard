@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
 import { ItemSearchStore } from '@features/items-management/data-access/store';
@@ -8,11 +7,12 @@ import { ItemsManagementTableComponent } from '@features/items-management/ui/tab
 import { Dispatcher } from '@ngrx/signals/events';
 import { finalize } from 'rxjs';
 import { ItemsManagementService } from '../../data-access';
+import { CardComponent } from '@libs/card';
 
 @Component({
   imports: [
     ItemsManagementTableComponent,
-    ReactiveFormsModule
+    CardComponent,
   ],
   selector: 'app-items-management-dashboard',
   templateUrl: './dashboard.component.html',

@@ -1,0 +1,33 @@
+.mat-icon {
+  height: fit-content !important;
+  width: fit-content !important;
+}
+
+.size-20 {
+  font-size: 20px;
+  font-variation-settings: 'OPSZ' 20;
+}
+
+.mat-mdc-card-content {
+  padding: 0 24px !important;
+}
+
+.mat-mdc-card-content:last-child {
+  padding-bottom: 24px !important;
+}
+
+.hys-controller {
+  mat-form-field {
+    --hys-controller-height: 32px;
+    display: inline-flex;
+    align-items: center;
+    height: var(--hys-controller-height);
+    width: 100%;
+    color: var(--color-gray-900);
+    background-color: transparent;
+    border: 1px var(--tw-border-style);
+    border-color: var(--color-gray-300);
+    border-radius: var(--radius-md);
+  }
+
+}

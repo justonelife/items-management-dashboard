@@ -3,8 +3,10 @@ import { AppAny, IconCombinePosition } from "@libs/core";
 
 export enum DynamicType {
   INPUT = 'INPUT',
+  TEXTAREA = 'TEXTAREA',
   SELECT = 'SELECT',
   MULTIPLE = 'MULTIPLE',
+  CHIPS_INPUT = 'CHIPS_INPUT',
   CUSTOM = 'CUSTOM',
 }
 export type BranchTrueFalseOnKey<

@@ -19,10 +19,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     :host ::ng-deep {
       .mat-mdc-form-field-subscript-wrapper { display: none; }
     }
-  `],
+  `],//TODO: check what is subscript wrapper
 })
-export class HysTextInputComponent extends HysBaseController {
+export class HysTextInputComponent extends HysBaseController<string> {
 
   override placeholder = input<string>('');
   override label = input<string>('');
+
+  type = input<'input' | 'textarea'>('input');
 }

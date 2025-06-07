@@ -8,9 +8,7 @@
   </ng-template>
   <ng-template #main>
     <main class="px-4 py-6 h-full">
-      <lib-card appearance="raised">
-        <router-outlet />
-      </lib-card>
+      <router-outlet />
     </main>
     <button hys-button variant="raised" class="fixed right-8 bottom-16"
       [icon]="(theme() | isLightTheme) ? 'light_mode' : 'dark_mode'" (click)="toggleTheme()">
