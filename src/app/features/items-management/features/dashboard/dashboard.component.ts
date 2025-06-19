@@ -8,11 +8,13 @@ import { Dispatcher } from '@ngrx/signals/events';
 import { finalize } from 'rxjs';
 import { ItemsManagementService } from '../../data-access';
 import { CardComponent } from '@libs/card';
+import { HysPaginatorComponent } from '@libs/hys-paginator';
 
 @Component({
   imports: [
     ItemsManagementTableComponent,
     CardComponent,
+    HysPaginatorComponent,
   ],
   selector: 'app-items-management-dashboard',
   templateUrl: './dashboard.component.html',

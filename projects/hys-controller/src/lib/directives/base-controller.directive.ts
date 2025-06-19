@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Directive, inject, signal, Signal, WritableSignal } 
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ControlValueAccessor } from '@angular/forms';
 import { OnChangeType, OnTouchedType } from '@libs/core';
-import { tap } from 'rxjs';
+import { startWith, tap } from 'rxjs';
 import { DYNAMIC_CONTROL } from '../pipes/dynamic-control.pipe';
 
 @Directive({
@@ -26,6 +26,7 @@ export abstract class HysBaseController<T> implements ControlValueAccessor {
 
   constructor() {
     this.dynamicControl?.valueChanges.pipe(
+      startWith(this.dynamicControl.value),
       tap(value => this.writeValue(value)),
       takeUntilDestroyed()
     ).subscribe();

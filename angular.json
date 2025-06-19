@@ -461,6 +461,39 @@
           }
         }
       }
+    },
+    "hys-paginator": {
+      "projectType": "library",
+      "root": "projects/hys-paginator",
+      "sourceRoot": "projects/hys-paginator/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/hys-paginator/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/hys-paginator/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/hys-paginator/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/hys-paginator/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 <lib-table [data]="data()" [columns]="COLUMNS" (emitPageChange)="pageChange($event)" [page]="page()"
-  [pageSize]="pageSize()" (emitSortChange)="sortChange($event)">
+  [pageSize]="pageSize()" (emitSortChange)="sortChange($event)" [withPaginator]="false">
   <ng-template #globalAction>
     <lib-toggle-button [options]="VIEW_OPTIONS" [formControl]="statusForm"></lib-toggle-button>
   </ng-template>
@@ -14,7 +14,9 @@
     </lib-chip>
   </ng-template>
   <ng-template libColumnTemplate="price" let-row>
-    {{ row.price | currency }}
+    <p class="font-semibold">
+      {{ row.price | currency }}
+    </p>
   </ng-template>
   <ng-template libColumnTemplate="description" let-row>
     <lib-read-more [content]="row.description"></lib-read-more>

@@ -18,7 +18,7 @@ export const routes: Routes = [
   },
   {
     path: 'edit/:id',
-    loadComponent: () => import('./features/items-management-edit/items-management-edit.component').then(c => c.ItemsManagementEditComponent),
+    loadComponent: () => import('./features/edit/edit.component').then(c => c.ItemsManagementEditComponent),
     title: 'Edit Item'
   },
   {

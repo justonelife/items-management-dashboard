@@ -35,6 +35,7 @@ export class TableComponent<
   page = input<number>(1); // Start from 1
   pageIndex = computed(() => this.page() - 1); // Start from 0
   pageSize = input<number>();
+  withPaginator = input<boolean>(true);
 
   emitPageChange = output<PageEvent>();
   emitSortChange = output<Sort>();

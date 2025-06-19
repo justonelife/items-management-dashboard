@@ -1,11 +1,11 @@
 import { AsyncPipe, NgComponentOutlet, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, contentChild, inject, input, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicField, DynamicType, HysControllerWrapperComponent } from '@libs/hys-controller';
 import { HysBaseDynamic } from '../../directives/base-dynamic.directive';
 import { DynamicControlPipe } from '../../pipes/dynamic-control.pipe';
-import { HysComponentControlResolveService } from '../../services/component-control-resolve.service';
 import { MergeObjectsPipe } from '../../pipes/merge-objects.pipe';
+import { HysComponentControlResolveService } from '../../services/component-control-resolve.service';
 
 @Component({
   imports: [

@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, input, output, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { EditItem } from '@features/items-management/data-access';
 import { CardComponent } from '@libs/card';
 import { AppTypedForm } from '@libs/core';
@@ -14,6 +15,7 @@ import { Option } from '@libs/select';
     CardComponent,
     HysButtonComponent,
     HysDynamicFormComponent,
+    RouterLink,
   ],
   selector: 'app-items-management-form',
   templateUrl: './form.component.html',
@@ -27,10 +29,45 @@ export class ItemsManagementForm {
 
   emitSubmit = output<void>();
   basicInformationFields = signal<DynamicField[]>([]);
-  tagsFields = signal<DynamicField[]>([]);
+  tagsFields = signal<DynamicField[]>([
+    {
+      key: 'tags',
+      type: DynamicType.CHIPS_INPUT,
+      withWrapper: false,
+      inputs: { placeholder: 'Add a tag' },
+      styleClass: 'col-span-12',
+    },
+  ]);
+  statusAndVisibilityFields = signal<DynamicField[]>([
+    {
+      key: 'status',
+      label: 'Status',
+      type: DynamicType.SELECT,
+      withWrapper: false,
+      inputs: {
+        options: [
+          { label: 'Draft', value: 0 },
+          { label: 'Active', value: 1 },
+          { label: 'Archieve', value: 2 },
+        ] as Option<number>[],
+      },
+      styleClass: 'col-span-12',
+    },
+  ]);
 
   constructor() {
+    effect(() => {
+      const _categoryOptions = this.categoryOptions();
+      const _typeOptions = this.typeOptions();
+      this.setUpBasicInformationFields(_categoryOptions, _typeOptions);
+    });
+  }
 
+  submit() {
+    this.emitSubmit.emit();
+  }
+
+  private setUpBasicInformationFields(categoryOptions: Option[], typeOptions: Option[]): void {
     this.basicInformationFields.set([
       {
         key: 'name',
@@ -51,14 +88,14 @@ export class ItemsManagementForm {
         label: 'Type',
         type: DynamicType.SELECT,
         withWrapper: false,
-        inputs: { options: [], placeholder: 'Select type' },
+        inputs: { options: typeOptions, placeholder: 'Select type' },
       },
       {
         key: 'category',
         label: 'Category',
         type: DynamicType.SELECT,
         withWrapper: false,
-        inputs: { options: [], placeholder: 'Select category' },
+        inputs: { options: categoryOptions, placeholder: 'Select category' },
       },
       {
         key: 'description',
@@ -69,19 +106,6 @@ export class ItemsManagementForm {
         styleClass: 'col-span-12',
       },
     ]);
-
-    this.tagsFields.set([
-      {
-        key: 'tags',
-        type: DynamicType.CHIPS_INPUT,
-        withWrapper: false,
-        inputs: { placeholder: 'Add a tag' },
-        styleClass: 'col-span-12',
-      },
-    ]);
   }
 
-  submit() {
-    this.emitSubmit.emit();
-  }
 }

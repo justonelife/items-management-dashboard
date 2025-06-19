@@ -15,6 +15,7 @@ export class SeverityDirective {
     'danger': 'text-red-500! bg-red-200',
     'primary': 'bg-gradient text-white',
     'secondary': 'bg-secondary',
+    'warning': 'bg-orange-50! text-orange-700 border-orange-200!',
   }
 
   severity = input<AppSeverity>('primary');

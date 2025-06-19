@@ -1,12 +1,16 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Appearance } from './types';
+import { AppSeverity, SeverityDirective } from '@libs/core';
 
 @Component({
   selector: 'lib-card',
-  imports: [MatCardModule],
+  imports: [
+    MatCardModule,
+    SeverityDirective,
+  ],
   template: `
-    <mat-card [appearance]="appearance()">
+    <mat-card lib-severity [severity]="severity()" [appearance]="appearance()">
       @if (header(); as _header) {
         <mat-card-header class="mb-8">
           <mat-card-title>
@@ -24,4 +28,5 @@ import { Appearance } from './types';
 export class CardComponent {
   appearance = input<Appearance>('outlined');
   header = input<string>();
+  severity = input<AppSeverity>('info');
 }

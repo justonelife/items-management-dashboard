@@ -1,0 +1,3 @@
+<app-items-management-form [categoryOptions]="(categoryOptions$ | async) || []"
+  [typeOptions]="(typeOptions$ | async) || []" [form]="form" (emitSubmit)="submit()">
+</app-items-management-form>

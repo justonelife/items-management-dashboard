@@ -8,14 +8,18 @@
     <lib-card appearance="raised" header="Tags">
       <hys-dynamic-form [fields]="tagsFields()"></hys-dynamic-form>
     </lib-card>
+
+    <lib-card appearance="raised" header="Product Images">
+      <div class="h-[100px] w-full">
+
+      </div>
+    </lib-card>
   </div>
 
   <div class="flex flex-col gap-8">
 
     <lib-card appearance="raised" header="Status & Visibility">
-      <div class="w-full h-[100px]">
-
-      </div>
+      <hys-dynamic-form [fields]="statusAndVisibilityFields()"></hys-dynamic-form>
     </lib-card>
 
     <lib-card appearance="raised" header="Actions">
@@ -27,6 +31,12 @@
           <span class="truncate">Save as Draft</span>
         </button>
       </div>
+    </lib-card>
+
+    <lib-card header="Need Help?" severity="warning">
+      <p>Check our documentation for detailed guides on creating products.</p>
+      <br>
+      <a type="button" hys-button routerLink="#" severity="neutral" class="bg-white">View Docs</a>
     </lib-card>
   </div>
 </form>

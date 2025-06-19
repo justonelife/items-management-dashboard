@@ -39,7 +39,7 @@ html {
   @include mat.theme((color: (primary: app-theme.$primary-palette,
         tertiary: app-theme.$tertiary-palette,
       ),
-      typography: "IBM Plex Mono",
+      typography: "Rubik",
       density: 0,
     ));
 

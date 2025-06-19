@@ -21,7 +21,7 @@ import { AppTypedForm } from '@libs/core';
     AsyncPipe,
   ],
   selector: 'app-items-management-edit',
-  templateUrl: './items-management-edit.component.html',
+  templateUrl: './edit.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     'class': 'flex flex-col gap-4',
