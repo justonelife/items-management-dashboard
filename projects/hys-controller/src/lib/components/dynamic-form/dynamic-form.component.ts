@@ -24,7 +24,7 @@ import { HysComponentControlResolveService } from '../../services/component-cont
 })
 export class HysDynamicFormComponent extends HysBaseDynamic {
   service = inject(HysComponentControlResolveService);
-  override fields = input.required<DynamicField[]>();
+  override fields = input.required<DynamicField>();
 
   readonly DYNAMIC_TYPE = DynamicType;
 }

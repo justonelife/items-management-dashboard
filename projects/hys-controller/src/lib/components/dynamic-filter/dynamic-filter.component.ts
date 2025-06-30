@@ -24,7 +24,7 @@ import { MergeObjectsPipe } from '../../pipes/merge-objects.pipe';
 })
 export class HysDynamicFilterComponent extends HysBaseDynamic {
   service = inject(HysComponentControlResolveService);
-  override fields = input.required<DynamicField[]>();
+  override fields = input.required<DynamicField>();
 
   readonly DYNAMIC_TYPE = DynamicType;
 

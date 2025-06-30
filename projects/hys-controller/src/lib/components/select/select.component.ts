@@ -28,12 +28,14 @@ export class HysSelectComponent extends HysBaseController<unknown> {
 
   rawOptions = input.required<Option<unknown>[] | unknown[]>({ alias: 'options' });
   options = computed(() => {
-    const rawOptions = this.rawOptions();
-    if (!rawOptions.length) return [];
-    if (rawOptions[0] instanceof Option) {
-      return rawOptions as Option[];
-    }
-    return rawOptions.map(value => ({ label: value, value })) as Option[];
+    //TODO: yep!
+    return this.rawOptions() as Option<unknown>[];
+    // const rawOptions = this.rawOptions();
+    // if (!rawOptions.length) return [];
+    // if (rawOptions[0] instanceof Option) {
+    //   return rawOptions as Option[];
+    // }
+    // return rawOptions.map(value => ({ label: value, value })) as Option[];
   })
 
   multiple = input<boolean>(false);

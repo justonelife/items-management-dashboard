@@ -27,39 +27,39 @@ export class FilterComponent {
   emitFilter = output<Filter>();
   emitReset = output<void>();
 
-  fields = signal<DynamicField[]>([]);
+  fields = signal<DynamicField>({});
 
   constructor() {
     effect(() => {
       const typeOptions = this.typeOptions();
       const categoryOptions = this.categoryOptions();
 
-      this.fields.set([
-        {
-          key: 'name',
+      this.fields.set({
+        name: {
           type: DynamicType.INPUT,
           withWrapper: true,
           icon: 'search',
           iconSet: 'filled',
           inputs: { placeholder: 'Search Items...' },
+          order: 0,
         },
-        {
-          key: 'type',
+        type: {
           type: DynamicType.SELECT,
           withWrapper: true,
           icon: 'filter_alt',
           iconSet: 'outlined',
           inputs: { options: typeOptions, placeholder: 'All Types' },
+          order: 1,
         },
-        {
-          key: 'category',
+        category: {
           type: DynamicType.SELECT,
           withWrapper: true,
           icon: 'filter_alt',
           iconSet: 'outlined',
           inputs: { options: categoryOptions, placeholder: 'All Categories' },
+          order: 2,
         },
-      ]);
+      });
     })
   }
 

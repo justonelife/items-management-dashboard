@@ -18,16 +18,23 @@ export type BranchTrueFalseOnKey<
   ({ [P in K]: true } & T)
   | ({ [P in K]: false } & F);
 
-export type DynamicField = {
-  key: string;
+type FieldKey = string;
+export type FieldData = {
   label?: string;
   styleClass?: string;
+  order?: number;
 }
   & BranchTrueFalseOnKey<'withWrapper', { icon: string; iconSet?: string; iconPosition?: IconCombinePosition }>
   & (
     { type: DynamicType.CUSTOM; templateRef?: TemplateRef<unknown> } |
     ({ type: Exclude<DynamicType, DynamicType.CUSTOM> } & {
       inputs?: Record<string, AppAny>;
-      component?: Promise<Type<unknown>>;
+      componentData?: {
+        component?: Promise<Type<unknown>>;
+        inputs: Record<string, AppAny>;
+      }
     })
-  )
+  );
+
+//TODO: change more suitable name ex: RecordDynamicField
+export type DynamicField = Record<FieldKey, FieldData>;

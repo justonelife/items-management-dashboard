@@ -28,19 +28,17 @@ export class ItemsManagementForm {
   typeOptions = input.required<Option[]>();
 
   emitSubmit = output<void>();
-  basicInformationFields = signal<DynamicField[]>([]);
-  tagsFields = signal<DynamicField[]>([
-    {
-      key: 'tags',
+  basicInformationFields = signal<DynamicField>({});
+  tagsFields = signal<DynamicField>({
+    tags: {
       type: DynamicType.CHIPS_INPUT,
       withWrapper: false,
       inputs: { placeholder: 'Add a tag' },
       styleClass: 'col-span-12',
     },
-  ]);
-  statusAndVisibilityFields = signal<DynamicField[]>([
-    {
-      key: 'status',
+  });
+  statusAndVisibilityFields = signal<DynamicField>({
+    status: {
       label: 'Status',
       type: DynamicType.SELECT,
       withWrapper: false,
@@ -53,7 +51,7 @@ export class ItemsManagementForm {
       },
       styleClass: 'col-span-12',
     },
-  ]);
+  });
 
   constructor() {
     effect(() => {
@@ -68,44 +66,44 @@ export class ItemsManagementForm {
   }
 
   private setUpBasicInformationFields(categoryOptions: Option[], typeOptions: Option[]): void {
-    this.basicInformationFields.set([
-      {
-        key: 'name',
+    this.basicInformationFields.set({
+      name: {
         label: 'Name',
         type: DynamicType.INPUT,
         withWrapper: false,
         inputs: { placeholder: 'Name' },
+        order: 0,
       },
-      {
-        key: 'price',
+      price: {
         label: 'Price',
         type: DynamicType.INPUT,
         withWrapper: false,
         inputs: { placeholder: 'Price' },
+        order: 1,
       },
-      {
-        key: 'type',
+      type: {
         label: 'Type',
         type: DynamicType.SELECT,
         withWrapper: false,
         inputs: { options: typeOptions, placeholder: 'Select type' },
+        order: 2,
       },
-      {
-        key: 'category',
+      category: {
         label: 'Category',
         type: DynamicType.SELECT,
         withWrapper: false,
         inputs: { options: categoryOptions, placeholder: 'Select category' },
+        order: 3,
       },
-      {
-        key: 'description',
+      description: {
         label: 'Description',
         type: DynamicType.TEXTAREA,
         withWrapper: false,
         inputs: { placeholder: 'Enter product description' },
         styleClass: 'col-span-12',
+        order: 4,
       },
-    ]);
+    });
   }
 
 }

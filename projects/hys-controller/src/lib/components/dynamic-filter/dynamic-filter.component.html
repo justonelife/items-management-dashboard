@@ -27,8 +27,8 @@
 <ng-template #fieldFactory let-isCustom="isCustom" let-control="_control" let-item>
   @if (isCustom) {
   <ng-template *ngTemplateOutlet="item.templateRef; context: { $implicit: control }"></ng-template>
-  } @else if (item.component) {
-  <ng-template *ngComponentOutlet="item.component.component | async; inputs: item.component.inputs | mergeObjects:item.inputs || {};
+  } @else if (item.componentData) {
+  <ng-template *ngComponentOutlet="item.componentData.component | async; inputs: item.componentData.inputs | mergeObjects:item.inputs || {};
     injector: control | dynamicControl"></ng-template>
   }
 </ng-template>
