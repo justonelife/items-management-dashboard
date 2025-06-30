@@ -7,6 +7,7 @@ export enum DynamicType {
   SELECT = 'SELECT',
   MULTIPLE = 'MULTIPLE',
   CHIPS_INPUT = 'CHIPS_INPUT',
+  NUMBER_INPUT = 'NUMBER_INPUT',
   CUSTOM = 'CUSTOM',
 }
 export type BranchTrueFalseOnKey<

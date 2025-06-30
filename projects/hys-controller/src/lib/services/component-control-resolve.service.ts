@@ -8,6 +8,7 @@ export function provideComponentControlResolver() {
     { provide: COMPONENT_RESOLVER, useClass: SelectResolver, multi: true },
     { provide: COMPONENT_RESOLVER, useClass: MultipleResolver, multi: true },
     { provide: COMPONENT_RESOLVER, useClass: ChipsInputResolver, multi: true },
+    { provide: COMPONENT_RESOLVER, useClass: NumberInputResolver, multi: true },
   ]);
 }
 
@@ -75,6 +76,16 @@ export class ChipsInputResolver implements ComponentResolver {
   resolve(): ResolveType {
     return {
       component: import('../components/chips-input/chips-input.component').then(c => c.HysChipsInputComponent),
+    }
+  }
+}
+
+@Injectable()
+export class NumberInputResolver implements ComponentResolver {
+  type = DynamicType.NUMBER_INPUT;
+  resolve(): ResolveType {
+    return {
+      component: import('../components/number-input/number-input.component').then(c => c.HysNumberInputComponent),
     }
   }
 }

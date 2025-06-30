@@ -13,5 +13,9 @@ export const routes: Routes = [
   {
     path: 'workflow',
     loadChildren: () => import('@features/workflow/routes').then(r => r.routes),
-  }
+  },
+  {
+    path: 'challenges',
+    loadChildren: () => import('@features/challenges/routes').then(r => r.routes),
+  },
 ];
