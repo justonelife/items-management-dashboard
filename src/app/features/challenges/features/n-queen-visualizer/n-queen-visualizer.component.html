@@ -14,11 +14,25 @@
 <lib-card header="Configuration" class="w-1/4">
   <div class="flex flex-col gap-2">
 
-    <hys-number-input label="Number of Queens (N)"></hys-number-input>
+    <hys-number-input [formControl]="numberOfQueens" label="Number of Queens (N)" [max]="8"
+      [min]="1"></hys-number-input>
     <p class="text-xs text-gray-400">Recommended: N ≤ 8 for optimal performance</p>
     <div class="flex gap-2">
-      <button hys-button icon="play_arrow" iconSet="outlined" class="grow">Solve</button>
-      <button hys-button icon="replay" iconSet="outlined" severity="neutral"></button>
+      <button hys-button icon="play_arrow" iconSet="outlined" class="grow" type="button"
+        (click)="solve()">Solve</button>
+      <button hys-button icon="replay" iconSet="outlined" severity="neutral" type="reset"
+        (click)="numberOfQueens.reset()"></button>
     </div>
   </div>
 </lib-card>
+
+<p class="text-gray-400 text-2xl font-semibold">{{ answerString() }}</p>
+
+<div class="flex flex-wrap gap-4">
+  @for (solution of solutions(); track solution; let idx = $index) {
+  <lib-card [header]="'Solution #' + (idx + 1)" appearance="raised">
+    <chess-board-view [board]="solution"></chess-board-view>
+  </lib-card>
+  }
+
+</div>

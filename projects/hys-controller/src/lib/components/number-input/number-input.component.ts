@@ -25,4 +25,7 @@ export class HysNumberInputComponent extends HysBaseController<number> {
 
   override placeholder = input<string>('');
   override label = input<string>('');
+
+  min = input<number | null>(null);
+  max = input<number | null>(null);
 }

@@ -4,5 +4,5 @@
 
 <mat-form-field class="h-auto! min-h-[32px]" subscriptSizing='dynamic'>
   <input matInput type="number" [(ngModel)]="state" class="w-full h-full focus:outline-none"
-    [placeholder]="placeholder()" (ngModelChange)="onChange(state)" />
+    [placeholder]="placeholder()" (ngModelChange)="onChange(state)" [min]="min()" [max]="max()" />
 </mat-form-field>
