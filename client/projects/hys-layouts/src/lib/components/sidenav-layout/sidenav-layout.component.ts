@@ -17,6 +17,7 @@ export interface NavItem {
 }
 
 export type SideMode = MatDrawerMode;
+export type DesktopSidebarState = 'expand' | 'collapse';
 
 @Component({
   imports: [
@@ -30,6 +31,7 @@ export type SideMode = MatDrawerMode;
   templateUrl: './sidenav-layout.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   exportAs: 'SidenavLayout',
+  styleUrl: './sidenav-layout.component.scss',
 })
 export class HysSidenavLayoutComponent {
   readonly activatedRoute = inject(ActivatedRoute, { skipSelf: true });
@@ -54,6 +56,8 @@ export class HysSidenavLayoutComponent {
   );
 
   globalAction = viewChild('globalAction', { read: ViewContainerRef });
+
+  desktopSidebarState = signal<DesktopSidebarState>('expand');
 
   open(): void {
     this.sideNavComponent()?.open();
@@ -83,5 +87,9 @@ export class HysSidenavLayoutComponent {
         });
       }
     });
+  }
+
+  toggleDesktopSidebarState() {
+    this.desktopSidebarState.update(value => value === 'expand' ? 'collapse' : 'expand');
   }
 }
