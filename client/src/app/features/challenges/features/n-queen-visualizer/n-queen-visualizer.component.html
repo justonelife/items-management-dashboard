@@ -20,15 +20,15 @@
     <div class="flex gap-2">
       <button hys-button icon="play_arrow" iconSet="outlined" class="grow" type="button"
         (click)="solve()">Solve</button>
-      <button hys-button icon="replay" iconSet="outlined" severity="neutral" type="reset"
-        (click)="numberOfQueens.reset()"></button>
+      <button hys-button icon="replay" iconSet="outlined" variant="icon" type="reset"
+        (click)="numberOfQueens.reset(4)"></button>
     </div>
   </div>
 </lib-card>
 
 <p class="text-gray-400 text-2xl font-semibold">{{ answerString() }}</p>
 
-<div class="flex flex-wrap gap-4">
+<div class="flex flex-wrap justify-center gap-4">
   @for (solution of solutions(); track solution; let idx = $index) {
   <lib-card [header]="'Solution #' + (idx + 1)" appearance="raised">
     <chess-board-view [board]="solution"></chess-board-view>

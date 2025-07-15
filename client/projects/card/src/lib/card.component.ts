@@ -14,7 +14,7 @@ import { AppSeverity, SeverityDirective } from '@libs/core';
       @if (header(); as _header) {
         <mat-card-header class="mb-8">
           <mat-card-title>
-            <span class="font-semibold text-lg">
+            <span class="font-semibold text-lg fg-primary">
             {{ _header }}
             </span>
           </mat-card-title>

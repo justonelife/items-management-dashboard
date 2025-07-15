@@ -10,7 +10,7 @@
   }
 
   .fg-primary {
-    background-color: light-dark(var(--hys-color-black), var(--hys-color-white));
+    color: light-dark(black, var(--hys-color-white));
   }
 
   .bg-secondary {

@@ -7,5 +7,7 @@ $radius: (
 
 $color: (
   "white": #ffffffcc,
-  "black": #0f172a80,
+  "black": #252d4280,
+  "light-gray": var(--color-gray-300),
+  "dark-gray": var(--color-gray-500),
 );
