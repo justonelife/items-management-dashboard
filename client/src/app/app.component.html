@@ -1,17 +1,1 @@
-<hys-sidenav-layout [navConfig]="MENU">
-  <ng-template #logo>
-    <a routerLink="/" class="flex w-full ps-2 gap-2 items-center mb-6 overflow-hidden">
-      <div class="w-[32px] h-[32px] flex items-center justify-center text-white rounded bg-gradient shrink-0"
-        hysIconPosition="center center" icon="network_intel_node" iconSet="outlined"></div>
-      <h1 class="font-bold text-2xl overflow-hidden text-ellipsis line-clamp-1">Demo App</h1>
-    </a>
-  </ng-template>
-  <ng-template #main>
-    <main class="px-4 py-6 h-full overflow-y-scroll">
-      <router-outlet />
-    </main>
-    <button hys-button variant="raised" class="fixed right-8 bottom-16"
-      [icon]="(theme() | isLightTheme) ? 'light_mode' : 'dark_mode'" (click)="toggleTheme()">
-    </button>
-  </ng-template>
-</hys-sidenav-layout>
+<router-outlet></router-outlet>
