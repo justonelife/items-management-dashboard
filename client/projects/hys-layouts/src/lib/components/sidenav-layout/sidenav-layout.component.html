@@ -70,8 +70,6 @@
 
 <ng-template #_logo>
   @if (logoTemplate(); as _lg) {
-  <div class="flex justify-center">
-    <ng-container *ngTemplateOutlet="_lg"></ng-container>
-  </div>
+  <ng-container *ngTemplateOutlet="_lg"></ng-container>
   }
 </ng-template>

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { AppTheme } from '../data-access';
+import { AppTheme } from '../types';
 
 @Pipe({
   name: 'isLightTheme',

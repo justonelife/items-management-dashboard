@@ -22,7 +22,7 @@ class NormalVariantResolver implements IVariantResolve {
 class IconVariantResolver implements IVariantResolve {
   variant: ButtonVariant = 'icon';
   getClass(): string {
-    return 'bg-transparent! text-black! dark:text-white! px-1!';
+    return 'hys-bg-transparent text-black! dark:text-white! px-1!';
   }
 }
 

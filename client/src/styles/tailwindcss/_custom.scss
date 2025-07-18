@@ -21,8 +21,8 @@
   }
 
   .bg-gradient {
-    background-color: #F97316;
-    background-color: linear-gradient(90deg, rgba(249, 115, 22, 1) 0%, rgba(239, 68, 68, 1) 100%);
+    background: #F97316;
+    background: linear-gradient(90deg, rgba(249, 115, 22, 1) 0%, rgba(239, 68, 68, 1) 100%);
   }
 
   .text-gradient {
@@ -31,5 +31,9 @@
     background: linear-gradient(90deg, rgba(249, 115, 22, 1) 0%, rgba(239, 68, 68, 1) 100%);
     background-clip: text;
     -webkit-background-clip: text;
+  }
+
+  .hys-bg-transparent {
+    background: transparent !important;
   }
 }

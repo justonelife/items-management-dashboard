@@ -1,7 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { AppLogoComponent } from '@shared/ui';
 
 @Component({
-  imports: [],
+  imports: [
+    AppLogoComponent,
+  ],
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

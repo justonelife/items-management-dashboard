@@ -22,7 +22,7 @@ export const AppStore = signalStore(
     setTheme(theme: AppTheme): void {
       patchState(store, { theme });
     },
-    restoreThemeFromLocalStorage(): void {
+    _restoreThemeFromLocalStorage(): void {
       const storedTheme = localStorage.getItem(store.themeKey);
       if (storedTheme === 'light' || storedTheme === 'dark') {
         patchState(store, { theme: storedTheme });
@@ -30,8 +30,8 @@ export const AppStore = signalStore(
     }
   })),
   withHooks({
-    onInit({ restoreThemeFromLocalStorage, theme, themeKey, document }) {
-      restoreThemeFromLocalStorage();
+    onInit({ _restoreThemeFromLocalStorage, theme, themeKey, document }) {
+      _restoreThemeFromLocalStorage();
 
       effect(() => {
         const _theme = theme();

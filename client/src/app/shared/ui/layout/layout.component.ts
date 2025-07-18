@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { HysIconPositionDirective } from '@libs/core';
 import { HysButtonComponent } from '@libs/hys-button';
 import { HysSidenavLayoutComponent } from '@libs/hys-layouts';
 import { APP_MENU, AppStore } from '@shared/data-access';
-import { IsLightThemePipe } from '@shared/pipes';
+import { IsLightThemePipe } from '@shared/data-access/pipes';
+import { AppLogoComponent } from '../logo/logo.component';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +13,8 @@ import { IsLightThemePipe } from '@shared/pipes';
     RouterOutlet,
     HysButtonComponent,
     IsLightThemePipe,
+    AppLogoComponent,
     RouterLink,
-    HysIconPositionDirective,
   ],
   templateUrl: './layout.component.html',
 })
