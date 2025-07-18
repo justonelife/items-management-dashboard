@@ -1,10 +1,9 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { HysIconPositionDirective } from '@libs/core';
 import { HysButtonComponent } from '@libs/hys-button';
 import { HysSidenavLayoutComponent } from '@libs/hys-layouts';
-import { APP_MENU, AppTheme } from '@shared/data-access';
+import { APP_MENU, AppStore } from '@shared/data-access';
 import { IsLightThemePipe } from '@shared/pipes';
 
 @Component({
@@ -20,33 +19,12 @@ import { IsLightThemePipe } from '@shared/pipes';
   templateUrl: './layout.component.html',
 })
 export class AppLayoutComponent {
-  document = inject(DOCUMENT);
   readonly MENU = inject(APP_MENU, { skipSelf: true });
-  readonly KEY = 'cmspro:theme';
-  theme = signal<AppTheme>((localStorage.getItem(this.KEY)?.toString() || 'light') as AppTheme);
-
-  constructor() {
-    effect(() => {
-      const theme = this.theme();
-      if (this.isLightTheme(theme)) {
-        this.document.getElementsByTagName('body')[0].classList.remove('dark');
-        localStorage.setItem(this.KEY, 'light');
-      } else {
-        this.document.getElementsByTagName('body')[0].classList.add('dark');
-        localStorage.setItem(this.KEY, 'dark');
-      }
-    });
-  }
+  readonly appStore = inject(AppStore);
+  theme = this.appStore.theme;
 
   toggleTheme(): void {
-    if (this.isLightTheme(this.theme())) {
-      this.theme.set('dark');
-    } else {
-      this.theme.set('light');
-    }
+    this.appStore.setTheme(this.theme() === 'light' ? 'dark' : 'light');
   }
 
-  isLightTheme(theme: AppTheme): boolean {
-    return theme === 'light';
-  }
 }

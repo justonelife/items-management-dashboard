@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { APP_MENU, MENU } from '@shared/data-access';
+import { APP_MENU, APP_THEME_KEY, AppStore, MENU } from '@shared/data-access';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +9,18 @@ import { APP_MENU, MENU } from '@shared/data-access';
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  viewProviders: [
+  providers: [
+    AppStore,
     {
       provide: APP_MENU,
       useValue: MENU,
+    },
+    {
+      provide: APP_THEME_KEY,
+      useValue: 'cmspro:theme'
     }
   ]
 })
 export class AppComponent {
+  readonly appStore = inject(AppStore);
 }
