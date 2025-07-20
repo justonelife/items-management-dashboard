@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, forwardRef, inject, Injec
 import { HysIconPositionDirective, IconCombinePosition, SeverityDirective } from '@libs/core';
 
 type IconPosition = 'left' | 'right';
-type ButtonVariant = 'normal' | 'icon' | 'raised';
+type ButtonVariant = 'normal' | 'icon' | 'raised' | 'outlined';
 const VARIANT_RESOLVER = new InjectionToken<IVariantResolve>('VARIANT_RESOLVER');
 
 interface IVariantResolve {
@@ -34,6 +34,14 @@ class RaisedVariantResolver implements IVariantResolve {
   }
 }
 
+@Injectable()
+class OutlinedVariantResolver implements IVariantResolve {
+  variant: ButtonVariant = 'outlined';
+  getClass(): string {
+    return 'hys-bg-transparent border border-gray-300 text-black! dark:text-white!';
+  }
+}
+
 @Component({
   selector: 'a[hys-button], button[hys-button]',
   template: `<ng-content />`,
@@ -56,6 +64,7 @@ class RaisedVariantResolver implements IVariantResolve {
     { provide: VARIANT_RESOLVER, useClass: NormalVariantResolver, multi: true },
     { provide: VARIANT_RESOLVER, useClass: IconVariantResolver, multi: true },
     { provide: VARIANT_RESOLVER, useClass: RaisedVariantResolver, multi: true },
+    { provide: VARIANT_RESOLVER, useClass: OutlinedVariantResolver, multi: true },
   ]
 })
 export class HysButtonComponent {

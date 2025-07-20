@@ -2,7 +2,7 @@ import { patchState, signalStore, withHooks, withMethods, withProps, withState }
 import { AppTheme } from "../types"
 import { effect, inject } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
-import { APP_THEME_KEY } from "../const";
+import { APP_THEME_KEY } from "../constants";
 
 type AppState = {
   theme: AppTheme;

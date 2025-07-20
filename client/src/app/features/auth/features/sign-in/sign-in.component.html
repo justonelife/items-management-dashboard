@@ -1,0 +1,8 @@
+<app-auth-form greeting="Welcome back" description="Sign in to your account to continue">
+  <div ngProjectAs="oauth" class="w-full space-y-4">
+    <a hys-button class="w-full h-[40px]" variant="outlined">Continue with Google</a>
+  </div>
+  <form [formGroup]="form" class="w-full">
+    <hys-dynamic-form [fields]="FORM_FIELDS"></hys-dynamic-form>
+  </form>
+</app-auth-form>

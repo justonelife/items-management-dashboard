@@ -24,6 +24,8 @@
       background-color: transparent,
       selected-state-background-color: light-dark(var(--hys-color-white), var(--hys-color-black)),
       height: 30px,
+      text-color: var(--color-gray-400),
+      selected-state-text-color: inherit,
       divider-color: transparent));
   @include mat.sidenav-overrides((container-shape: 0,
       content-background-color: var(--hys-color-white),

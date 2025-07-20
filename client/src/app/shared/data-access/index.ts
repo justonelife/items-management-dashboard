@@ -1,4 +1,4 @@
 export * from './types';
-export * from './const';
+export * from './constants';
 export * from './stores';
 export * from './pipes';
