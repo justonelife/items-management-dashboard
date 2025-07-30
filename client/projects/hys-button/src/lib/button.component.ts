@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component, computed, forwardRef, inject, Injectable, InjectionToken, input } from '@angular/core';
-import { HysIconPositionDirective, IconCombinePosition, SeverityDirective } from '@libs/core';
+import { ChangeDetectionStrategy, Component, computed, inject, Injectable, InjectionToken, input } from '@angular/core';
+import { HysIconPositionDirective, SeverityDirective } from '@libs/core';
 
-type IconPosition = 'left' | 'right';
 type ButtonVariant = 'normal' | 'icon' | 'raised' | 'outlined';
 const VARIANT_RESOLVER = new InjectionToken<IVariantResolve>('VARIANT_RESOLVER');
 
@@ -70,12 +69,6 @@ class OutlinedVariantResolver implements IVariantResolve {
 export class HysButtonComponent {
   variantResolvers = inject<IVariantResolve[]>(VARIANT_RESOLVER);
 
-  iconPosition = input<IconPosition>('left');
-  position = computed(() => {
-    const iconPosition = this.iconPosition() || 'left';
-    return `center ${iconPosition}` as IconCombinePosition;
-  });
-  icon = input<string>();
   variant = input<ButtonVariant>('normal');
 
   readonly DEFAULT_CLASS = 'cursor-pointer inline-flex items-center justify-center p-1 px-4 font-normal h-[32px]';

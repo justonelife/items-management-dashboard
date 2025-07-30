@@ -1,6 +1,10 @@
 <app-auth-form greeting="Welcome back" description="Sign in to your account to continue">
   <div ngProjectAs="oauth" class="w-full space-y-4">
-    <a hys-button class="w-full h-[40px]" variant="outlined">Continue with Google</a>
+    <a hys-button icon="google_logo" class="w-full h-[40px]" variant="outlined">Continue with
+      Google</a>
+    <mat-icon svgIcon="logo"></mat-icon>
+    <mat-icon svgIcon="google_logo" iconSet="outlined"></mat-icon>
+    <!-- <img src="/svgs/google-logo.svg"> -->
   </div>
   <form [formGroup]="form" class="w-full">
     <hys-dynamic-form [fields]="FORM_FIELDS"></hys-dynamic-form>

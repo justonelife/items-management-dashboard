@@ -7,6 +7,10 @@
     padding: unset;
     width: 100%;
 
+    label {
+      display: none;
+    }
+
     &>mat-form-field {
       display: unset;
       border: 0;

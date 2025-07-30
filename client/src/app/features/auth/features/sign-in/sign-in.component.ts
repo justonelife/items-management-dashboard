@@ -5,6 +5,7 @@ import { HysButtonComponent } from '@libs/hys-button';
 import { DynamicField, DynamicType, HysDynamicFormComponent } from '@libs/hys-controller';
 import { AppTypedForm } from '@libs/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   imports: [
@@ -12,6 +13,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
     AppAuthFormComponent,
     HysDynamicFormComponent,
     ReactiveFormsModule,
+    MatIconModule,
   ],
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -29,7 +31,7 @@ export class AppSignInContainerComponent {
 
   readonly FORM_FIELDS: DynamicField = {
     email: {
-      // label: 'Email Address',
+      label: 'Email Address',
       withWrapper: true,
       icon: 'mail',
       iconSet: 'outlined',
@@ -41,7 +43,7 @@ export class AppSignInContainerComponent {
       styleClass: 'col-span-12',
     },
     password: {
-      // label: 'Password',
+      label: 'Password',
       withWrapper: true,
       icon: 'lock',
       iconSet: 'outlined',
