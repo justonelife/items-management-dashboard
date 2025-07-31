@@ -6,10 +6,12 @@ import { APP_THEME_KEY } from "../constants";
 
 type AppState = {
   theme: AppTheme;
+  isSidebarCollapsed: boolean;
 }
 
 const initialState: AppState = {
-  theme: 'light'
+  theme: 'light',
+  isSidebarCollapsed: false,
 }
 
 export const AppStore = signalStore(
@@ -27,6 +29,9 @@ export const AppStore = signalStore(
       if (storedTheme === 'light' || storedTheme === 'dark') {
         patchState(store, { theme: storedTheme });
       }
+    },
+    setSidebarCollapsed(collapsed: boolean): void {
+      patchState(store, { isSidebarCollapsed: collapsed });
     }
   })),
   withHooks({

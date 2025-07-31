@@ -1,14 +1,15 @@
-<hys-sidenav-layout [navConfig]="MENU || []">
+<hys-sidenav-layout [navConfig]="MENU || []" [isSidebarCollapsed]="isSidebarCollapsed()"
+  (sidebarCollapsedChange)="appStore.setSidebarCollapsed($event)">
   <ng-template #logo>
     <a routerLink="/">
       <app-logo></app-logo>
     </a>
   </ng-template>
   <ng-template #main>
-    <main class="p-8 h-full overflow-y-scroll">
+    <main class="px-4 py-6 h-full overflow-y-scroll">
       <router-outlet />
     </main>
-    <button hys-button variant="raised" severity="info" class="fixed right-8 bottom-16 w-[40px] rounded-full!"
+    <button hys-button variant="raised" class="fixed right-8 bottom-16"
       [icon]="(theme() | isLightTheme) ? 'light_mode' : 'dark_mode'" (click)="toggleTheme()">
     </button>
   </ng-template>

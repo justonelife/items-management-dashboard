@@ -22,6 +22,7 @@ export class AppLayoutComponent {
   readonly MENU = inject(APP_MENU, { skipSelf: true });
   readonly appStore = inject(AppStore);
   theme = this.appStore.theme;
+  isSidebarCollapsed = this.appStore.isSidebarCollapsed;
 
   toggleTheme(): void {
     this.appStore.setTheme(this.theme() === 'light' ? 'dark' : 'light');

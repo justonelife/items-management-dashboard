@@ -1,13 +1,13 @@
 import { Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, contentChild, inject, input, signal, TemplateRef, Type, viewChild, ViewContainerRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, contentChild, inject, input, linkedSignal, output, signal, TemplateRef, Type, viewChild, ViewContainerRef } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatDrawerMode, MatSidenav, MatSidenavModule } from "@angular/material/sidenav";
-import { filter, map, mergeMap, shareReplay, tap } from 'rxjs';
-import { HysBreakpointService } from '../../services';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { HysIconPositionDirective } from '@libs/core';
 import { HysButtonComponent } from '@libs/hys-button';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { filter, map, shareReplay, tap } from 'rxjs';
+import { HysBreakpointService } from '../../services';
 
 export interface NavItem {
   title: string;
@@ -17,7 +17,6 @@ export interface NavItem {
 }
 
 export type SideMode = MatDrawerMode;
-export type DesktopSidebarState = 'expand' | 'collapse';
 
 @Component({
   imports: [
@@ -57,7 +56,10 @@ export class HysSidenavLayoutComponent {
 
   globalAction = viewChild('globalAction', { read: ViewContainerRef });
 
-  desktopSidebarState = signal<DesktopSidebarState>('expand');
+  isSidebarCollapsed = input<boolean>(false);
+  sidebarCollapsed = linkedSignal<boolean>(() => this.isSidebarCollapsed());
+
+  sidebarCollapsedChange = output<boolean>();
 
   open(): void {
     this.sideNavComponent()?.open();
@@ -90,6 +92,7 @@ export class HysSidenavLayoutComponent {
   }
 
   toggleDesktopSidebarState() {
-    this.desktopSidebarState.update(value => value === 'expand' ? 'collapse' : 'expand');
+    this.sidebarCollapsed.update(value => !value);
+    this.sidebarCollapsedChange.emit(this.sidebarCollapsed());
   }
 }
