@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "generate": "node ./server/generate.js > ./server/database.json",
-    "server": "json-server --watch ./server/database.json"
+    "server": "json-server --watch ./server/database.json",
+    "live": "npx lite-server --baseDir='dist/demo-app-client/browser'"
   },
   "private": true,
   "dependencies": {
@@ -30,7 +31,8 @@
     "rxjs": "~7.8.0",
     "tailwindcss": "^4.1.4",
     "tslib": "^2.3.0",
-    "zone.js": "~0.15.0"
+    "zone.js": "~0.15.0",
+    "lite-server": "^2.6.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.2.7",
