@@ -29,7 +29,7 @@ class IconVariantResolver implements IVariantResolve {
 class RaisedVariantResolver implements IVariantResolve {
   variant: ButtonVariant = 'raised';
   getClass(): string {
-    return 'shadow-lg rounded-full! px-1!';
+    return 'shadow-lg';
   }
 }
 
@@ -71,7 +71,7 @@ export class HysButtonComponent {
 
   variant = input<ButtonVariant>('normal');
 
-  readonly DEFAULT_CLASS = 'cursor-pointer inline-flex items-center justify-center p-1 px-4 font-normal h-[32px]';
+  readonly DEFAULT_CLASS = 'cursor-pointer inline-flex items-center justify-center p-1 px-4 font-normal h-[40px]';
 
   klass = computed(() => {
     const variant = this.variant()

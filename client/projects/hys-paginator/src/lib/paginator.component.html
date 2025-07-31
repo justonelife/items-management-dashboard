@@ -2,14 +2,19 @@
 
   <div class="flex items-center gap-2 text-gray-400">
     Showing
-    <hys-select class="w-[100px]" [options]="[5, 10, 50]"></hys-select>
+    <hys-controller-wrapper class="w-[100px]">
+      <hys-select [options]="[5, 10, 50]"></hys-select>
+    </hys-controller-wrapper>
     of 98 items
   </div>
 
-  <div class="flex gap-2">
-    <button type="button">1</button>
-    <button type="button">2</button>
-    <button type="button">3</button>
-    <button type="button">4</button>
+  <div class="flex gap-2 items-center">
+    <button hys-button variant="outlined" type="button" icon="chevron_left" iconSet="outlined"></button>
+    <button hys-button variant="outlined" type="button">1</button>
+    <button hys-button variant="outlined" type="button">2</button>
+    <button hys-button variant="outlined" type="button">3</button>
+    <span>...</span>
+    <button hys-button variant="outlined" type="button">20</button>
+    <button hys-button variant="outlined" type="button" icon="chevron_right" iconSet="outlined"></button>
   </div>
 </div>
