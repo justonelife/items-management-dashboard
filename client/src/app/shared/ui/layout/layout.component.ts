@@ -5,6 +5,7 @@ import { HysSidenavLayoutComponent } from '@libs/hys-layouts';
 import { APP_MENU, AppStore } from '@shared/data-access';
 import { IsLightThemePipe } from '@shared/data-access/pipes';
 import { AppLogoComponent } from '../logo/logo.component';
+import { UserProfileBadgeComponent } from '../user-profile-badge/user-profile-badge.component';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ import { AppLogoComponent } from '../logo/logo.component';
     IsLightThemePipe,
     AppLogoComponent,
     RouterLink,
+    UserProfileBadgeComponent,
   ],
   templateUrl: './layout.component.html',
 })

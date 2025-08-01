@@ -42,6 +42,7 @@ export class HysSidenavLayoutComponent {
 
   mainTemplate = contentChild<TemplateRef<unknown>>('main');
   logoTemplate = contentChild<TemplateRef<unknown>>('logo');
+  extraTemplate = contentChild<TemplateRef<unknown>>('extra');
 
   pageTitle = signal<string>('');
   pageSubTitle = signal<string>('');

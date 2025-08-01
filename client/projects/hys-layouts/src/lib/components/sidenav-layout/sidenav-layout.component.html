@@ -17,9 +17,13 @@
 @let _sidebarCollapsed = sidebarCollapsed();
 <div class="h-svh bg-gray-50 dark:bg-slate-950">
 
-  <div class="sidebar fixed h-svh border-r border-stone-300 dark:border-stone-800 bg-primary"
+  <div
+    class="sidebar fixed h-svh border-r border-stone-300 dark:border-stone-800 bg-primary flex flex-col justify-between"
     [ngClass]="'sidebar--' + (_sidebarCollapsed ? 'collapse' : 'expand')">
     <ng-container *ngTemplateOutlet="sidebar"></ng-container>
+    @if (extraTemplate(); as _extraTemplate) {
+    <ng-container *ngTemplateOutlet="_extraTemplate"></ng-container>
+    }
   </div>
   <div class="main flex flex-col h-full" [ngClass]="'main--side-' + (_sidebarCollapsed ? 'collapse' : 'expand')">
 

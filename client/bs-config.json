@@ -1,0 +1,7 @@
+{
+  "thisIsAComment": "this file is used for lite-server",
+  "port": 8000,
+  "server": {
+    "baseDir": "dist/demo-app-client/browser"
+  }
+}

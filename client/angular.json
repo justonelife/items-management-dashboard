@@ -494,6 +494,39 @@
           }
         }
       }
+    },
+    "hys-avatar": {
+      "projectType": "library",
+      "root": "projects/hys-avatar",
+      "sourceRoot": "projects/hys-avatar/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/hys-avatar/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/hys-avatar/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/hys-avatar/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/hys-avatar/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   }
 }

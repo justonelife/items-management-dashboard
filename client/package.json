@@ -9,7 +9,8 @@
     "test": "ng test",
     "generate": "node ./server/generate.js > ./server/database.json",
     "server": "json-server --watch ./server/database.json",
-    "live": "npx lite-server --baseDir='dist/demo-app-client/browser'"
+    "live": "npx lite-server",
+    "performance": "env NG_BUILD_MANGEL=false npm run build && npm run live"
   },
   "private": true,
   "dependencies": {
