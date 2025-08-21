@@ -2,9 +2,18 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SignInForm } from '@features/auth/data-access';
 import { AppAuthFormComponent } from '@features/auth/ui/auth-form/auth-form.component';
 import { HysButtonComponent } from '@libs/hys-button';
-import { DynamicField, DynamicType, HysDynamicFormComponent } from '@libs/hys-controller';
+import {
+  DynamicField,
+  DynamicType,
+  HysDynamicFormComponent,
+} from '@libs/hys-controller';
 import { AppTypedForm } from '@libs/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -19,14 +28,19 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './sign-in.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'class': 'w-full'
-  }
+    class: 'w-full',
+  },
 })
 export class AppSignInContainerComponent {
-
   form: AppTypedForm<SignInForm> = new FormGroup({
-    email: new FormControl<string>('', { validators: [Validators.required], nonNullable: true }),
-    password: new FormControl<string>('', { validators: [Validators.required], nonNullable: true }),
+    email: new FormControl<string>('', {
+      validators: [Validators.required],
+      nonNullable: true,
+    }),
+    password: new FormControl<string>('', {
+      validators: [Validators.required],
+      nonNullable: true,
+    }),
   });
 
   readonly FORM_FIELDS: DynamicField = {
@@ -37,7 +51,7 @@ export class AppSignInContainerComponent {
       iconSet: 'outlined',
       type: DynamicType.INPUT,
       inputs: {
-        placeholder: 'Enter your email'
+        placeholder: 'Enter your email',
       },
       order: 0,
       styleClass: 'col-span-12',
@@ -49,10 +63,10 @@ export class AppSignInContainerComponent {
       iconSet: 'outlined',
       type: DynamicType.INPUT,
       inputs: {
-        placeholder: 'Enter your password'
+        placeholder: 'Enter your password',
       },
       order: 1,
       styleClass: 'col-span-12',
-    }
-  }
+    },
+  };
 }

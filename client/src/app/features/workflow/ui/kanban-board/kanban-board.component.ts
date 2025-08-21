@@ -1,22 +1,16 @@
 import { CdkDrag, CdkDropList, CdkDropListGroup } from '@angular/cdk/drag-drop';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { TaskViewComponent } from '../task/task.component';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { WorkflowBoard } from '@features/workflow/data-access';
+import { TaskViewComponent } from '../task/task.component';
 
 @Component({
-  imports: [
-    CdkDrag,
-    CdkDropList,
-    CdkDropListGroup,
-    TaskViewComponent,
-  ],
+  imports: [CdkDrag, CdkDropList, CdkDropListGroup, TaskViewComponent],
   selector: 'app-workflow-kanban-board',
   templateUrl: './kanban-board.component.html',
   styleUrl: './kanban-board.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class KanbanBoardComponent {
-
   boards: WorkflowBoard[] = mockBoards;
 }
 
@@ -26,7 +20,8 @@ export const mockBoards: WorkflowBoard[] = [
     tasks: [
       {
         title: 'Define user stories for new feature',
-        description: 'Gather requirements from the product team and document acceptance criteria.',
+        description:
+          'Gather requirements from the product team and document acceptance criteria.',
         assignee: 'Alice',
         priority: 'medium',
         assignedAt: new Date('2025-05-20'),

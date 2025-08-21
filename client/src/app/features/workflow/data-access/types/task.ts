@@ -4,6 +4,6 @@ export interface WorkflowTask {
   title: string;
   description?: string;
   assignee?: string;
-  priority: WorkflowTaskPriority,
+  priority: WorkflowTaskPriority;
   assignedAt: Date;
 }

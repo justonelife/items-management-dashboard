@@ -22,12 +22,10 @@ type ViewType = 'signin' | 'signup';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppAuthComponent {
-
   readonly VIEW_OPTIONS: Option<ViewType>[] = [
     { value: 'signin', label: 'Sign In' },
-    { value: 'signup', label: 'Sign Up' }
+    { value: 'signup', label: 'Sign Up' },
   ];
 
   viewType: ViewType = 'signin';
-
 }

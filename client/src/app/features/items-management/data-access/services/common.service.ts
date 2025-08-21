@@ -13,37 +13,43 @@ export class ItemsManagementCommonService {
 
   getAllCategories(forceRefresh = false): Observable<Category[]> {
     if (!this.categories$ || forceRefresh) {
-      this.categories$ = this.httpClient.get<Category[]>(URI + '/categories').pipe(
-        shareReplay({ bufferSize: 1, refCount: false }),
-        catchError(err => {
-          this.categories$ = undefined;
-          return throwError(() => err);
-        })
-      );
+      this.categories$ = this.httpClient
+        .get<Category[]>(URI + '/categories')
+        .pipe(
+          shareReplay({ bufferSize: 1, refCount: false }),
+          catchError((err) => {
+            this.categories$ = undefined;
+            return throwError(() => err);
+          }),
+        );
     }
     return this.categories$;
   }
 
   getCategoryOptions(forceRefresh = false): Observable<Option[]> {
     return this.getAllCategories(forceRefresh).pipe(
-      map(categories => {
-        return categories?.length ? categories.map(category => ({
-          value: category.name,
-          label: category.name
-        }) as Option<string>) : [];
+      map((categories) => {
+        return categories?.length
+          ? categories.map(
+              (category) =>
+                ({
+                  value: category.name,
+                  label: category.name,
+                }) as Option<string>,
+            )
+          : [];
       }),
     );
   }
-
 
   getAllTypes(forceRefresh = false): Observable<ItemType[]> {
     if (!this.types$ || forceRefresh) {
       this.types$ = this.httpClient.get<ItemType[]>(URI + '/types').pipe(
         shareReplay({ bufferSize: 1, refCount: false }),
-        catchError(err => {
+        catchError((err) => {
           this.types$ = undefined;
           return throwError(() => err);
-        })
+        }),
       );
     }
     return this.types$;
@@ -51,11 +57,16 @@ export class ItemsManagementCommonService {
 
   getTypeOptions(forceRefresh = false): Observable<Option[]> {
     return this.getAllTypes(forceRefresh).pipe(
-      map(types => {
-        return types?.length ? types.map(itemType => ({
-          value: itemType.name,
-          label: itemType.name
-        }) as Option<string>) : [];
+      map((types) => {
+        return types?.length
+          ? types.map(
+              (itemType) =>
+                ({
+                  value: itemType.name,
+                  label: itemType.name,
+                }) as Option<string>,
+            )
+          : [];
       }),
     );
   }

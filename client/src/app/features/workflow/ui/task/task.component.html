@@ -1,19 +1,29 @@
-@if(task(); as _task) {
-<div class="flex justify-between gap-2 items-center">
-  <h3 class="text-lg truncate grow">{{ _task.title }}</h3>
-  <button type="button" hys-button variant="icon" icon="more_horiz" severity="info"></button>
-</div>
-<p class="text-xs text-gray-400 line-clamp-2">{{ _task.description }}</p>
+@if (task(); as _task) {
+  <div class="flex justify-between gap-2 items-center">
+    <h3 class="text-lg truncate grow">{{ _task.title }}</h3>
+    <button
+      type="button"
+      hys-button
+      variant="icon"
+      icon="more_horiz"
+      severity="info"
+    ></button>
+  </div>
+  <p class="text-xs text-gray-400 line-clamp-2">{{ _task.description }}</p>
 
-<div class="flex justify-between gap-2">
-  <p>{{ _task.assignee }}</p>
-  <lib-chip severity="danger">{{ _task.priority }}</lib-chip>
-</div>
+  <div class="flex justify-between gap-2">
+    <p>{{ _task.assignee }}</p>
+    <lib-chip severity="danger">{{ _task.priority }}</lib-chip>
+  </div>
 
-<div class="flex items-center">
-  <p hysIconPosition="center left" icon="calendar_today" iconSet="outlined" class="text-gray-400 text-sm">
-    {{ _task.assignedAt | date:'y/MM/dd' }}
-  </p>
-</div>
-
+  <div class="flex items-center">
+    <p
+      hysIconPosition="center left"
+      icon="calendar_today"
+      iconSet="outlined"
+      class="text-gray-400 text-sm"
+    >
+      {{ _task.assignedAt | date: "y/MM/dd" }}
+    </p>
+  </div>
 }

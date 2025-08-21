@@ -1,5 +1,8 @@
-<hys-sidenav-layout [navConfig]="MENU || []" [isSidebarCollapsed]="isSidebarCollapsed()"
-  (sidebarCollapsedChange)="appStore.setSidebarCollapsed($event)">
+<hys-sidenav-layout
+  [navConfig]="MENU || []"
+  [isSidebarCollapsed]="isSidebarCollapsed()"
+  (sidebarCollapsedChange)="appStore.setSidebarCollapsed($event)"
+>
   <ng-template #logo>
     <a routerLink="/">
       <app-logo></app-logo>
@@ -12,12 +15,17 @@
   </ng-template>
 
   <ng-template #extra>
-    <div class="flex flex-wrap items-center justify-center p-2 px-6 border-t border-stone-300 dark:border-stone-800">
+    <div
+      class="flex flex-wrap items-center justify-center p-2 px-6 border-t border-stone-300 dark:border-stone-800"
+    >
       <!--TODO: need implement -->
       <!-- <app-user-profile-badge></app-user-profile-badge> -->
-      <button hys-button variant="outlined" [icon]="(theme() | isLightTheme) ? 'light_mode' : 'dark_mode'"
-        (click)="toggleTheme()">
-      </button>
+      <button
+        hys-button
+        variant="outlined"
+        [icon]="(theme() | isLightTheme) ? 'light_mode' : 'dark_mode'"
+        (click)="toggleTheme()"
+      ></button>
     </div>
   </ng-template>
 </hys-sidenav-layout>

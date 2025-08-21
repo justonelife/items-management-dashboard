@@ -1,17 +1,24 @@
-import { signalStore, withMethods, withState, patchState, withHooks, watchState, getState, withComputed } from "@ngrx/signals";
-import { AppPageOfData } from "@libs/core"
-import { Filter, Item, ItemStatus } from "../types"
-import { computed, effect, inject } from "@angular/core";
-import { ItemsManagementService } from "../services/items-management.service";
-import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { distinctUntilChanged, pipe, switchMap, tap } from "rxjs";
+import { computed, inject } from '@angular/core';
+import { Sort } from '@angular/material/sort';
+import { AppPageOfData } from '@libs/core';
 import { mapResponse, tapResponse } from '@ngrx/operators';
-import { Events, on, withEffects, withReducer } from "@ngrx/signals/events";
-import { itemSearchEvents } from "./item-search-events";
-import { itemApiEvents } from "./item-api-events";
-import { Sort } from "@angular/material/sort";
+import {
+  patchState,
+  signalStore,
+  withComputed,
+  withHooks,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
+import { Events, on, withEffects, withReducer } from '@ngrx/signals/events';
+import { rxMethod } from '@ngrx/signals/rxjs-interop';
+import { distinctUntilChanged, pipe, switchMap, tap } from 'rxjs';
+import { ItemsManagementService } from '../services/items-management.service';
+import { Filter, Item, ItemStatus } from '../types';
+import { itemApiEvents } from './item-api-events';
+import { itemSearchEvents } from './item-search-events';
 
-type ItemSearchState = {
+interface ItemSearchState {
   data: AppPageOfData<Item>;
   filter: Filter;
   sort: Sort | null;
@@ -22,7 +29,7 @@ type ItemSearchState = {
 
 const initialState: ItemSearchState = {
   data: {
-    data: []
+    data: [],
   },
   filter: {
     name: null,
@@ -33,14 +40,14 @@ const initialState: ItemSearchState = {
   page: 1,
   isLoading: false,
   status: 'active',
-}
+};
 
 export const ItemSearchStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
   withComputed(({ sort }) => ({
     sortBy: computed(() => {
-      const _sort = sort()
+      const _sort = sort();
       if (_sort == null || _sort.direction === '') return null;
       return _sort.direction === 'desc' ? '-' + _sort.active : _sort.active;
     }),
@@ -49,17 +56,28 @@ export const ItemSearchStore = signalStore(
     on(itemSearchEvents.opened, () => ({ isLoading: true })),
     on(itemSearchEvents.filterChanged, ({ payload: filter }) => ({
       filter: {
-        ...filter
-      }, isLoading: true, page: 1
+        ...filter,
+      },
+      isLoading: true,
+      page: 1,
     })),
-    on(itemSearchEvents.sortChanged, ({ payload: sort }) => ({ sort, isLoading: true })),
+    on(itemSearchEvents.sortChanged, ({ payload: sort }) => ({
+      sort,
+      isLoading: true,
+    })),
     on(itemSearchEvents.statusChanged, ({ payload: status }) => ({
       status,
       isLoading: true,
-      page: 1
+      page: 1,
     })),
-    on(itemSearchEvents.pageChanged, ({ payload: page }) => ({ page, isLoading: true })),
-    on(itemApiEvents.loadedSuccess, ({ payload: data }) => ({ data, isLoading: false }))
+    on(itemSearchEvents.pageChanged, ({ payload: page }) => ({
+      page,
+      isLoading: true,
+    })),
+    on(itemApiEvents.loadedSuccess, ({ payload: data }) => ({
+      data,
+      isLoading: false,
+    })),
   ),
   withEffects(
     (
@@ -67,21 +85,33 @@ export const ItemSearchStore = signalStore(
       events = inject(Events),
       itemsService = inject(ItemsManagementService),
     ) => ({
-      loadData$: events.on(
-        itemSearchEvents.opened,
-        itemSearchEvents.filterChanged,
-        itemSearchEvents.sortChanged,
-        itemSearchEvents.pageChanged,
-        itemSearchEvents.statusChanged,
-      ).pipe(
-        switchMap(() => itemsService.getAll(store.filter(), store.sortBy(), store.status(), store.page()).pipe(
-          mapResponse({
-            next: (data) => itemApiEvents.loadedSuccess(data),
-            error: (error: { message: string }) => itemApiEvents.loadedFailure(error.message),
-          }))
+      loadData$: events
+        .on(
+          itemSearchEvents.opened,
+          itemSearchEvents.filterChanged,
+          itemSearchEvents.sortChanged,
+          itemSearchEvents.pageChanged,
+          itemSearchEvents.statusChanged,
         )
-      )
-    })
+        .pipe(
+          switchMap(() =>
+            itemsService
+              .getAll(
+                store.filter(),
+                store.sortBy(),
+                store.status(),
+                store.page(),
+              )
+              .pipe(
+                mapResponse({
+                  next: (data) => itemApiEvents.loadedSuccess(data),
+                  error: (error: { message: string }) =>
+                    itemApiEvents.loadedFailure(error.message),
+                }),
+              ),
+          ),
+        ),
+    }),
   ),
   withMethods((store, itemsService = inject(ItemsManagementService)) => ({
     updateFilter(filter: Filter): void {
@@ -100,12 +130,11 @@ export const ItemSearchStore = signalStore(
                 patchState(store, { isLoading: false });
                 console.error(err);
               },
-            })
+            }),
           );
-        })
-      )
-    )
+        }),
+      ),
+    ),
   })),
-  withHooks({
-  })
+  withHooks({}),
 );

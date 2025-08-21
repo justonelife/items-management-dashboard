@@ -1,9 +1,20 @@
-import { ChangeDetectionStrategy, Component, effect, input, output, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  input,
+  output,
+  signal,
+} from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { AppTypedForm } from '@libs/core';
 import { HysButtonComponent } from '@libs/hys-button';
-import { DynamicField, DynamicType, HysDynamicFilterComponent } from '@libs/hys-controller';
+import {
+  DynamicField,
+  DynamicType,
+  HysDynamicFilterComponent,
+} from '@libs/hys-controller';
 import { Option } from '@libs/select';
 import { Filter } from '../../data-access';
 
@@ -20,7 +31,7 @@ import { Filter } from '../../data-access';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterComponent {
-  form = input.required<AppTypedForm<Filter>>()
+  form = input.required<AppTypedForm<Filter>>();
   categoryOptions = input.required<Option[]>();
   typeOptions = input.required<Option[]>();
 
@@ -60,7 +71,7 @@ export class FilterComponent {
           order: 2,
         },
       });
-    })
+    });
   }
 
   reset() {

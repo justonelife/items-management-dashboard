@@ -1,10 +1,17 @@
-import { patchState, signalStore, withHooks, withMethods, withProps, withState } from "@ngrx/signals";
-import { AppTheme } from "../types"
-import { effect, inject } from "@angular/core";
-import { DOCUMENT } from "@angular/common";
-import { APP_THEME_KEY } from "../constants";
+import {
+  patchState,
+  signalStore,
+  withHooks,
+  withMethods,
+  withProps,
+  withState,
+} from '@ngrx/signals';
+import { AppTheme } from '../types';
+import { effect, inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { APP_THEME_KEY } from '../constants';
 
-type AppState = {
+interface AppState {
   theme: AppTheme;
   isSidebarCollapsed: boolean;
 }
@@ -12,7 +19,7 @@ type AppState = {
 const initialState: AppState = {
   theme: 'light',
   isSidebarCollapsed: false,
-}
+};
 
 export const AppStore = signalStore(
   withState(initialState),
@@ -32,7 +39,7 @@ export const AppStore = signalStore(
     },
     setSidebarCollapsed(collapsed: boolean): void {
       patchState(store, { isSidebarCollapsed: collapsed });
-    }
+    },
   })),
   withHooks({
     onInit({ _restoreThemeFromLocalStorage, theme, themeKey, document }) {
@@ -47,7 +54,7 @@ export const AppStore = signalStore(
         } else {
           document.getElementsByTagName('body')[0].classList.add('dark');
         }
-      })
-    }
-  })
+      });
+    },
+  }),
 );

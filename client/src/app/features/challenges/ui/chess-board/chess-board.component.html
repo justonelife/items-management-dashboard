@@ -1,17 +1,24 @@
 <table class="w-full h-full">
-
   @for (cells of board(); track cells; let row = $index) {
-  <tr>
-    @for (cell of cells; track cell; let col = $index) {
-    <td class="border border-gray-400" [ngClass]="row | chessBoardCellColor:col:'bg-amber-50':'bg-amber-200'">
-      @if (cell === QUEEN) {
-      <span class="bg-amber-400 w-full h-full inline-block text-center align-middle" hysIconPosition="center center"
-        icon="crown" iconSet="outlined">
-      </span>
+    <tr>
+      @for (cell of cells; track cell; let col = $index) {
+        <td
+          class="border border-gray-400"
+          [ngClass]="
+            row | chessBoardCellColor: col : 'bg-amber-50' : 'bg-amber-200'
+          "
+        >
+          @if (cell === QUEEN) {
+            <span
+              class="bg-amber-400 w-full h-full inline-block text-center align-middle"
+              hysIconPosition="center center"
+              icon="crown"
+              iconSet="outlined"
+            >
+            </span>
+          }
+        </td>
       }
-    </td>
-    }
-  </tr>
+    </tr>
   }
-
 </table>

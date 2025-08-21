@@ -1,5 +1,8 @@
-<form [formGroup]="form()" (ngSubmit)="submit()" class="max-w-6xl grid mx-auto grid-cols-3 gap-8">
-
+<form
+  [formGroup]="form()"
+  (ngSubmit)="submit()"
+  class="max-w-6xl grid mx-auto grid-cols-3 gap-8"
+>
   <div class="col-span-2 flex flex-col gap-8">
     <lib-card appearance="raised" header="Basic Information">
       <hys-dynamic-form [fields]="basicInformationFields()"></hys-dynamic-form>
@@ -10,16 +13,15 @@
     </lib-card>
 
     <lib-card appearance="raised" header="Product Images">
-      <div class="h-[100px] w-full">
-
-      </div>
+      <div class="h-[100px] w-full"></div>
     </lib-card>
   </div>
 
   <div class="flex flex-col gap-8">
-
     <lib-card appearance="raised" header="Status & Visibility">
-      <hys-dynamic-form [fields]="statusAndVisibilityFields()"></hys-dynamic-form>
+      <hys-dynamic-form
+        [fields]="statusAndVisibilityFields()"
+      ></hys-dynamic-form>
     </lib-card>
 
     <lib-card appearance="raised" header="Actions">
@@ -35,8 +37,15 @@
 
     <lib-card header="Need Help?" severity="warning">
       <p>Check our documentation for detailed guides on creating products.</p>
-      <br>
-      <a type="button" hys-button routerLink="#" severity="neutral" class="bg-white">View Docs</a>
+      <br />
+      <a
+        type="button"
+        hys-button
+        routerLink="#"
+        severity="neutral"
+        class="bg-white"
+        >View Docs</a
+      >
     </lib-card>
   </div>
 </form>

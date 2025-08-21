@@ -1,15 +1,25 @@
-<lib-table [data]="data()" [columns]="COLUMNS" (emitPageChange)="pageChange($event)" [page]="page()"
-  [pageSize]="pageSize()" (emitSortChange)="sortChange($event)" [withPaginator]="false">
+<lib-table
+  [data]="data()"
+  [columns]="COLUMNS"
+  (emitPageChange)="pageChange($event)"
+  [page]="page()"
+  [pageSize]="pageSize()"
+  (emitSortChange)="sortChange($event)"
+  [withPaginator]="false"
+>
   <ng-template #globalAction>
-    <lib-toggle-button [options]="VIEW_OPTIONS" [formControl]="statusForm"></lib-toggle-button>
+    <lib-toggle-button
+      [options]="VIEW_OPTIONS"
+      [formControl]="statusForm"
+    ></lib-toggle-button>
   </ng-template>
   <ng-template libColumnTemplate="type" let-row>
-    <lib-chip severity='neutral'>
+    <lib-chip severity="neutral">
       {{ row.type }}
     </lib-chip>
   </ng-template>
   <ng-template libColumnTemplate="category" let-row>
-    <lib-chip severity='info'>
+    <lib-chip severity="info">
       {{ row.category }}
     </lib-chip>
   </ng-template>
@@ -34,22 +44,27 @@
       <mat-icon aria-hidden="false" aria-label="Actions">more_horiz</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      @if (row.status === 'delete') {
-
-      <button mat-menu-item (click)="restore(row.id)">
-        <mat-icon>restart_alt</mat-icon>
-        <span>Restore</span>
-      </button>
+      @if (row.status === "delete") {
+        <button mat-menu-item (click)="restore(row.id)">
+          <mat-icon>restart_alt</mat-icon>
+          <span>Restore</span>
+        </button>
       } @else {
-
-      <button mat-menu-item [routerLink]="urlEditItem(row.id)">
-        <mat-icon>edit</mat-icon>
-        <span>Edit</span>
-      </button>
-      <button mat-menu-item lib-severity severity='danger' (click)="softDelete(row.id)">
-        <mat-icon lib-severity severity='danger' class="bg-transparent">delete</mat-icon>
-        <span>Delete</span>
-      </button>
+        <button mat-menu-item [routerLink]="urlEditItem(row.id)">
+          <mat-icon>edit</mat-icon>
+          <span>Edit</span>
+        </button>
+        <button
+          mat-menu-item
+          lib-severity
+          severity="danger"
+          (click)="softDelete(row.id)"
+        >
+          <mat-icon lib-severity severity="danger" class="bg-transparent"
+            >delete</mat-icon
+          >
+          <span>Delete</span>
+        </button>
       }
     </mat-menu>
   </ng-template>

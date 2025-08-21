@@ -20,7 +20,7 @@ import { HysPaginatorComponent } from '@libs/hys-paginator';
   templateUrl: './dashboard.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'class': 'flex flex-col gap-4',
+    class: 'flex flex-col gap-4',
   },
 })
 export class DashboardContainerComponent {
@@ -41,39 +41,40 @@ export class DashboardContainerComponent {
   }
 
   softDelete(id: string) {
-    this.api.softDelete(id)
+    this.api
+      .softDelete(id)
       .pipe(
         finalize(() => {
           // this.forceReload$.next(null);
           this.dispatcher.dispatch(itemSearchEvents.opened());
-        })
+        }),
       )
       .subscribe({
-        next: _ => {
+        next: () => {
           // TODO:
         },
-        error: err => {
-
-        }
+        error: () => {
+          //TODO:
+        },
       });
   }
 
   restore(id: string) {
-    this.api.restore(id)
+    this.api
+      .restore(id)
       .pipe(
         finalize(() => {
           this.dispatcher.dispatch(itemSearchEvents.opened());
           // this.forceReload$.next(null);
-        })
+        }),
       )
       .subscribe({
-        next: _ => {
+        next: () => {
           // TODO:
         },
-        error: err => {
-
-        }
+        error: () => {
+          //TODO:
+        },
       });
   }
-
 }
