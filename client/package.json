@@ -12,8 +12,7 @@
     "live": "npx lite-server",
     "performance": "env NG_BUILD_MANGEL=false npm run build && npm run live",
     "lint": "ng lint",
-    "lint:fix": "ng lint --fix",
-    "prepare": "husky"
+    "lint:fix": "ng lint --fix"
   },
   "private": true,
   "dependencies": {
@@ -61,13 +60,5 @@
     "prettier": "3.6.2",
     "typescript": "~5.7.2",
     "typescript-eslint": "8.34.1"
-  },
-  "lint-staged": {
-    "*.{js,json,ts,html,css,scss}": [
-      "prettier --write"
-    ],
-    "*.{js,ts,html}": [
-      "eslint --max-warnings=0"
-    ]
   }
 }
