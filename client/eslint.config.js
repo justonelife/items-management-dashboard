@@ -23,7 +23,16 @@ module.exports = tseslint.config(
       ...angular.configs.templateRecommended,
       ...angular.configs.templateAccessibility,
     ],
-    rules: {},
+    rules: {
+      "@angular-eslint/template/elements-content": [
+        "error",
+        {
+          "allowList": [
+            "hys-button",
+          ]
+        }
+      ]
+    },
   },
   {
     files: ["**/*.ts"],
