@@ -1,4 +1,4 @@
-import { ItemStatus } from "./item-status";
+import { ItemStatus } from './item-status';
 
 export interface Item {
   id?: string;

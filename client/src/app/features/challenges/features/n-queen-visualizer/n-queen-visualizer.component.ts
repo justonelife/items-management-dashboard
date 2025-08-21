@@ -1,5 +1,10 @@
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { ChangeDetectionStrategy, Component, computed, effect, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  signal,
+} from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Board } from '@features/challenges/data-access';
 import { ChessBoardViewComponent } from '@features/challenges/ui/chess-board/chess-board.component';
@@ -22,12 +27,11 @@ import { HysNumberInputComponent } from '@libs/hys-controller';
   templateUrl: './n-queen-visualizer.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'class': 'flex flex-col items-center gap-6'
+    class: 'flex flex-col items-center gap-6',
   },
   styleUrl: './n-queen-visualizer.component.scss',
 })
 export class NqueenVisualizerComponent {
-
   numberOfQueens = new FormControl<number>(4);
   solutions = signal<Board[] | null>(null);
   answerString = signal<string>('');
@@ -39,9 +43,11 @@ export class NqueenVisualizerComponent {
         return;
       }
       if (_solutions.length) {
-        return this.answerString.set(`Found ${_solutions.length} solution${_solutions.length > 1 ? 's' : ''}`);
+        return this.answerString.set(
+          `Found ${_solutions.length} solution${_solutions.length > 1 ? 's' : ''}`,
+        );
       } else {
-        return this.answerString.set('No solutions found.')
+        return this.answerString.set('No solutions found.');
       }
     });
   }
@@ -55,7 +61,7 @@ export class NqueenVisualizerComponent {
 
 const solver = (n: number): Board[] => {
   let result: Board[] = [];
-  let answer: Board = Array.from({ length: n }, () => new Array(n).fill(0));
+  const answer: Board = Array.from({ length: n }, () => new Array(n).fill(0));
   const cols: boolean[] = new Array(n).fill(false);
   const mainDiags: boolean[] = new Array(2 * n - 1).fill(false);
   const subDiags: boolean[] = new Array(2 * n - 1).fill(false);
@@ -85,4 +91,4 @@ const solver = (n: number): Board[] => {
   build(0);
 
   return result;
-}
+};

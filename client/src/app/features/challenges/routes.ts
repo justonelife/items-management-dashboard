@@ -1,4 +1,4 @@
-import { Routes } from "@angular/router";
+import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
@@ -12,9 +12,12 @@ export const routes: Routes = [
     children: [
       {
         path: 'n-queens',
-        loadComponent: () => import('./features/n-queen-visualizer/n-queen-visualizer.component').then(c => c.NqueenVisualizerComponent),
-        title: 'N-Queens Visualizer'
-      }
-    ]
-  }
-]
+        loadComponent: () =>
+          import(
+            './features/n-queen-visualizer/n-queen-visualizer.component'
+          ).then((c) => c.NqueenVisualizerComponent),
+        title: 'N-Queens Visualizer',
+      },
+    ],
+  },
+];

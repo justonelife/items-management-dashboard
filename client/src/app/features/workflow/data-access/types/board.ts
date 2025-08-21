@@ -1,4 +1,4 @@
-import { WorkflowTask } from "./task";
+import { WorkflowTask } from './task';
 
 export interface WorkflowBoard {
   title: string;

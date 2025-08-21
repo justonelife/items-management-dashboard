@@ -17,11 +17,10 @@ import { HysButtonComponent } from '@libs/hys-button';
   styleUrl: './task.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'class': `p-4 border flex flex-col items-stretch justtify-between
-    box-border bg-white text-black rounded gap-1`
+    class: `p-4 border flex flex-col items-stretch justtify-between
+    box-border bg-white text-black rounded gap-1`,
   },
 })
 export class TaskViewComponent {
   task = input<WorkflowTask>();
-
 }

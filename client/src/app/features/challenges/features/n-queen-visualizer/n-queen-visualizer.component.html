@@ -1,27 +1,49 @@
 <h1 class="flex items-center gap-2 font-bold text-4xl">
-  <div class="text-4xl w-[30px] text-orange-300" hysIconPosition="center center" icon="crown" iconSet="outlined-lg">
-  </div>
+  <div
+    class="text-4xl w-[30px] text-orange-300"
+    hysIconPosition="center center"
+    icon="crown"
+    iconSet="outlined-lg"
+  ></div>
   N-Queens Visualizer
 </h1>
 
 <p class="text-center w-1/2 text-gray-400">
-  Solve the classic N-Queens problem: place N queens on an N×N chessboard so that no two queens attack each other.
-  Enter
-  the number of queens and visualize all possible solutions.
+  Solve the classic N-Queens problem: place N queens on an N×N chessboard so
+  that no two queens attack each other. Enter the number of queens and visualize
+  all possible solutions.
 </p>
-
 
 <lib-card header="Configuration" class="w-1/4">
   <div class="flex flex-col gap-2">
-
-    <hys-number-input [formControl]="numberOfQueens" label="Number of Queens (N)" [max]="8"
-      [min]="1"></hys-number-input>
-    <p class="text-xs text-gray-400">Recommended: N ≤ 8 for optimal performance</p>
+    <hys-number-input
+      [formControl]="numberOfQueens"
+      label="Number of Queens (N)"
+      [max]="8"
+      [min]="1"
+    ></hys-number-input>
+    <p class="text-xs text-gray-400">
+      Recommended: N ≤ 8 for optimal performance
+    </p>
     <div class="flex gap-2">
-      <button hys-button icon="play_arrow" iconSet="outlined" class="grow" type="button"
-        (click)="solve()">Solve</button>
-      <button hys-button icon="replay" iconSet="outlined" variant="icon" type="reset"
-        (click)="numberOfQueens.reset(4)"></button>
+      <button
+        hys-button
+        icon="play_arrow"
+        iconSet="outlined"
+        class="grow"
+        type="button"
+        (click)="solve()"
+      >
+        Solve
+      </button>
+      <button
+        hys-button
+        icon="replay"
+        iconSet="outlined"
+        variant="icon"
+        type="reset"
+        (click)="numberOfQueens.reset(4)"
+      ></button>
     </div>
   </div>
 </lib-card>
@@ -30,9 +52,8 @@
 
 <div class="flex flex-wrap justify-center gap-4">
   @for (solution of solutions(); track solution; let idx = $index) {
-  <lib-card [header]="'Solution #' + (idx + 1)" appearance="raised">
-    <chess-board-view [board]="solution"></chess-board-view>
-  </lib-card>
+    <lib-card [header]="'Solution #' + (idx + 1)" appearance="raised">
+      <app-chess-board-view [board]="solution"></app-chess-board-view>
+    </lib-card>
   }
-
 </div>

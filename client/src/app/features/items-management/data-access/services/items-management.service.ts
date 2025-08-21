@@ -7,7 +7,7 @@ import { EditItem, Filter, Item, ItemStatus } from '../types';
 
 //FIXME: try not providedIn root
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ItemsManagementService {
   readonly httpClient = inject(HttpClient);
@@ -16,8 +16,8 @@ export class ItemsManagementService {
     filter: Filter,
     sortBy: string | null = null,
     status: ItemStatus = 'active',
-    page: number = 1,
-    size: number = 10
+    page = 1,
+    size = 10,
   ): Observable<AppPageOfData<Item>> {
     const params = {
       ...filter,
@@ -25,20 +25,22 @@ export class ItemsManagementService {
       _page: page,
       _per_page: size,
       _sort: sortBy,
-    }
+    };
 
     const queryParams = this.generateQueryParams(params);
 
-    return this.httpClient.get<AppPageOfData<Item>>(URI + '/items' + queryParams).pipe(
-      tap(console.log),
-      catchError(err => {
-        // TODO:  alert
-        console.log(err);
-        return of({
-          data: [],
-        } as AppPageOfData<Item>);
-      })
-    );
+    return this.httpClient
+      .get<AppPageOfData<Item>>(URI + '/items' + queryParams)
+      .pipe(
+        tap(console.log),
+        catchError((err) => {
+          // TODO:  alert
+          console.log(err);
+          return of({
+            data: [],
+          } as AppPageOfData<Item>);
+        }),
+      );
   }
 
   getSingleItem(id: string): Observable<Item> {
@@ -49,8 +51,11 @@ export class ItemsManagementService {
     let result = '';
     for (const [key, param] of Object.entries(params)) {
       if (Array.isArray(param)) {
-        result = result + param.filter(item => item !== null)
-          .reduce((acc, curr) => acc + `&${key}=${curr}`, '');
+        result =
+          result +
+          param
+            .filter((item) => item !== null)
+            .reduce((acc, curr) => acc + `&${key}=${curr}`, '');
       } else if (param !== null) {
         result = result + `&${key}=${param}`;
       }

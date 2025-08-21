@@ -3,17 +3,12 @@ import { AppAuthFormComponent } from '@features/auth/ui/auth-form/auth-form.comp
 import { HysButtonComponent } from '@libs/hys-button';
 
 @Component({
-  imports: [
-    HysButtonComponent,
-    AppAuthFormComponent,
-  ],
+  imports: [HysButtonComponent, AppAuthFormComponent],
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'class': 'w-full'
-  }
+    class: 'w-full',
+  },
 })
-export class AppSignUpContainerComponent {
-
-}
+export class AppSignUpContainerComponent {}

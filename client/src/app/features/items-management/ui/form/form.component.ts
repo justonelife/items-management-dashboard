@@ -1,11 +1,22 @@
-import { ChangeDetectionStrategy, Component, effect, input, output, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  input,
+  output,
+  signal,
+} from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { EditItem } from '@features/items-management/data-access';
 import { CardComponent } from '@libs/card';
 import { AppTypedForm } from '@libs/core';
 import { HysButtonComponent } from '@libs/hys-button';
-import { DynamicField, DynamicType, HysDynamicFormComponent } from '@libs/hys-controller';
+import {
+  DynamicField,
+  DynamicType,
+  HysDynamicFormComponent,
+} from '@libs/hys-controller';
 import { Option } from '@libs/select';
 
 @Component({
@@ -22,7 +33,6 @@ import { Option } from '@libs/select';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemsManagementForm {
-
   form = input.required<AppTypedForm<EditItem>>();
   categoryOptions = input.required<Option[]>();
   typeOptions = input.required<Option[]>();
@@ -65,7 +75,10 @@ export class ItemsManagementForm {
     this.emitSubmit.emit();
   }
 
-  private setUpBasicInformationFields(categoryOptions: Option[], typeOptions: Option[]): void {
+  private setUpBasicInformationFields(
+    categoryOptions: Option[],
+    typeOptions: Option[],
+  ): void {
     this.basicInformationFields.set({
       name: {
         label: 'Name',
@@ -105,5 +118,4 @@ export class ItemsManagementForm {
       },
     });
   }
-
 }

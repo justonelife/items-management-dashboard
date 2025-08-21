@@ -1,28 +1,32 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EditItem, ItemsManagementCommonService, ItemsManagementService, urlDashboardItems } from '@features/items-management/data-access';
+import {
+  EditItem,
+  ItemsManagementCommonService,
+  ItemsManagementService,
+  urlDashboardItems,
+} from '@features/items-management/data-access';
 import { ItemsManagementForm } from '@features/items-management/ui/form/form.component';
 import { AppTypedForm } from '@libs/core';
 
-
 @Component({
   standalone: true,
-  imports: [
-    ItemsManagementForm,
-    MatButtonModule,
-    MatIconModule,
-    AsyncPipe,
-  ],
+  imports: [ItemsManagementForm, MatButtonModule, MatIconModule, AsyncPipe],
   selector: 'app-items-management-edit',
   templateUrl: './edit.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'class': 'flex flex-col gap-4',
-  }
+    class: 'flex flex-col gap-4',
+  },
 })
 export class ItemsManagementEditComponent implements OnInit {
   readonly activatedRoute = inject(ActivatedRoute);
@@ -40,7 +44,9 @@ export class ItemsManagementEditComponent implements OnInit {
   form: AppTypedForm<EditItem> = new FormGroup({
     name: new FormControl<string>('', { validators: [Validators.required] }),
     type: new FormControl<string>('', { validators: [Validators.required] }),
-    category: new FormControl<string>('', { validators: [Validators.required] }),
+    category: new FormControl<string>('', {
+      validators: [Validators.required],
+    }),
     price: new FormControl<number>(0, { validators: [Validators.required] }),
     imageUrl: new FormControl<string>(''),
     description: new FormControl<string>(''),
@@ -50,13 +56,13 @@ export class ItemsManagementEditComponent implements OnInit {
 
   ngOnInit() {
     this.api.getSingleItem(this.id).subscribe({
-      next: res => {
+      next: (res) => {
         this.form.patchValue(res);
       },
-      error: err => {
+      error: (err) => {
         // TODO: alert
         console.log(err);
-      }
+      },
     });
   }
 
@@ -66,16 +72,14 @@ export class ItemsManagementEditComponent implements OnInit {
     }
 
     this.api.updateItem(this.id, this.form.getRawValue()).subscribe({
-      next: _ => {
+      next: () => {
         // alert success
         this.router.navigate([this.URL_DASHBOARD_ITEMS]);
-
       },
-      error: err => {
+      error: (err) => {
         // TODO: alert
         console.log(err);
-      }
+      },
     });
-
   }
 }

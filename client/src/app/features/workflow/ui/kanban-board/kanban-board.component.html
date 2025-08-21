@@ -1,17 +1,19 @@
 <div cdkDropListGroup class="grid grid-cols-4 h-full gap-2">
-
   @for (board of boards; track board.title) {
-  <div class="flex flex-col gap-4 w-full">
-    <div class="p-4 w-full bg-secondary">
-      <h3 class="text-normal uppercase text-gray-400">{{ board.title }}</h3>
+    <div class="flex flex-col gap-4 w-full">
+      <div class="p-4 w-full bg-secondary">
+        <h3 class="text-normal uppercase text-gray-400">{{ board.title }}</h3>
+      </div>
+
+      <div cdkDropList class="w-full h-full bg-secondary rounded p-4">
+        @for (task of board.tasks; track $index) {
+          <app-workflow-task-view
+            class="kanban-task mb-2"
+            cdkDrag
+            [task]="task"
+          ></app-workflow-task-view>
+        }
+      </div>
     </div>
-
-    <div cdkDropList class="w-full h-full bg-secondary rounded p-4">
-      @for (task of board.tasks; track $index) {
-
-      <app-workflow-task-view class="kanban-task mb-2" cdkDrag [task]="task"></app-workflow-task-view>
-      }
-
-    </div>
-  </div>
   }
+</div>

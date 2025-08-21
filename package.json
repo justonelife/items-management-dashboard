@@ -7,6 +7,7 @@
     "server"
   ],
   "scripts": {
+    "prepare": "husky",
     "install:all": "npm install",
     "start:client": "npm run start --workspace=client",
     "start:server": "npm run start --workspace=server",
@@ -17,9 +18,19 @@
     "live:client": "npm run live --workspace=client",
     "live:temp-server": "npm rum server --workspace=client",
     "performance:client": "npm run performance --workspace=client",
-    "lint:client": "npm run lint --workspace=client"
+    "lint:client": "npm run lint --workspace=client",
+    "lint:client:fix": "npm run lint:fix --workspace=client"
   },
   "devDependencies": {
-    "concurrently": "^9.2.0"
+    "concurrently": "^9.2.0",
+    "husky": "^9.1.7"
+  },
+  "lint-staged": {
+    "*.{js,json,ts,html,css,scss}": [
+      "prettier --write"
+    ],
+    "*.{js,ts,html}": [
+      "eslint --max-warnings=0"
+    ]
   }
 }

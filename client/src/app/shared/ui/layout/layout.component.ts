@@ -29,5 +29,4 @@ export class AppLayoutComponent {
   toggleTheme(): void {
     this.appStore.setTheme(this.theme() === 'light' ? 'dark' : 'light');
   }
-
 }
