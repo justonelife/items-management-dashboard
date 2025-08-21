@@ -16,7 +16,8 @@
     "build:all": "concurrently --kill-others 'npm run build:client' 'npm run build:server'",
     "live:client": "npm run live --workspace=client",
     "live:temp-server": "npm rum server --workspace=client",
-    "performance:client": "npm run performance --workspace=client"
+    "performance:client": "npm run performance --workspace=client",
+    "lint:client": "npm run lint --workspace=client"
   },
   "devDependencies": {
     "concurrently": "^9.2.0"
